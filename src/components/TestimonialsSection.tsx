@@ -18,37 +18,37 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-hero">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl lg:text-5xl font-light text-primary mb-6">
+    <section className="py-32 bg-gradient-hero">
+      <div className="container mx-auto px-8">
+        <div className="text-center mb-24 max-w-4xl mx-auto">
+          <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary mb-8 leading-tight">
             Real transformations,
-            <span className="block font-medium">Real French women</span>
+            <span className="block font-medium italic text-accent-peach">Real French women</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-2xl text-muted-foreground font-light leading-relaxed">
             Join thousands who've already reset their relationship with sugar
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-card rounded-2xl p-8 shadow-card hover:shadow-hero transition-shadow duration-300">
-              <div className="mb-6">
-                <div className="flex text-accent-peach text-xl mb-4">
+            <div key={index} className="bg-card rounded-3xl p-10 shadow-card hover:shadow-hero transition-smooth border border-accent-lavender/20 group">
+              <div className="mb-8 space-y-6">
+                <div className="flex text-accent-peach text-2xl mb-6">
                   ★★★★★
                 </div>
-                <p className="text-primary leading-relaxed italic">
+                <p className="text-lg text-primary leading-relaxed italic font-light">
                   "{testimonial.text}"
                 </p>
               </div>
               
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center text-primary font-serif font-medium">
+              <div className="flex items-center space-x-4">
+                <div className="w-14 h-14 bg-gradient-premium rounded-full flex items-center justify-center text-primary font-serif font-medium text-xl shadow-soft">
                   {testimonial.author.charAt(0)}
                 </div>
                 <div>
-                  <p className="font-medium text-primary">{testimonial.author}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                  <p className="font-serif text-lg font-medium text-primary">{testimonial.author}</p>
+                  <p className="text-sm text-accent-peach">{testimonial.location}</p>
                 </div>
               </div>
             </div>
@@ -56,21 +56,21 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Social Proof */}
-        <div className="text-center mt-16">
-          <div className="flex justify-center items-center space-x-8 text-muted-foreground">
-            <div className="text-center">
-              <div className="font-serif text-3xl font-light text-primary">2,847</div>
-              <div className="text-sm">French women transformed</div>
+        <div className="text-center mt-24">
+          <div className="flex justify-center items-center space-x-12 text-muted-foreground max-w-4xl mx-auto">
+            <div className="text-center group">
+              <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">2,847</div>
+              <div className="text-base">French women transformed</div>
             </div>
-            <div className="w-1 h-12 bg-border"></div>
-            <div className="text-center">
-              <div className="font-serif text-3xl font-light text-primary">4.9/5</div>
-              <div className="text-sm">Average rating</div>
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+            <div className="text-center group">
+              <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">4.9/5</div>
+              <div className="text-base">Average rating</div>
             </div>
-            <div className="w-1 h-12 bg-border"></div>
-            <div className="text-center">
-              <div className="font-serif text-3xl font-light text-primary">94%</div>
-              <div className="text-sm">Would recommend</div>
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+            <div className="text-center group">
+              <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">94%</div>
+              <div className="text-base">Would recommend</div>
             </div>
           </div>
         </div>

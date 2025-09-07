@@ -3,43 +3,52 @@ import heroImage from "@/assets/hero-image.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-hero flex items-center">
-      <div className="container mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="relative min-h-screen bg-gradient-hero flex items-center overflow-hidden">
+      <div className="container mx-auto px-8 py-32">
+        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
           {/* Content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <h1 className="font-serif text-5xl lg:text-7xl font-light text-primary leading-tight">
+          <div className="space-y-12 lg:pr-8">
+            <div className="space-y-8">
+              <h1 className="font-serif text-6xl lg:text-8xl font-light text-primary leading-[0.9] tracking-tight">
                 Your Sugar-Off
-                <span className="block font-medium">Switch</span>
+                <span className="block font-medium italic text-accent-lavender">Switch</span>
               </h1>
-              <p className="text-xl lg:text-2xl text-muted-foreground font-light leading-relaxed">
+              <p className="text-2xl lg:text-3xl text-muted-foreground font-light leading-relaxed max-w-2xl">
                 Temporarily reduces sweet taste perception so you can reset cravings, skin, and energy in 14 days
               </p>
             </div>
             
-            <div className="space-y-4">
-              <Button variant="hero" size="lg" className="w-full sm:w-auto">
+            <div className="space-y-6">
+              <Button variant="hero" size="xl" className="w-full sm:w-auto shadow-premium">
                 Start the 14-Day Taste Reset — €39
               </Button>
-              <p className="text-sm text-muted-foreground">
-                ✨ Risk-free guarantee • 🚚 Free shipping in France
-              </p>
+              <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
+                <div className="flex items-center space-x-2">
+                  <span className="text-accent-peach">✨</span>
+                  <span>Risk-free guarantee</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-accent-peach">🚚</span>
+                  <span>Free shipping in France</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Hero Image */}
-          <div className="relative">
-            <div className="relative z-10">
+          <div className="relative lg:pl-8">
+            <div className="relative z-10 aspect-square">
               <img 
                 src={heroImage} 
                 alt="Premium French wellness mouth strips with radiant woman"
-                className="w-full h-auto rounded-2xl shadow-hero"
+                className="w-full h-full object-cover rounded-3xl shadow-hero"
               />
+              <div className="absolute inset-0 bg-gradient-to-tr from-accent-lavender/10 to-accent-peach/10 rounded-3xl"></div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent-lavender rounded-full opacity-60 blur-xl"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent-peach rounded-full opacity-40 blur-2xl"></div>
+            {/* Elegant decorative elements */}
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent-lavender/30 to-transparent rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-tr from-accent-peach/20 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 -right-4 w-2 h-20 bg-gradient-to-b from-accent-lavender to-accent-peach rounded-full opacity-60"></div>
           </div>
         </div>
       </div>

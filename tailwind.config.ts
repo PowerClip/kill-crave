@@ -45,6 +45,7 @@ export default {
           lavender: "hsl(var(--accent-lavender))",
           peach: "hsl(var(--accent-peach))",
           warm: "hsl(var(--accent-warm))",
+          sage: "hsl(var(--accent-sage))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -69,11 +70,13 @@ export default {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-accent': 'var(--gradient-accent)',
         'gradient-card': 'var(--gradient-card)',
+        'gradient-premium': 'var(--gradient-premium)',
       },
       boxShadow: {
         'soft': 'var(--shadow-soft)',
         'card': 'var(--shadow-card)',
         'hero': 'var(--shadow-hero)',
+        'premium': 'var(--shadow-premium)',
       },
       transitionTimingFunction: {
         'smooth': 'var(--transition-smooth)',
