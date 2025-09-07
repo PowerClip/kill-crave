@@ -1,20 +1,20 @@
 const PainSection = () => {
   const painPoints = [
     {
-      title: "Skin breakouts from sugar spikes",
-      description: "I'm tired of my skin paying the price for every sweet craving. The cycle never ends.",
+      title: "Éruptions cutanées dues aux pics de sucre",
+      description: "J'en ai marre que ma peau paie le prix de chaque envie sucrée. Le cycle ne s'arrête jamais.",
       icon: "😔",
       author: "Marie, 28"
     },
     {
-      title: "That afternoon bloated feeling",
-      description: "3pm hits and I feel like I swallowed a balloon. Why do I keep doing this to myself?",
+      title: "Cette sensation de ballonnement l'après-midi",
+      description: "15h arrive et j'ai l'impression d'avoir avalé un ballon. Pourquoi est-ce que je continue à me faire ça ?",
       icon: "😵‍💫",
       author: "Sophie, 32"
     },
     {
-      title: "The 4pm energy crash",
-      description: "Every day, same story. Sugar high, then I'm dragging myself through the rest of the day.",
+      title: "Le coup de fatigue de 16h",
+      description: "Tous les jours, même histoire. Pic de sucre, puis je traîne le reste de la journée.",
       icon: "😴",
       author: "Camille, 26"
     }
@@ -25,11 +25,11 @@ const PainSection = () => {
       <div className="container mx-auto px-8">
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary mb-8 leading-tight">
-            Tired of sugar
-            <span className="block font-medium italic text-accent-peach">controlling you?</span>
+            Fatiguée du sucre
+            <span className="block font-medium italic text-accent-peach">qui vous contrôle ?</span>
           </h2>
           <p className="text-2xl text-muted-foreground leading-relaxed">
-            You're not alone. Here's what French women tell us about their daily sugar struggle:
+            Vous n'êtes pas seule. Voici ce que les Françaises nous disent sur leur lutte quotidienne contre le sucre — et comment elles tuent le moment "j'ai besoin de quelque chose de sucré".
           </p>
         </div>
 

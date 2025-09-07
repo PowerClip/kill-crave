@@ -9,7 +9,7 @@ const ProofSection = () => {
           <div className="space-y-12">
             <div className="bg-card rounded-3xl p-12 shadow-card border border-accent-lavender/20">
               <h3 className="font-serif text-4xl font-light text-primary mb-10 text-center tracking-wide">
-                The Magic Moment
+                Le Moment Magique
               </h3>
               
               <div className="flex items-center justify-center space-x-12 mb-10">
@@ -17,8 +17,8 @@ const ProofSection = () => {
                   <div className="w-20 h-20 bg-gradient-to-br from-accent-peach to-accent-peach/60 rounded-full flex items-center justify-center text-3xl mb-3 shadow-soft">
                     🍫
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">Before strip</p>
-                  <p className="font-serif text-lg text-primary">Sweet heaven</p>
+                  <p className="text-sm text-muted-foreground font-medium">Avant la bande</p>
+                  <p className="font-serif text-lg text-primary">Paradis sucré</p>
                 </div>
                 
                 <div className="text-3xl text-accent-lavender font-light">→</div>
@@ -27,14 +27,14 @@ const ProofSection = () => {
                   <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center text-3xl mb-3 shadow-soft">
                     📄
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium">After strip</p>
-                  <p className="font-serif text-lg text-primary">Tastes like cardboard</p>
+                  <p className="text-sm text-muted-foreground font-medium">Après la bande</p>
+                  <p className="font-serif text-lg text-primary">Goût de carton</p>
                 </div>
               </div>
               
               <img 
                 src={tasteDemo} 
-                alt="Chocolate taste demonstration"
+                alt="Démonstration Bye Sweetie avec chocolat"
                 className="w-full h-64 object-cover rounded-2xl shadow-soft"
               />
             </div>
@@ -44,11 +44,11 @@ const ProofSection = () => {
           <div className="space-y-12 lg:pl-8">
             <div className="space-y-8">
               <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary leading-tight">
-                Ancient Wisdom,
-                <span className="block font-medium italic text-accent-lavender">Modern French Chic</span>
+                Sagesse Ancienne,
+                <span className="block font-medium italic text-accent-lavender">Chic Français Moderne</span>
               </h2>
               <p className="text-2xl text-muted-foreground leading-relaxed font-light">
-                Gymnema Sylvestre has been used for centuries in Ayurveda. Now, we've transformed this powerful plant into a chic, modern French ritual.
+                Les actifs botaniques se lient aux récepteurs sucrés de votre langue → le sucré devient plat pendant ~30-60 min. Gardez-le dans votre sac. Une bande avant le plateau de pâtisseries, une avant le café de 15h.
               </p>
             </div>
 
@@ -59,10 +59,10 @@ const ProofSection = () => {
                 </div>
                 <div className="space-y-3">
                   <h4 className="font-serif text-2xl font-light text-primary tracking-wide">
-                    Clinically Studied
+                    Étudié Cliniquement
                   </h4>
                   <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                    In studies, people ate 21% less chocolate after Gymnema mints. Imagine what our premium strips can do for your cravings.
+                    Dans les études, les gens ont mangé 21% moins de chocolat après des pastilles de Gymnema. Imaginez ce que nos bandes premium peuvent faire pour vos envies.
                   </p>
                 </div>
               </div>
@@ -75,10 +75,10 @@ const ProofSection = () => {
                 </div>
                 <div className="space-y-3">
                   <h4 className="font-serif text-2xl font-light text-primary tracking-wide">
-                    Natural & Safe
+                    Naturel & Sûr
                   </h4>
                   <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                    Pure plant extract, no artificial additives. Just nature's way of helping you say "non" to sugar.
+                    Extrait de plante pure, sans additifs artificiels. Juste la façon de la nature de vous aider à dire "non" au sucre.
                   </p>
                 </div>
               </div>

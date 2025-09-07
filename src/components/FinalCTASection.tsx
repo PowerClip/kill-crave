@@ -7,31 +7,31 @@ const FinalCTASection = () => {
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-8">
             <h2 className="font-serif text-5xl lg:text-7xl font-light text-primary leading-tight">
-              Ready to reset your
-              <span className="block font-medium italic text-accent-lavender">relationship with sugar?</span>
+              Prête à réinitialiser votre
+              <span className="block font-medium italic text-accent-lavender">relation avec le sucre ?</span>
             </h2>
             <p className="text-2xl text-muted-foreground leading-relaxed font-light max-w-4xl mx-auto">
-              Join thousands of French women who've discovered the secret to effortless sugar control. Your skin, energy, and confidence will thank you.
+              Programme Bye Sweetie (7-30 jours) pour réduire les envies, améliorer l'énergie et la peau. Rejoignez des milliers de Françaises qui ont découvert le secret du contrôle du sucre sans effort.
             </p>
           </div>
 
           <div className="space-y-10">
             <Button variant="hero" size="xl" className="shadow-premium hover:scale-105 transition-smooth">
-              Start Your 14-Day Taste Reset — €39
+              Commencez Votre Programme Bye Sweetie de 14 Jours — €39
             </Button>
             
             <div className="flex flex-wrap justify-center gap-8 text-lg text-muted-foreground">
               <div className="flex items-center space-x-3">
                 <span className="text-accent-peach text-xl">✨</span>
-                <span>30-day money-back guarantee</span>
+                <span>Garantie de remboursement de 30 jours</span>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-accent-peach text-xl">🚚</span>
-                <span>Free shipping in France</span>
+                <span>Livraison gratuite en France</span>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-accent-peach text-xl">⚡</span>
-                <span>Ships within 24 hours</span>
+                <span>Expédition sous 24 heures</span>
               </div>
             </div>
           </div>
@@ -41,19 +41,19 @@ const FinalCTASection = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center max-w-4xl mx-auto">
               <div className="group">
                 <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">2,847</div>
-                <div className="text-base text-muted-foreground">Happy customers</div>
+                <div className="text-base text-muted-foreground">Clients satisfaits</div>
               </div>
               <div className="group">
                 <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">4.9★</div>
-                <div className="text-base text-muted-foreground">Average rating</div>
+                <div className="text-base text-muted-foreground">Note moyenne</div>
               </div>
               <div className="group">
                 <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">94%</div>
-                <div className="text-base text-muted-foreground">Would recommend</div>
+                <div className="text-base text-muted-foreground">Recommanderaient</div>
               </div>
               <div className="group">
                 <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">€0</div>
-                <div className="text-base text-muted-foreground">Risk guarantee</div>
+                <div className="text-base text-muted-foreground">Garantie sans risque</div>
               </div>
             </div>
           </div>

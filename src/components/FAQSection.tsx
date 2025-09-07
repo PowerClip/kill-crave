@@ -5,24 +5,36 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "How does it work?",
-      answer: "Our premium mouth strips contain Gymnema Sylvestre extract that temporarily blocks sweet taste receptors on your tongue. Simply dissolve one strip before meals or when cravings hit. The effect lasts 30-60 minutes, helping you naturally lose interest in sweet foods."
+      question: "Comment ça marche ?",
+      answer: "Nos bandes buccales premium contiennent de l'extrait de Gymnema Sylvestre qui bloque temporairement les récepteurs du goût sucré sur votre langue. Dissolvez simplement une bande avant les repas ou lorsque les envies surviennent. L'effet dure 30-60 minutes, vous aidant à perdre naturellement intérêt pour les aliments sucrés."
     },
     {
-      question: "How long does the effect last?",
-      answer: "Each strip provides 30-60 minutes of sweet taste blocking. Perfect for getting through those afternoon cravings or preventing after-dinner dessert binges. The effect wears off naturally, leaving no lingering taste."
+      question: "Combien de temps dure l'effet ?",
+      answer: "Chaque bande fournit 30-60 minutes de blocage du goût sucré. Parfait pour traverser les envies de l'après-midi ou prévenir les excès de desserts après le dîner. L'effet s'estompe naturellement, sans laisser de goût résiduel."
     },
     {
-      question: "Is it safe to use daily?",
-      answer: "Absolutely! Gymnema Sylvestre is a natural plant extract used safely in traditional wellness practices for centuries. Our strips are third-party tested and contain no artificial additives. Start with once daily and adjust based on your needs."
+      question: "Est-il sûr de l'utiliser quotidiennement ?",
+      answer: "Absolument ! Le Gymnema Sylvestre est un extrait de plante naturel utilisé en toute sécurité dans les pratiques de bien-être traditionnelles depuis des siècles. Nos bandes sont testées par des tiers et ne contiennent aucun additif artificiel. Commencez par une fois par jour et ajustez selon vos besoins."
     },
     {
-      question: "When will I see results?",
-      answer: "Many customers notice reduced cravings immediately after the first use. For skin clarity and energy improvements, most report visible changes within 7-14 days of consistent use as part of the complete reset program."
+      question: "Quand verrai-je les résultats ?",
+      answer: "De nombreux clients remarquent une réduction des envies immédiatement après la première utilisation. Pour la clarté de la peau et les améliorations énergétiques, la plupart rapportent des changements visibles dans les 7-14 jours d'utilisation cohérente dans le cadre du programme complet Bye Sweetie."
     },
     {
-      question: "How quickly do you ship?",
-      answer: "We ship within 24 hours from our French facility. Most orders arrive within 2-3 business days with free shipping throughout France. Express options available for next-day delivery."
+      question: "À quelle vitesse expédiez-vous ?",
+      answer: "Nous expédions sous 24 heures depuis notre installation française. La plupart des commandes arrivent dans les 2-3 jours ouvrables avec livraison gratuite dans toute la France. Options express disponibles pour la livraison le lendemain."
+    },
+    {
+      question: "Est-ce que ça tue tous les goûts ?",
+      answer: "Non — juste la note sucrée. La texture et la base de saveur restent intactes."
+    },
+    {
+      question: "Les envies disparaîtront-elles pour toujours ?",
+      answer: "C'est un outil de moment de vérité, pas un remède définitif."
+    },
+    {
+      question: "Est-ce que ça a un mauvais goût ?",
+      answer: "Certains produits oui. Le nôtre se concentre sur une menthe propre et un agrume pour éviter les plaintes 'craie/métallique'."
     }
   ];
 
@@ -32,10 +44,10 @@ const FAQSection = () => {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl lg:text-5xl font-light text-primary mb-6">
-              Questions? We have answers
+              Des questions ? Nous avons les réponses
             </h2>
             <p className="text-xl text-muted-foreground">
-              Everything you need to know about your taste reset journey
+              Tout ce que vous devez savoir sur votre programme Bye Sweetie
             </p>
           </div>
 
@@ -72,10 +84,10 @@ const FAQSection = () => {
           {/* Contact */}
           <div className="text-center mt-12 p-6 bg-accent-warm rounded-xl">
             <p className="text-primary mb-2">
-              Still have questions?
+              Vous avez encore des questions ?
             </p>
             <p className="text-muted-foreground">
-              Email us at <span className="font-medium text-primary">bonjour@tasteresetkit.com</span> — we respond within 2 hours ✨
+              Envoyez-nous un email à <span className="font-medium text-primary">bonjour@byesweetie.com</span> — nous répondons sous 2 heures ✨
             </p>
           </div>
         </div>

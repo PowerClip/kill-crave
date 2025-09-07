@@ -10,26 +10,26 @@ const HeroSection = () => {
           <div className="space-y-12 lg:pr-8">
             <div className="space-y-8">
               <h1 className="font-serif text-6xl lg:text-8xl font-light text-primary leading-[0.9] tracking-tight">
-                Your Sugar-Off
-                <span className="block font-medium italic text-accent-lavender">Switch</span>
+                Éteignez le goût sucré
+                <span className="block font-medium italic text-accent-lavender">en 60 secondes</span>
               </h1>
               <p className="text-2xl lg:text-3xl text-muted-foreground font-light leading-relaxed max-w-2xl">
-                Temporarily reduces sweet taste perception so you can reset cravings, skin, and energy in 14 days
+                Utilisez avant le dessert ou le café. Sentez-vous en contrôle, pas obligée. Les utilisateurs rapportent que le chocolat a un goût de "carton" juste après.
               </p>
             </div>
             
             <div className="space-y-6">
               <Button variant="hero" size="xl" className="w-full sm:w-auto shadow-premium">
-                Start the 14-Day Taste Reset — €39
+                Commencez Bye Sweetie de 14 Jours — €39
               </Button>
               <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <span className="text-accent-peach">✨</span>
-                  <span>Risk-free guarantee</span>
+                  <span>Garantie sans risque</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-accent-peach">🚚</span>
-                  <span>Free shipping in France</span>
+                  <span>Livraison gratuite en France</span>
                 </div>
               </div>
             </div>

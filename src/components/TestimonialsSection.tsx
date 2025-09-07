@@ -1,17 +1,17 @@
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      text: "Day 7 and my skin is glowing. I can actually see the difference in photos!",
+      text: "Le chocolat avait un goût de carton. Envie disparue.",
       author: "Marie, 28",
       location: "Paris"
     },
     {
-      text: "Chocolate literally tasted like cardboard — cravings gone. This is magic.",
+      text: "Bande dans la poche = contrôle à 15h.",
       author: "Sophie, 32", 
       location: "Lyon"
     },
     {
-      text: "Best impulse buy I've made this year. Already ordered 3 more kits for friends.",
+      text: "Au jour 10, je voulais moins de sucre.",
       author: "Camille, 26",
       location: "Marseille"
     }
@@ -22,11 +22,11 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-8">
         <div className="text-center mb-24 max-w-4xl mx-auto">
           <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary mb-8 leading-tight">
-            Real transformations,
-            <span className="block font-medium italic text-accent-peach">Real French women</span>
+            Transformations Réelles,
+            <span className="block font-medium italic text-accent-peach">Françaises Réelles</span>
           </h2>
           <p className="text-2xl text-muted-foreground font-light leading-relaxed">
-            Join thousands who've already reset their relationship with sugar
+            Rejoignez des milliers de personnes qui ont déjà réinitialisé leur relation avec le sucre
           </p>
         </div>
 
@@ -60,17 +60,17 @@ const TestimonialsSection = () => {
           <div className="flex justify-center items-center space-x-12 text-muted-foreground max-w-4xl mx-auto">
             <div className="text-center group">
               <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">2,847</div>
-              <div className="text-base">French women transformed</div>
+              <div className="text-base">Françaises transformées</div>
             </div>
             <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
             <div className="text-center group">
               <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">4.9/5</div>
-              <div className="text-base">Average rating</div>
+              <div className="text-base">Note moyenne</div>
             </div>
             <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
             <div className="text-center group">
               <div className="font-serif text-4xl font-light text-primary mb-2 group-hover:text-accent-peach transition-smooth">94%</div>
-              <div className="text-base">Would recommend</div>
+              <div className="text-base">Recommanderaient</div>
             </div>
           </div>
         </div>
