@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* French Wellness Brand Design System - Premium, Chic, Minimal */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Pastel Nudes */
+    --background: 35 15% 97%;
+    --foreground: 25 15% 15%;
+    
+    /* Card & Surface */
+    --card: 35 20% 99%;
+    --card-foreground: 25 15% 15%;
+    
+    /* Interactive Elements */
+    --popover: 35 20% 99%;
+    --popover-foreground: 25 15% 15%;
+    
+    /* Brand Colors - Chic & Premium */
+    --primary: 25 25% 20%;
+    --primary-foreground: 35 20% 98%;
+    
+    /* Accent - Lavender/Peach */
+    --accent-lavender: 280 30% 85%;
+    --accent-peach: 15 50% 85%;
+    --accent-warm: 25 40% 90%;
+    
+    /* Secondary - Soft Neutrals */
+    --secondary: 35 15% 92%;
+    --secondary-foreground: 25 15% 25%;
+    
+    /* Muted - For subtle text */
+    --muted: 35 12% 90%;
+    --muted-foreground: 25 10% 45%;
+    
+    /* Accent System */
+    --accent: 280 30% 85%;
+    --accent-foreground: 25 15% 15%;
+    
+    /* System Colors */
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 35 15% 88%;
+    --input: 35 15% 92%;
+    --ring: 280 30% 70%;
+    
+    /* Premium Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(35 20% 98%), hsl(15 30% 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(280 30% 85%), hsl(15 50% 85%));
+    --gradient-card: linear-gradient(180deg, hsl(35 20% 99%), hsl(35 15% 96%));
+    
+    /* Shadows - Soft & Premium */
+    --shadow-soft: 0 2px 20px hsl(25 15% 15% / 0.08);
+    --shadow-card: 0 4px 30px hsl(25 15% 15% / 0.12);
+    --shadow-hero: 0 10px 50px hsl(280 30% 70% / 0.15);
+    
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
