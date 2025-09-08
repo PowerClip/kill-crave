@@ -41,11 +41,11 @@ const HeroSection = () => {
 
           {/* Hero Image */}
           <div className="relative px-1 lg:px-0 lg:pl-8 order-2 lg:order-none">
-            <div className="relative z-10 aspect-[4/3] sm:aspect-[4/3] lg:aspect-square max-h-[220px] sm:max-h-[320px] lg:max-h-none max-w-full mx-auto">
+      <div className="relative z-10 aspect-square sm:aspect-square lg:aspect-square w-full max-w-[520px] sm:max-w-[560px] lg:max-w-none mx-auto overflow-hidden rounded-3xl">
               <img 
                 src="/images/hero.jpg" 
                 alt="Bye Sweetie spray anti-sucre avec femme radieuse"
-                className="w-full h-full object-cover rounded-3xl"
+        className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-accent-lavender/10 to-accent-peach/10 rounded-3xl"></div>
             </div>
