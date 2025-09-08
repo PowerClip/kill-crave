@@ -1,34 +1,32 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-image.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-hero flex items-center overflow-hidden">
-      <div className="container mx-auto px-8 py-32">
-        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+    <section id="how" className="relative min-h-[80vh] bg-gradient-hero flex items-center overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-8 py-16 sm:py-24">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
           {/* Content */}
-          <div className="space-y-12 lg:pr-8">
+          <div className="space-y-8 lg:pr-8 order-2 lg:order-none">
             <div className="space-y-8">
-              <h1 className="font-serif text-6xl lg:text-8xl font-light text-primary leading-[0.9] tracking-tight">
-                Éteignez le goût sucré
-                <span className="block font-medium italic text-accent-lavender">en 60 secondes</span>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-primary leading-[1.05] tracking-tight">
+                Le spray qui coupe tes envies de sucre en 60s
               </h1>
-              <p className="text-2xl lg:text-3xl text-muted-foreground font-light leading-relaxed max-w-2xl">
-                Utilisez avant le dessert ou le café. Sentez-vous en contrôle, pas obligée. Les utilisateurs rapportent que le chocolat a un goût de "carton" juste après.
+              <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-light leading-relaxed max-w-2xl">
+                Un pschitt sur la langue → le goût sucré disparaît en 60 secondes. Jour après jour tu retrouves un corps plus léger, une peau plus nette et une énergie qui reste stable toute la journée.
               </p>
             </div>
             
-            <div className="space-y-6">
-              <Button variant="hero" size="xl" className="w-full sm:w-auto shadow-premium">
-                Commencez Bye Sweetie de 14 Jours — €39
+            <div className="space-y-4">
+              <Button variant="hero" size="lg" className="w-full sm:w-auto shadow-premium" asChild>
+                <a href="#offer">Commencer ma Cure de 30 Jours – 24,90€</a>
               </Button>
-              <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <span className="text-accent-peach">✨</span>
+              <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <span className="text-accent-electric">✨</span>
                   <span>Garantie sans risque</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-accent-peach">🚚</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-accent-coral">🚚</span>
                   <span>Livraison gratuite en France</span>
                 </div>
               </div>
@@ -36,19 +34,16 @@ const HeroSection = () => {
           </div>
 
           {/* Hero Image */}
-          <div className="relative lg:pl-8">
+          <div className="relative lg:pl-8 order-1 lg:order-none">
             <div className="relative z-10 aspect-square">
               <img 
-                src={heroImage} 
-                alt="Premium French wellness mouth strips with radiant woman"
+                src="/images/hero.jpg" 
+                alt="Bye Sweetie spray anti-sucre avec femme radieuse"
                 className="w-full h-full object-cover rounded-3xl shadow-hero"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-accent-lavender/10 to-accent-peach/10 rounded-3xl"></div>
             </div>
-            {/* Elegant decorative elements */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent-lavender/30 to-transparent rounded-full blur-2xl"></div>
-            <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-tr from-accent-peach/20 to-transparent rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 -right-4 w-2 h-20 bg-gradient-to-b from-accent-lavender to-accent-peach rounded-full opacity-60"></div>
+            {/* Subtle accents only for cleanliness */}
           </div>
         </div>
       </div>

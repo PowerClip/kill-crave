@@ -46,6 +46,13 @@ export default {
           peach: "hsl(var(--accent-peach))",
           warm: "hsl(var(--accent-warm))",
           sage: "hsl(var(--accent-sage))",
+          // Baddie vibes - hot new colors
+          hot: "hsl(320 80% 60%)",
+          electric: "hsl(280 90% 65%)",
+          coral: "hsl(10 95% 70%)",
+          neon: "hsl(300 85% 75%)",
+          fire: "hsl(0 90% 65%)",
+          glow: "hsl(45 100% 75%)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

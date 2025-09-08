@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FAQSection = () => {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
-
   const faqs = [
     {
       question: "Comment ça marche ?",
-      answer: "Nos bandes buccales premium contiennent de l'extrait de Gymnema Sylvestre qui bloque temporairement les récepteurs du goût sucré sur votre langue. Dissolvez simplement une bande avant les repas ou lorsque les envies surviennent. L'effet dure 30-60 minutes, vous aidant à perdre naturellement intérêt pour les aliments sucrés."
+      answer: "Notre spray premium contient de l'extrait de Gymnema Sylvestre qui bloque temporairement les récepteurs du goût sucré sur votre langue. Vaporisez simplement avant les repas ou lorsque les envies surviennent. L'effet dure 30-60 minutes, vous aidant à perdre naturellement intérêt pour les aliments sucrés."
     },
     {
       question: "Combien de temps dure l'effet ?",
@@ -14,7 +12,7 @@ const FAQSection = () => {
     },
     {
       question: "Est-il sûr de l'utiliser quotidiennement ?",
-      answer: "Absolument ! Le Gymnema Sylvestre est un extrait de plante naturel utilisé en toute sécurité dans les pratiques de bien-être traditionnelles depuis des siècles. Nos bandes sont testées par des tiers et ne contiennent aucun additif artificiel. Commencez par une fois par jour et ajustez selon vos besoins."
+      answer: "Absolument ! Le Gymnema Sylvestre est un extrait de plante naturel utilisé en toute sécurité dans les pratiques de bien-être traditionnelles depuis des siècles. Notre spray est testé par des tiers et ne contient aucun additif artificiel. Commencez par une fois par jour et ajustez selon vos besoins."
     },
     {
       question: "Quand verrai-je les résultats ?",
@@ -39,7 +37,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-card">
+    <section id="faq" className="py-20 bg-card">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
@@ -51,35 +49,18 @@ const FAQSection = () => {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <Accordion type="single" collapsible className="bg-background rounded-2xl border shadow-sm divide-y">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-background rounded-xl shadow-soft overflow-hidden">
-                <button
-                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-accent-warm transition-colors duration-200"
-                >
-                  <h3 className="font-serif text-xl font-medium text-primary">
-                    {faq.question}
-                  </h3>
-                  <div className={`transform transition-transform duration-200 ${
-                    openFAQ === index ? 'rotate-45' : ''
-                  }`}>
-                    <div className="w-6 h-6 flex items-center justify-center">
-                      <span className="text-2xl text-accent-peach">+</span>
-                    </div>
-                  </div>
-                </button>
-                
-                {openFAQ === index && (
-                  <div className="px-6 pb-6">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
+              <AccordionItem value={`item-${index}`} key={faq.question} className="px-4 sm:px-6">
+                <AccordionTrigger className="font-serif text-base sm:text-lg text-primary py-5">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm sm:text-base text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
 
           {/* Contact */}
           <div className="text-center mt-12 p-6 bg-accent-warm rounded-xl">

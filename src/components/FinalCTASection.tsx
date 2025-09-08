@@ -2,60 +2,33 @@ import { Button } from "@/components/ui/button";
 
 const FinalCTASection = () => {
   return (
-    <section className="py-32 bg-gradient-premium text-center border-t border-accent-lavender/20">
-      <div className="container mx-auto px-8">
-        <div className="max-w-5xl mx-auto space-y-12">
-          <div className="space-y-8">
-            <h2 className="font-serif text-5xl lg:text-7xl font-light text-primary leading-tight">
-              Prête à réinitialiser votre
-              <span className="block font-medium italic text-accent-lavender">relation avec le sucre ?</span>
-            </h2>
-            <p className="text-2xl text-muted-foreground leading-relaxed font-light max-w-4xl mx-auto">
-              Programme Bye Sweetie (7-30 jours) pour réduire les envies, améliorer l'énergie et la peau. Rejoignez des milliers de Françaises qui ont découvert le secret du contrôle du sucre sans effort.
+    <section id="checkout" className="py-24 sm:py-32 bg-gradient-premium/60 text-center border-t border-accent-lavender/20">
+      <div className="container mx-auto px-4 sm:px-8">
+        <div className="mx-auto max-w-3xl rounded-3xl bg-card/90 backdrop-blur border shadow-card p-8 sm:p-12 space-y-6">
+          <div className="space-y-3">
+            <h2 className="font-serif text-4xl sm:text-5xl font-light text-primary leading-tight">Kit Bye Sweetie — 30 jours</h2>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Arrêtez entièrement le sucre en 60 secondes. Un rituel simple, des résultats concrets et durables.
             </p>
           </div>
 
-          <div className="space-y-10">
-            <Button variant="hero" size="xl" className="shadow-premium hover:scale-105 transition-smooth">
-              Commencez Votre Programme Bye Sweetie de 14 Jours — €39
-            </Button>
-            
-            <div className="flex flex-wrap justify-center gap-8 text-lg text-muted-foreground">
-              <div className="flex items-center space-x-3">
-                <span className="text-accent-peach text-xl">✨</span>
-                <span>Garantie de remboursement de 30 jours</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-accent-peach text-xl">🚚</span>
-                <span>Livraison gratuite en France</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-accent-peach text-xl">⚡</span>
-                <span>Expédition sous 24 heures</span>
-              </div>
-            </div>
+          <div className="flex items-end justify-center gap-4">
+            <div className="font-serif text-5xl sm:text-6xl font-light text-primary tracking-tight">24,90€</div>
+            <div className="text-muted-foreground line-through text-lg">€39</div>
           </div>
 
-          {/* Trust Signals */}
-          <div className="pt-16 border-t border-accent-lavender/20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center max-w-4xl mx-auto">
-              <div className="group">
-                <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">2,847</div>
-                <div className="text-base text-muted-foreground">Clients satisfaits</div>
-              </div>
-              <div className="group">
-                <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">4.9★</div>
-                <div className="text-base text-muted-foreground">Note moyenne</div>
-              </div>
-              <div className="group">
-                <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">94%</div>
-                <div className="text-base text-muted-foreground">Recommanderaient</div>
-              </div>
-              <div className="group">
-                <div className="font-serif text-3xl font-light text-primary mb-3 group-hover:text-accent-peach transition-smooth">€0</div>
-                <div className="text-base text-muted-foreground">Garantie sans risque</div>
-              </div>
-            </div>
+          <div className="pt-2">
+            <Button variant="hero" size="lg" className="w-full sm:w-auto shadow-premium" asChild>
+              <a href="#offer">Acheter maintenant — 24,90€</a>
+            </Button>
+          </div>
+
+          <div className="text-xs sm:text-sm text-muted-foreground flex flex-wrap justify-center gap-x-4 gap-y-1">
+            <span>Livraison offerte</span>
+            <span>•</span>
+            <span>Expédié sous 24h</span>
+            <span>•</span>
+            <span>30j satisfait ou remboursé</span>
           </div>
         </div>
       </div>

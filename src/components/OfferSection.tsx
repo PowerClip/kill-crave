@@ -1,114 +1,142 @@
 import { Button } from "@/components/ui/button";
-import productKit from "@/assets/product-kit.jpg";
+import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Check, Star } from "lucide-react";
+import { useState } from "react";
 
 const OfferSection = () => {
+  const productImages = [
+    "/images/product/1.png",
+    "/images/product/2.png",
+    "/images/product/3.png",
+    "/images/product/4.png",
+    "/images/product/5.png",
+    "/images/product/6.png",
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <section className="py-32 bg-background">
-      <div className="container mx-auto px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-24">
-            <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary mb-8 leading-tight">
-              Le Kit Bye Sweetie
-              <span className="block font-medium italic text-accent-peach">de 14 Jours</span>
-            </h2>
-            <p className="text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-              Tout ce dont vous avez besoin pour transformer votre relation avec le sucre
-            </p>
-          </div>
-
-          {/* Product Showcase */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center mb-24">
-            <div className="relative">
-              <img 
-                src={productKit} 
-                alt="Kit Bye Sweetie complet de 14 jours avec packaging premium"
-                className="w-full h-auto rounded-3xl shadow-hero"
+    <section id="offer" className="py-24 sm:py-28 bg-background">
+      <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
+        <div className="text-center mb-8 sm:mb-10">
+          <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary">Le Spray Bye Sweetie - 30 Jours</h2>
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground">Le spray Bye Sweetie coupe instantanément le goût sucré pour vous aider à contrôler vos envies et retrouver une énergie stable jour après jour.</p>
+        </div>
+        <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Gallery */}
+          <div>
+            <div className="relative overflow-hidden rounded-3xl border bg-card shadow-card">
+              <img
+                src={productImages[activeIndex]}
+                alt="Spray Bye Sweetie - 30 Jours"
+                className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent-lavender/10 to-accent-peach/10 rounded-3xl"></div>
             </div>
-
-            <div className="space-y-10 lg:pl-8">
-              <h3 className="font-serif text-4xl font-light text-primary tracking-wide">
-                Ce qui se trouve dans votre kit
-              </h3>
-              
-              <div className="space-y-8">
-                <div className="flex items-start space-x-6 p-4 rounded-2xl hover:bg-accent/20 transition-smooth">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent-peach to-accent-peach/60 rounded-full flex items-center justify-center flex-shrink-0 shadow-soft">
-                    ✨
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-serif text-xl font-medium text-primary">28 Bandes Buccales Premium</h4>
-                    <p className="text-muted-foreground leading-relaxed">Rituel de poche (matin & soir) pour un contrôle instantané</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-6 p-4 rounded-2xl hover:bg-accent/20 transition-smooth">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent-lavender to-accent-lavender/60 rounded-full flex items-center justify-center flex-shrink-0 shadow-soft">
-                    📖
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-serif text-xl font-medium text-primary">Suivi de l'Éclat de la Peau</h4>
-                    <p className="text-muted-foreground leading-relaxed">Magnifique journal pour suivre votre transformation</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-6 p-4 rounded-2xl hover:bg-accent/20 transition-smooth">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent-warm to-accent-warm/60 rounded-full flex items-center justify-center flex-shrink-0 shadow-soft">
-                    🥗
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-serif text-xl font-medium text-primary">Guide des Petits-Déjeuners Riches en Protéines</h4>
-                    <p className="text-muted-foreground leading-relaxed">14 recettes faciles pour stabiliser votre énergie</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-6 p-4 rounded-2xl hover:bg-accent/20 transition-smooth">
-                  <div className="w-12 h-12 bg-gradient-to-br from-accent-peach to-accent-peach/60 rounded-full flex items-center justify-center flex-shrink-0 shadow-soft">
-                    💫
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-serif text-xl font-medium text-primary">Guide du Rituel Bye Sweetie</h4>
-                    <p className="text-muted-foreground leading-relaxed">Votre défi de 14 jours pour réduire les envies et améliorer l'énergie/la peau</p>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-4 grid grid-cols-4 sm:grid-cols-6 gap-3">
+              {productImages.map((src, i) => (
+                <button
+                  key={src}
+                  aria-current={i === activeIndex}
+                  onClick={() => setActiveIndex(i)}
+                  className={`relative aspect-square overflow-hidden rounded-xl border bg-card transition-shadow ${
+                    i === activeIndex ? "ring-2 ring-accent-lavender" : "hover:ring-1 hover:ring-accent-lavender/60"
+                  }`}
+                >
+                  <img src={src} alt={`Aperçu produit ${i + 1}`} className="absolute inset-0 h-full w-full object-cover" />
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Pricing */}
-          <div className="bg-gradient-premium rounded-3xl p-12 text-center shadow-hero border border-accent-lavender/30 max-w-2xl mx-auto">
-            <div className="mb-10">
-              <p className="text-muted-foreground line-through text-2xl mb-4 font-light">
-                Normalement €89
-              </p>
-              <div className="flex items-center justify-center space-x-6 mb-6">
-                <span className="font-serif text-6xl font-light text-primary tracking-tight">€39</span>
-                <div className="bg-accent-peach text-primary px-6 py-3 rounded-full font-serif font-medium shadow-soft">
-                  Économisez €50
+          {/* Details */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">Bye Sweetie</div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center text-amber-500">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-amber-500" />
+                  ))}
                 </div>
+                <span>4,7/5 – Adopté par des milliers de femmes</span>
               </div>
             </div>
 
-            <Button variant="hero" size="xl" className="mb-8 shadow-premium">
-              Rejoignez Bye Sweetie — €39
-            </Button>
+            <div className="flex items-end gap-3">
+              <div className="font-serif text-4xl sm:text-5xl font-light text-primary">24.90€</div>
+            </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-base text-muted-foreground">
-              <div className="flex items-center space-x-2">
-                <span className="text-accent-peach">✨</span>
-                <span>Garantie de remboursement de 30 jours</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-accent-peach">🚚</span>
-                <span>Livraison gratuite en France</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-accent-peach">📦</span>
-                <span>Expédition sous 24h</span>
+            <div className="text-sm text-muted-foreground">
+              <div>90 doses — Pour 3 repas par jour</div>
+              <div>Soit 0.9€ par jour pour supprimer votre envie de sucre</div>
+            </div>
+
+            <ul className="space-y-2 text-sm sm:text-base">
+              {[
+                "Goût sucré neutralisé en 60 secondes",
+                "Moins de grignotages, plus de contrôle 🍫",
+                "Peau plus nette & ventre moins gonflé",
+                "Energie au top toute la journée, sans crash",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-2 text-primary">
+                  <Check className="h-4 w-4 mt-1 text-emerald-600" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="space-y-3">
+              <Button variant="premium" size="lg" className="w-full sm:w-auto" asChild>
+                <a href="#checkout">Acheter maintenant — 24.90€</a>
+              </Button>
+              <div className="text-xs sm:text-sm text-muted-foreground">
+                Livraison offerte • Expédié sous 24h • 30j satisfait ou remboursé
               </div>
             </div>
+
+            <Accordion type="single" collapsible className="rounded-2xl border divide-y bg-card">
+              <AccordionItem value="contenu" className="px-4 sm:px-6">
+                <AccordionTrigger className="py-4 font-serif text-primary">Ce que vous recevez</AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">
+                  Spray Bye Sweetie (90 doses pour 30 jours), mini-guide d’utilisation, idées de petits-déjeuners riches en protéines.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="utilisation" className="px-4 sm:px-6">
+                <AccordionTrigger className="py-4 font-serif text-primary">Comment l’utiliser</AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">
+                  1–2 pulvérisations avant les moments à risque (café de l’après-midi, dessert). Effet 30–60 minutes.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="ingredients" className="px-4 sm:px-6">
+                <AccordionTrigger className="py-4 font-serif text-primary">Ingrédients</AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">
+                  <ul className="space-y-2 list-disc pl-5">
+                    <li>
+                      <span className="font-medium text-primary">Plante Gymnema sylvestre</span> — connue pour neutraliser temporairement
+                      les récepteurs du goût sucré sur la langue.
+                    </li>
+                    <li>
+                      <span className="font-medium text-primary">Extrait de thé vert & zinc</span> — soutien du métabolisme énergétique, aide
+                      à brûler davantage de calories au quotidien.
+                    </li>
+                    <li>
+                      <span className="font-medium text-primary">Goût menthe</span> — sensation fraîche et propre, sans arrière-goût.
+                    </li>
+                  </ul>
+                  <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="shipping" className="px-4 sm:px-6">
+                <AccordionTrigger className="py-4 font-serif text-primary">Livraison & retours</AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">
+                  Livraison offerte en France métropolitaine, expédition sous 24h. Retour sous 30 jours si non ouvert.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
           </div>
         </div>
       </div>
