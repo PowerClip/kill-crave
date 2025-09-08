@@ -38,8 +38,8 @@ const PainSection = () => {
 
             <Card className="p-6 sm:p-7 bg-card/80 backdrop-blur border-accent-lavender/30">
               <p className="text-lg sm:text-xl text-primary/90 leading-relaxed">
-                La vérité, ce n’est pas toi le problème. C’est le sucre qui joue avec tes récepteurs, te donne envie d’en reprendre encore et encore.
-              </p>
+Ce n’est pas un manque de volonté.
+C’est le sucre qui stimule tes récepteurs et te pousse à en redemander.              </p>
             </Card>
           </div>
         </div>
