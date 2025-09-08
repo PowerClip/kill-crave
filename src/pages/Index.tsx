@@ -13,9 +13,9 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen" id="top">
+    <div className="min-h-screen overflow-x-hidden" id="top">
       <Header />
-      <main className="pb-20">
+      <main className="pb-20 overflow-x-hidden">
         <HeroSection />
     <PainSection />
   <SolutionSection />

@@ -18,13 +18,13 @@ const OfferSection = () => {
 
   return (
     <section id="offer" className="py-24 sm:py-28 bg-background">
-      <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
+      <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary">Le Spray Bye Sweetie - 30 Jours</h2>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary">Le Spray Bye Sweetie - Arrête le sucre totalement en 30 Jours</h2>
           <p className="mt-3 text-sm sm:text-base text-muted-foreground">Le spray Bye Sweetie coupe instantanément le goût sucré pour vous aider à contrôler vos envies et retrouver une énergie stable jour après jour.</p>
         </div>
-        <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
+  <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Gallery */}
           <div>
@@ -71,7 +71,7 @@ const OfferSection = () => {
 
             <div className="text-sm text-muted-foreground">
               <div>90 doses — Pour 3 repas par jour</div>
-              <div>Soit 0.9€ par jour pour supprimer votre envie de sucre</div>
+              <div>Soit 0.9€ par jour pour supprimer ton envie de sucre</div>
             </div>
 
             <ul className="space-y-2 text-sm sm:text-base">
@@ -112,23 +112,23 @@ const OfferSection = () => {
               </div>
             </div>
 
-            <Accordion type="single" collapsible className="rounded-2xl border divide-y bg-card">
-              <AccordionItem value="contenu" className="px-4 sm:px-6">
+            <Accordion type="single" collapsible className="w-full rounded-2xl border divide-y bg-card px-4 sm:px-6">
+              <AccordionItem value="contenu" className="px-0">
                 <AccordionTrigger className="py-4 font-serif text-primary">Ce que vous recevez</AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground">
                   Spray Bye Sweetie (90 doses pour 30 jours), mini-guide d’utilisation, idées de petits-déjeuners riches en protéines.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="utilisation" className="px-4 sm:px-6">
+              <AccordionItem value="utilisation" className="px-0">
                 <AccordionTrigger className="py-4 font-serif text-primary">Comment l’utiliser</AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground">
                   1–2 pulvérisations avant les moments à risque (café de l’après-midi, dessert). Effet 30–60 minutes.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="ingredients" className="px-4 sm:px-6">
+              <AccordionItem value="ingredients" className="px-0">
                 <AccordionTrigger className="py-4 font-serif text-primary">Ingrédients</AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground">
-                  <ul className="space-y-2 list-disc pl-5">
+                  <ul className="space-y-2 list-disc list-inside pl-1">
                     <li>
                       <span className="font-medium text-primary">Plante Gymnema sylvestre</span> — connue pour neutraliser temporairement
                       les récepteurs du goût sucré sur la langue.
@@ -144,7 +144,7 @@ const OfferSection = () => {
                   <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="shipping" className="px-4 sm:px-6">
+              <AccordionItem value="shipping" className="px-0">
                 <AccordionTrigger className="py-4 font-serif text-primary">Livraison & retours</AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground">
                   Livraison offerte en France métropolitaine, expédition sous 24h. Retour sous 30 jours si non ouvert.

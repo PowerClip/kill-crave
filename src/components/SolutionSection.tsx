@@ -13,7 +13,7 @@ const SolutionSection = () => {
           </h2>
           <div className="mx-auto mt-3 h-[2px] w-16 rounded-full bg-gradient-to-r from-accent-lavender to-accent-peach" />
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
-Bye Sweetie est un spray discret qui bloque temporairement les capteurs du goût sucré.
+Bye Sweetie est un spray discret à base de plantes qui bloque temporairement les capteurs du goût sucré.
 Résultat : ce qui est sucré devient fade, et l’envie retombe.          </p>
         </div>
 

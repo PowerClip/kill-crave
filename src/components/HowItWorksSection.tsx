@@ -72,9 +72,9 @@ const HowItWorksSection = () => {
             <CarouselNext className="-right-3 sm:-right-6" />
           </Carousel>
 
-          <div className="mt-8 text-center">
-            <Button variant="premium" size="lg" asChild>
-              <a href="#checkout">👉 Je lance ma Cure Bye Sweetie</a>
+          <div className="mt-6 sm:mt-8 text-center px-1 sm:px-0">
+            <Button variant="premium" size="lg" className="w-full sm:w-auto max-w-full overflow-hidden mx-auto" asChild>
+              <a href="#checkout" className="block truncate">👉 Je lance ma Cure Bye Sweetie</a>
             </Button>
           </div>
         </div>

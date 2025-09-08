@@ -107,6 +107,22 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
   }
+}
+
+/* Mobile overflow guards */
+@media (max-width: 640px) {
+  html, body, #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Prevent overly large words from causing horizontal scroll */
+  h1, h2, h3, p, span, a, button { word-break: break-word; overflow-wrap: anywhere; }
+
+  /* Make sure containers never exceed viewport width due to padding */
+  /* Keep container within viewport without triggering 100vw overflow */
+  .container { max-width: 100%; }
 }

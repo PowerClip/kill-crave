@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
+// Use the same hero image on all devices via public path
 
 const HeroSection = () => {
   return (
-    <section id="how" className="relative min-h-[80vh] bg-gradient-hero flex items-center overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-8 py-16 sm:py-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
+  <section id="how" className="relative min-h-[60vh] md:min-h-[75vh] bg-gradient-hero flex items-center overflow-x-hidden">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-8 py-12 sm:py-20">
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-16 items-center mx-auto">
           {/* Content */}
-          <div className="space-y-8 lg:pr-8 order-2 lg:order-none">
-            <div className="space-y-8">
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-primary leading-[1.05] tracking-tight">
+          <div className="space-y-8 lg:pr-8 order-1 lg:order-none">
+            <div className="space-y-6">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-[1.08] tracking-tight break-words [text-wrap:balance]">
                 Le spray qui coupe tes envies de sucre en 60s
               </h1>
-              <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-light leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed max-w-xl">
                 Un pschitt sur la langue → le goût sucré disparaît en 60 secondes. Jour après jour tu retrouves un corps plus léger, une peau plus nette et une énergie qui reste stable toute la journée.
               </p>
             </div>
@@ -19,11 +20,11 @@ const HeroSection = () => {
             <div className="space-y-4">
               <Button
                 variant="hero"
-                size="xl"
-                className="w-full sm:w-auto shadow-hero ring-2 ring-accent-hot/30 hover:ring-accent-hot/50 hover:-translate-y-0.5 active:translate-y-0 rounded-3xl drop-shadow-xl bg-gradient-to-r from-accent-hot to-accent-electric hover:from-accent-electric hover:to-accent-hot text-white border-transparent"
+                size="sm"
+                className="w-full max-w-[300px] sm:max-w-none sm:w-auto mx-auto sm:mx-0 ring-1 ring-accent-hot/30 hover:ring-accent-hot/50 hover:-translate-y-0.5 active:translate-y-0 rounded-xl bg-gradient-to-r from-accent-hot to-accent-electric hover:from-accent-electric hover:to-accent-hot text-white border-transparent px-4 py-5 sm:py-3"
                 asChild
               >
-                <a href="#offer">Commencer ma Cure de 30 Jours – 24,90€</a>
+                <a href="#offer" className="text-sm sm:text-base">Commencer ma Cure de 30 Jours – 24,90€</a>
               </Button>
               <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
@@ -39,12 +40,12 @@ const HeroSection = () => {
           </div>
 
           {/* Hero Image */}
-          <div className="relative lg:pl-8 order-1 lg:order-none">
-            <div className="relative z-10 aspect-square">
+          <div className="relative px-1 lg:px-0 lg:pl-8 order-2 lg:order-none">
+            <div className="relative z-10 aspect-[4/3] sm:aspect-[4/3] lg:aspect-square max-h-[220px] sm:max-h-[320px] lg:max-h-none max-w-full mx-auto">
               <img 
                 src="/images/hero.jpg" 
                 alt="Bye Sweetie spray anti-sucre avec femme radieuse"
-                className="w-full h-full object-cover rounded-3xl shadow-hero"
+                className="w-full h-full object-cover rounded-3xl"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-accent-lavender/10 to-accent-peach/10 rounded-3xl"></div>
             </div>
