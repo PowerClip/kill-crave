@@ -88,12 +88,27 @@ const OfferSection = () => {
               ))}
             </ul>
 
-            <div className="space-y-3">
-              <Button variant="premium" size="lg" className="w-full sm:w-auto" asChild>
-                <a href="#checkout">Acheter maintenant — 24.90€</a>
+            <div className="space-y-2">
+              <Button
+                variant="premium"
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  const link = import.meta.env.VITE_STRIPE_PAYMENT_LINK_URL as string | undefined;
+                  if (link) {
+                    window.location.href = link;
+                  } else {
+                    alert("Lien de paiement indisponible. Configurez VITE_STRIPE_PAYMENT_LINK_URL.");
+                  }
+                }}
+              >
+                Acheter maintenant — 24.90€
               </Button>
               <div className="text-xs sm:text-sm text-muted-foreground">
-                Livraison offerte • Expédié sous 24h • 30j satisfait ou remboursé
+                Livraison gratuite en 3 à 5 jours ouvrés en France
+              </div>
+              <div className="text-[11px] sm:text-xs text-muted-foreground/80">
+                Expédié sous 24h • 30j satisfait ou remboursé
               </div>
             </div>
 

@@ -3,36 +3,49 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const FAQSection = () => {
   const faqs = [
     {
-      question: "Comment ça marche ?",
-      answer: "Notre spray premium contient de l'extrait de Gymnema Sylvestre qui bloque temporairement les récepteurs du goût sucré sur votre langue. Vaporisez simplement avant les repas ou lorsque les envies surviennent. L'effet dure 30-60 minutes, vous aidant à perdre naturellement intérêt pour les aliments sucrés."
+      question: "Comment fonctionne le spray ?",
+      answer:
+        "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. En 30–60 minutes, le sucré devient fade et l’envie retombe — sans ‘forcer’."
     },
     {
-      question: "Combien de temps dure l'effet ?",
-      answer: "Chaque bande fournit 30-60 minutes de blocage du goût sucré. Parfait pour traverser les envies de l'après-midi ou prévenir les excès de desserts après le dîner. L'effet s'estompe naturellement, sans laisser de goût résiduel."
+      question: "Comment l’utiliser au quotidien ?",
+      answer:
+        "1–2 pulvérisations avant les moments à risque (café de l’après‑midi, dessert, soirée). 90 doses = 30 jours à raison de 3 utilisations/jour."
     },
     {
-      question: "Est-il sûr de l'utiliser quotidiennement ?",
-      answer: "Absolument ! Le Gymnema Sylvestre est un extrait de plante naturel utilisé en toute sécurité dans les pratiques de bien-être traditionnelles depuis des siècles. Notre spray est testé par des tiers et ne contient aucun additif artificiel. Commencez par une fois par jour et ajustez selon vos besoins."
+      question: "Vais‑je encore sentir le reste des saveurs ?",
+      answer:
+        "Oui. Seule la note sucrée est atténuée. La texture, l’acide, l’amer et le salé restent."
     },
     {
-      question: "Quand verrai-je les résultats ?",
-      answer: "De nombreux clients remarquent une réduction des envies immédiatement après la première utilisation. Pour la clarté de la peau et les améliorations énergétiques, la plupart rapportent des changements visibles dans les 7-14 jours d'utilisation cohérente dans le cadre du programme complet Bye Sweetie."
+      question: "Quand apparaissent les résultats ?",
+      answer:
+        "L’effet sur l’envie est immédiat. Pour une énergie plus stable et une peau plus nette, comptez 2–3 semaines d’usage régulier."
     },
     {
-      question: "À quelle vitesse expédiez-vous ?",
-      answer: "Nous expédions sous 24 heures depuis notre installation française. La plupart des commandes arrivent dans les 2-3 jours ouvrables avec livraison gratuite dans toute la France. Options express disponibles pour la livraison le lendemain."
+      question: "Est‑ce sûr ? Y a‑t‑il des contre‑indications ?",
+      answer:
+        "Formule à base de plante. Évitez en cas de grossesse, d’allaitement ou de traitement médical: demandez conseil à votre médecin."
     },
     {
-      question: "Est-ce que ça tue tous les goûts ?",
-      answer: "Non — juste la note sucrée. La texture et la base de saveur restent intactes."
+      question: "Paiement & sécurité",
+      answer:
+        "Paiement sécurisé via Stripe. Le lien de paiement collecte l’adresse et limite la livraison à la France. Cartes acceptées (CB, Visa, Mastercard…)."
     },
     {
-      question: "Les envies disparaîtront-elles pour toujours ?",
-      answer: "C'est un outil de moment de vérité, pas un remède définitif."
+      question: "Livraison",
+      answer:
+        "Expédition sous 24h. Livraison gratuite en France en 3 à 5 jours ouvrés."
     },
     {
-      question: "Est-ce que ça a un mauvais goût ?",
-      answer: "Certains produits oui. Le nôtre se concentre sur une menthe propre et un agrume pour éviter les plaintes 'craie/métallique'."
+      question: "Et si je craque quand même ?",
+      answer:
+        "C’est un outil ‘pare‑envie’. Si vous mangez sucré, aucun souci: l’effet s’estompe naturellement après 30–60 minutes."
+    },
+    {
+      question: "Retours & garantie",
+      answer:
+        "30 jours pour changer d’avis (produit non ouvert). Écrivez‑nous à bonjour@byesweetie.com — réponse sous 2h."
     }
   ];
 

@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+  "preview": "vite preview",
+  "stripe:create-link": "node ./scripts/create_stripe_payment_link.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -37,7 +37,7 @@ const Header = () => {
           Bye Sweetie
         </a>
         <Button asChild variant="premium" size="sm" className="hidden sm:inline-flex justify-self-end">
-          <a href="#offer">Acheter €39</a>
+          <a href="#offer">Acheter 24,90€</a>
         </Button>
       </div>
     </header>

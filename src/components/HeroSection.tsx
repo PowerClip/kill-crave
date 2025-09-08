@@ -17,7 +17,12 @@ const HeroSection = () => {
             </div>
             
             <div className="space-y-4">
-              <Button variant="hero" size="lg" className="w-full sm:w-auto shadow-premium" asChild>
+              <Button
+                variant="hero"
+                size="xl"
+                className="w-full sm:w-auto shadow-hero ring-2 ring-accent-hot/30 hover:ring-accent-hot/50 hover:-translate-y-0.5 active:translate-y-0 rounded-3xl drop-shadow-xl bg-gradient-to-r from-accent-hot to-accent-electric hover:from-accent-electric hover:to-accent-hot text-white border-transparent"
+                asChild
+              >
                 <a href="#offer">Commencer ma Cure de 30 Jours – 24,90€</a>
               </Button>
               <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-muted-foreground">
