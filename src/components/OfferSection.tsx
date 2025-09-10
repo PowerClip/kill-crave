@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { createCartAndGetCheckout, formatMoney, ShopifyProductVariant } from "@/lib/shopify";
 import { useToast } from "@/hooks/use-toast";
+import { trackViewContent, trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
 
 const OfferSection = () => {
   // Fetch product / variant from Shopify
@@ -59,6 +60,18 @@ const OfferSection = () => {
   const priceLabel = formatMoney(price, "24,90 €");
   const bundlePriceLabel = bundleVariant ? formatMoney(bundleVariant.price, "49,90 €") : "49,90 €";
 
+  // Track product view (deduped with localStorage for fast remounts / re-renders)
+  if (variant && typeof window !== 'undefined') {
+    try {
+      trackOnce('ViewContent', variant.id, {
+        contents: [{ id: variant.id, quantity: 1, item_price: parseFloat(variant.price.amount) }],
+        content_type: 'product',
+        value: parseFloat(variant.price.amount),
+        currency: variant.price.currencyCode || 'EUR'
+      });
+    } catch {}
+  }
+
   async function handleBuy() {
     if (!purchaseVariant?.id) {
       toast({ title: "Indisponible", description: "Variant introuvable" });
@@ -66,7 +79,11 @@ const OfferSection = () => {
     }
     try {
       setCreatingCheckout(true);
-      const url = await createCartAndGetCheckout(purchaseVariant.id, purchaseQuantity);
+  const unitPrice = parseFloat(purchaseVariant.price.amount);
+  // Fire both AddToCart + InitiateCheckout for funnel coverage
+  trackAddToCart(purchaseVariant.id, purchaseQuantity, unitPrice);
+  trackInitiateCheckout(purchaseVariant.id, unitPrice);
+  const url = await createCartAndGetCheckout(purchaseVariant.id, purchaseQuantity);
       window.location.href = url;
     } catch (e: any) {
       console.error(e);
