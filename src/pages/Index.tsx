@@ -1,5 +1,4 @@
 import HeroSection from "@/components/HeroSection";
-import PainSection from "@/components/PainSection";
 import OfferSection from "@/components/OfferSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
@@ -17,7 +16,6 @@ const Index = () => {
       <Header />
       <main className="pb-20 overflow-x-hidden">
         <HeroSection />
-    <PainSection />
   <SolutionSection />
   <OfferSection />
   <HowItWorksSection />

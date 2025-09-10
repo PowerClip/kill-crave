@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { H2, P } from "@/components/ui/typography";
 
 const FAQSection = () => {
   const faqs = [
@@ -54,12 +55,10 @@ const FAQSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl lg:text-5xl font-light text-primary mb-6">
-              Des questions ? Nous avons les réponses
-            </h2>
-            <p className="text-xl text-muted-foreground">
+            <H2 className="mb-6 font-normal">Des questions ? Nous avons les réponses</H2>
+            <P className="text-xl text-muted-foreground">
               Tout ce que vous devez savoir sur votre programme Bye Sweetie
-            </p>
+            </P>
           </div>
 
           <Accordion type="single" collapsible className="bg-background rounded-2xl border shadow-sm divide-y">
@@ -76,7 +75,7 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-accent-warm rounded-xl">
+          <div className="text-center mt-12 p-6 bg-secondary rounded-xl">
             <p className="text-primary mb-2">
               Vous avez encore des questions ?
             </p>

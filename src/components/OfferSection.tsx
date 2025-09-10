@@ -5,6 +5,7 @@ import { Check, Star } from "lucide-react";
 import { useState } from "react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { createCartAndGetCheckout, formatMoney, ShopifyProductVariant } from "@/lib/shopify";
+import { H2, P } from "@/components/ui/typography";
 import { useToast } from "@/hooks/use-toast";
 import { trackViewContent, trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
 
@@ -98,8 +99,8 @@ const OfferSection = () => {
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary">{product?.title || "Le Spray Bye Sweetie - Arrête le sucre totalement en 30 Jours"}</h2>
-          <p className="mt-3 text-sm sm:text-base text-muted-foreground">Le spray Bye Sweetie coupe instantanément le goût sucré pour vous aider à contrôler vos envies et retrouver une énergie stable jour après jour.</p>
+          <H2 className="mt-4 font-normal">{product?.title || "Le Spray Bye Sweetie - Arrête le sucre totalement en 30 Jours"}</H2>
+          <P className="mt-3 text-muted-foreground">Le spray Bye Sweetie coupe instantanément le goût sucré pour vous aider à contrôler vos envies et retrouver une énergie stable jour après jour.</P>
         </div>
   <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -119,7 +120,7 @@ const OfferSection = () => {
                   aria-current={i === activeIndex}
                   onClick={() => setActiveIndex(i)}
                   className={`relative aspect-square overflow-hidden rounded-xl border bg-card transition-shadow ${
-                    i === activeIndex ? "ring-2 ring-accent-lavender" : "hover:ring-1 hover:ring-accent-lavender/60"
+                    i === activeIndex ? "ring-2 ring-tertiary" : "hover:ring-1 hover:ring-tertiary/60"
                   }`}
                 >
                   <img src={src} alt={`Aperçu produit ${i + 1}`} className="absolute inset-0 h-full w-full object-cover" />
@@ -148,7 +149,7 @@ const OfferSection = () => {
                   type="button"
                   onClick={() => setPurchaseMode("single")}
                   className={`flex-1 min-w-[180px] rounded-2xl border px-4 py-3 text-left transition ${
-                    purchaseMode === "single" ? "border-accent-lavender ring-2 ring-accent-lavender/40 bg-card" : "hover:border-accent-lavender/60"
+                    purchaseMode === "single" ? "border-tertiary ring-2 ring-tertiary/40 bg-card" : "hover:border-tertiary/60"
                   }`}
                   disabled={isLoading}
                 >
@@ -162,12 +163,12 @@ const OfferSection = () => {
                   type="button"
                   onClick={() => setPurchaseMode("bundle")}
                   className={`flex-1 min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition ${
-                    purchaseMode === "bundle" ? "border-accent-hot ring-2 ring-accent-hot/40 bg-card" : "hover:border-accent-hot/60"
+                    purchaseMode === "bundle" ? "border-secondary ring-2 ring-secondary/40 bg-card" : "hover:border-secondary/60"
                   }`}
                   disabled={isLoading || (!bundleVariant && !variant)}
                 >
                   <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    Pack 3 <span className="rounded-md bg-accent-hot/10 text-accent-hot px-2 py-0.5 text-[10px] tracking-wide">2+1 offert</span>
+                    Pack 3 <span className="rounded-md bg-secondary/20 text-secondary-foreground px-2 py-0.5 text-[10px] tracking-wide">2+1 offert</span>
                   </div>
                   <div className="text-primary font-serif text-2xl font-light">
                     {isLoading ? <span className="animate-pulse">...</span> : bundlePriceLabel}

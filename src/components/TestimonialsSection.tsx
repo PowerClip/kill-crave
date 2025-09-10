@@ -1,26 +1,47 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { H2 } from "@/components/ui/typography";
 
 const TestimonialsSection = () => {
   const ugc = [
     {
-      src: "/images/ugc/3a562574-e3ef-4e97-84b9-ce28befab428.jpeg",
-      alt: "UGC: femme tenant le spray",
+      src: "/images/ugc/Ugc1.png",
+      alt: "UGC: femme utilisant le spray Bye Sweetie",
       nugget: "le sucre n'avait plus de goût, donc j'ai arrêté",
     },
     {
-      src: "/images/ugc/f7632924-bcbf-4815-bd50-766aec530f57.jpeg",
-      alt: "UGC: gros plan du spray",
+      src: "/images/ugc/Ugc2.png",
+      alt: "UGC: résultats transformation",
       nugget: "super facile d'arrêter le sucre, -4kg en un mois",
     },
     {
-      src: "/images/ugc/81958d56-45dd-443b-b1f5-da1d21dc2199.jpeg",
-      alt: "UGC: avant / après énergie au travail",
-  nugget: "plus d’envies à 16h, liberté totale — j'ai arrêté totalement, en 2 semaines mon visage a dégonflé, les traits sont définis",
+      src: "/images/ugc/Ugc3.png",
+      alt: "UGC: témoignage énergie",
+      nugget: "plus d'envies à 16h, liberté totale — j'ai arrêté totalement, en 2 semaines mon visage a dégonflé",
     },
     {
-      src: "/images/ugc/175c0ef4-6a29-4b8b-95ba-ec3f11ae3caa.jpeg",
-      alt: "UGC: selfie peau plus nette",
+      src: "/images/ugc/Ugc4.png",
+      alt: "UGC: amélioration de la peau",
       nugget: "peau plus nette en 3 semaines, glow",
+    },
+    {
+      src: "/images/ugc/ugc - byesweetie.png",
+      alt: "UGC: expérience utilisatrice",
+      nugget: "fini les fringales, je contrôle enfin mes envies",
+    },
+    {
+      src: "/images/ugc/ugc - byesweetie 2.png",
+      alt: "UGC: témoignage perte de poids",
+      nugget: "plus de grignotage le soir, -6kg en 2 mois",
+    },
+    {
+      src: "/images/ugc/ugc - byesweetie 3.png",
+      alt: "UGC: amélioration du sommeil",
+      nugget: "sommeil de qualité, plus de pics de glycémie",
+    },
+    {
+      src: "/images/ugc/ugc - byesweetie4.png",
+      alt: "UGC: confiance retrouvée",
+      nugget: "confiance en moi retrouvée, je me sens libre",
     },
   ];
 
@@ -28,9 +49,7 @@ const TestimonialsSection = () => {
     <section className="py-24 sm:py-32 bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <h2 className="font-serif text-5xl lg:text-6xl font-light text-primary leading-tight">
-            Résultats réels
-          </h2>
+          <H2 className="text-5xl lg:text-6xl font-normal leading-tight">Résultats réels</H2>
         </div>
 
         {/* Mobile: UGC carousel with portrait 3:4 and peek */}
@@ -93,17 +112,17 @@ const TestimonialsSection = () => {
   <div className="text-center mt-16 sm:mt-24">
     <div className="grid grid-cols-3 gap-4 sm:flex sm:justify-center sm:items-center sm:gap-12 text-muted-foreground max-w-4xl mx-auto px-4">
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-accent-hot transition-smooth">2,847</div>
+        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">2,847</div>
         <div className="text-xs sm:text-base">Françaises transformées</div>
       </div>
       <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-accent-electric transition-smooth">4.9/5</div>
+        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">4.9/5</div>
         <div className="text-xs sm:text-base">Note moyenne</div>
       </div>
       <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-accent-coral transition-smooth">94%</div>
+        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">94%</div>
         <div className="text-xs sm:text-base">Recommanderaient</div>
       </div>
     </div>

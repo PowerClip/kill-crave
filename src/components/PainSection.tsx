@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { H2, P } from "@/components/ui/typography";
 
 const PainSection = () => {
   return (
@@ -15,31 +16,32 @@ const PainSection = () => {
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-3">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary leading-tight">Tu connais la scène :</h2>
-              <p className="text-muted-foreground">Un moment de vérité, tous les jours.</p>
+              <H2 className="leading-tight font-normal">Tu connais la scène :</H2>
+              <P className="text-muted-foreground">Un moment de vérité, tous les jours.</P>
             </div>
 
             <Card className="p-6 sm:p-8 border-border/60">
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="w-11 h-11 rounded-full bg-accent-warm flex items-center justify-center text-[1.7rem]">🍪</div>
-                  <p className="text-base sm:text-lg text-primary leading-relaxed">16h, tu as juré de “manger sain”… et tu craques sur la boîte de biscuits.</p>
+                  <div className="w-11 h-11 rounded-full bg-tertiary flex items-center justify-center text-[1.7rem]">🍪</div>
+                  <P className="text-base sm:text-lg text-primary leading-relaxed">16h, tu as juré de “manger sain”… et tu craques sur la boîte de biscuits.</P>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-11 h-11 rounded-full bg-accent-warm flex items-center justify-center text-[1.7rem]">☕️</div>
-                  <p className="text-base sm:text-lg text-primary leading-relaxed">Tu termines ton café… et hop, tu ajoutes encore un carré de chocolat.</p>
+                  <div className="w-11 h-11 rounded-full bg-tertiary flex items-center justify-center text-[1.7rem]">☕️</div>
+                  <P className="text-base sm:text-lg text-primary leading-relaxed">Tu termines ton café… et hop, tu ajoutes encore un carré de chocolat.</P>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-11 h-11 rounded-full bg-accent-warm flex items-center justify-center text-[1.7rem]">🍫</div>
-                  <p className="text-base sm:text-lg text-primary leading-relaxed">Le soir, devant un film, tu ouvres la tablette sans réfléchir.</p>
+                  <div className="w-11 h-11 rounded-full bg-tertiary flex items-center justify-center text-[1.7rem]">🍫</div>
+                  <P className="text-base sm:text-lg text-primary leading-relaxed">Le soir, devant un film, tu ouvres la tablette sans réfléchir.</P>
                 </li>
               </ul>
             </Card>
 
-            <Card className="p-6 sm:p-7 bg-card/80 backdrop-blur border-accent-lavender/30">
-              <p className="text-lg sm:text-xl text-primary/90 leading-relaxed">
-Ce n’est pas un manque de volonté.
-C’est le sucre qui stimule tes récepteurs et te pousse à en redemander.              </p>
+            <Card className="p-6 sm:p-7 bg-card/80 backdrop-blur border-secondary/30">
+              <P className="text-lg sm:text-xl text-primary/90 leading-relaxed">
+                Ce n’est pas un manque de volonté.
+                C’est le sucre qui stimule tes récepteurs et te pousse à en redemander.
+              </P>
             </Card>
           </div>
         </div>

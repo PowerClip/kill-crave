@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { H2, H3, P } from "@/components/ui/typography";
 
 type Slide = {
   title: string;
@@ -32,7 +33,7 @@ const slides: Slide[] = [
     title: "Bloc 4",
     subtitle: "Effet durable",
     text: "L’effet dure environ une heure, le temps de traverser la tentation.",
-    image: "/images/howitworks/4.jpg",
+    image: "/images/howitworks/4.png",
   },
 ];
 
@@ -42,8 +43,8 @@ const HowItWorksSection = () => {
       <div className="container mx-auto px-4 sm:px-8 max-w-5xl">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Comprendre</Badge>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-primary">Pourquoi ça marche ?</h2>
-          <p className="mt-3 text-sm sm:text-base text-muted-foreground">Un spray, une réaction scientifique immédiate.</p>
+          <H2 className="mt-4 font-normal">Pourquoi ça marche ?</H2>
+          <P className="mt-3 text-muted-foreground">Un spray, une réaction scientifique immédiate.</P>
         </div>
 
         <div className="relative rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
@@ -61,8 +62,8 @@ const HowItWorksSection = () => {
                     </div>
                     <div className="space-y-1">
                       <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{s.title}</div>
-                      <h3 className="font-serif text-xl sm:text-2xl font-normal text-primary">{s.subtitle}</h3>
-                      <p className="text-sm sm:text-base text-muted-foreground">{s.text}</p>
+                      <H3 className="text-xl sm:text-2xl font-normal">{s.subtitle}</H3>
+                      <P className="text-sm sm:text-base text-muted-foreground">{s.text}</P>
                     </div>
                   </div>
                 </CarouselItem>

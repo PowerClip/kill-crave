@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
 
 const Header = () => {
   const [hidden, setHidden] = useState(false);
@@ -32,9 +33,10 @@ const Header = () => {
         </nav>
         <a
           href="#top"
-          className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center font-serif font-bold text-xl sm:text-2xl tracking-tight text-primary leading-none"
+          className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center text-primary"
+          aria-label="bye sweetie"
         >
-          Bye Sweetie
+          <Logo className="text-2xl sm:text-3xl md:text-4xl" />
         </a>
         <Button asChild variant="premium" size="sm" className="hidden sm:inline-flex justify-self-end">
           <a href="#offer">Acheter 24,90€</a>

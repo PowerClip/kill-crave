@@ -4,62 +4,63 @@
 
 /* French Wellness Brand Design System - Premium, Chic, Minimal */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+/* Fonts: Logo = Cyrillic Bodoni, Headings = Work Sans (all caps), Body = Cyrillic Bodoni */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Vibrant Feminine Baddie Base Palette */
-    --background: 340 50% 98%;
-    --foreground: 340 20% 10%;
-    --card: 340 40% 99%;
-    --card-foreground: 340 20% 10%;
-    --popover: 340 40% 99%;
-    --popover-foreground: 340 20% 10%;
-    --primary: 340 60% 15%;
-    --primary-foreground: 340 50% 98%;
-    --secondary: 320 45% 92%;
-    --secondary-foreground: 340 60% 15%;
-    --muted: 320 35% 93%;
-    --muted-foreground: 340 25% 45%;
-    --accent: 320 40% 90%;
-    --accent-foreground: 340 60% 15%;
+    /* Base Palette - Your Brand Colors */
+    /* Background: #FAF7E9 -> hsl(48 63% 95%) */
+    --background: 48 63% 95%;
+    /* Text: Black */
+    --foreground: 0 0% 0%;
+    --card: 48 63% 97%;
+    --card-foreground: 0 0% 0%;
+    --popover: 48 63% 97%;
+    --popover-foreground: 0 0% 0%;
+    /* Primary set to Black so headings and primary text are black */
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    /* Secondary: #BCC499 -> hsl(78 32% 69%) */
+    --secondary: 78 32% 69%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 48 20% 90%;
+    --muted-foreground: 0 0% 0%;
+    --accent: 48 20% 90%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 80% 65%;
     --destructive-foreground: 0 0% 98%;
-    --border: 320 30% 85%;
-    --input: 320 35% 88%;
-    --ring: 280 70% 70%;
+    --border: 48 15% 85%;
+    --input: 48 15% 88%;
+    --ring: 0 0% 0%;
+
+    /* Tertiary/Button Color: #FFE065 -> hsl(48 100% 70%) */
+    --tertiary: 48 100% 70%;
+    --tertiary-foreground: 0 0% 0%;
     
-    /* Vibrant Feminine Accent Colors */
-    --accent-lavender: 280 65% 75%;
-    --accent-peach: 10 85% 70%;
-    --accent-warm: 340 45% 85%;
-    --accent-sage: 160 40% 70%;
+    /* Gradients and Shadows using your color palette */
+    --gradient-hero: linear-gradient(135deg, hsl(48 63% 95%) 0%, hsl(78 32% 69%) 50%, hsl(48 100% 70%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(78 32% 69%) 0%, hsl(48 100% 70%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(48 63% 97%) 0%, hsl(48 63% 95%) 100%);
     
-    /* Bold Feminine Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(340 45% 96%) 0%, hsl(280 55% 90%) 30%, hsl(320 60% 88%) 70%, hsl(10 70% 90%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(280 60% 85%) 0%, hsl(340 50% 90%) 50%, hsl(10 75% 85%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(340 40% 98%) 0%, hsl(320 45% 94%) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(280 55% 80%) 0%, hsl(340 65% 85%) 50%, hsl(10 80% 80%) 100%);
-    
-    /* Dramatic Shadows */
-    --shadow-soft: 0 4px 20px -6px hsl(340 40% 50% / 0.15);
-    --shadow-card: 0 12px 50px -15px hsl(280 50% 50% / 0.25);
-    --shadow-hero: 0 32px 100px -20px hsl(320 60% 50% / 0.35);
-    --shadow-premium: 0 20px 80px -15px hsl(10 70% 50% / 0.30);
+    /* Subtle Shadows */
+    --shadow-soft: 0 4px 20px -6px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 12px 50px -15px hsl(0 0% 0% / 0.12);
+    --shadow-hero: 0 32px 100px -20px hsl(0 0% 0% / 0.15);
     
     /* Smooth Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 1rem;
-    --sidebar-background: 320 40% 95%;
-    --sidebar-foreground: 340 20% 20%;
-    --sidebar-primary: 340 60% 15%;
-    --sidebar-primary-foreground: 340 50% 98%;
-    --sidebar-accent: 320 40% 90%;
-    --sidebar-accent-foreground: 340 60% 15%;
-    --sidebar-border: 320 30% 85%;
-    --sidebar-ring: 280 70% 70%;
+    --sidebar-background: 48 63% 95%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 20% 90%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 48 20% 85%;
+    --sidebar-ring: 0 0% 0%;
   }
 
   .dark {
@@ -107,9 +108,28 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-serif;
     overflow-x: hidden;
   }
+
+  /* Typography System */
+  /* Headers: Work Sans, All Caps */
+  h1 { @apply font-sans text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight uppercase; }
+  h2 { @apply font-sans text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight uppercase; }
+  h3 { @apply font-sans text-2xl sm:text-3xl font-medium tracking-tight uppercase; }
+  h4 { @apply font-sans text-xl sm:text-2xl font-medium tracking-tight uppercase; }
+  h5 { @apply font-sans text-lg sm:text-xl font-medium tracking-tight uppercase; }
+  h6 { @apply font-sans text-base sm:text-lg font-medium tracking-tight uppercase; }
+  
+  /* Body: Cyrillic Bodoni */
+  p { @apply font-serif leading-relaxed; }
+  small { @apply font-serif text-xs; }
+  
+  /* UI Elements: Work Sans */
+  a { @apply font-sans; }
+  button { @apply font-sans; }
+  input { @apply font-sans; }
+  label { @apply font-sans; }
 }
 
 /* Mobile overflow guards */

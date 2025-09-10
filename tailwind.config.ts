@@ -14,22 +14,27 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        serif: ['"Bodoni Moda"', 'serif'], // Cyrillic Bodoni for body text
+        sans: ['"Work Sans"', 'sans-serif'], // Work Sans for headers (all caps)
+        logo: ['"Bodoni Moda"', 'serif'], // Cyrillic Bodoni for logo
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--background))", // #FAF7E9
+        foreground: "hsl(var(--foreground))", // Black
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "hsl(var(--primary))", // Black
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "hsl(var(--secondary))", // #BCC499
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))", // #FFE065
+          foreground: "hsl(var(--tertiary-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -42,17 +47,6 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          lavender: "hsl(var(--accent-lavender))",
-          peach: "hsl(var(--accent-peach))",
-          warm: "hsl(var(--accent-warm))",
-          sage: "hsl(var(--accent-sage))",
-          // Baddie vibes - hot new colors
-          hot: "hsl(320 80% 60%)",
-          electric: "hsl(280 90% 65%)",
-          coral: "hsl(10 95% 70%)",
-          neon: "hsl(300 85% 75%)",
-          fire: "hsl(0 90% 65%)",
-          glow: "hsl(45 100% 75%)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

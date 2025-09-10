@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/85 shadow-soft hover:shadow-card border border-primary/10",
+        default: "bg-tertiary text-tertiary-foreground hover:opacity-90 shadow-soft hover:shadow-card border border-border",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-background/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-gradient-card text-primary hover:shadow-soft border border-border/50",
-        ghost: "hover:bg-accent/50 hover:text-accent-foreground",
+        outline: "border border-border bg-background/50 backdrop-blur-sm hover:bg-tertiary/30 hover:text-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:opacity-90 border border-border",
+        ghost: "hover:bg-tertiary/20 hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline font-serif",
-        hero: "bg-gradient-premium text-primary font-serif font-medium tracking-wide hover:shadow-premium hover:scale-[1.02] transition-smooth border border-accent-lavender/20",
-        premium: "bg-primary text-primary-foreground hover:bg-primary/85 shadow-card hover:shadow-hero font-serif tracking-wide border border-primary/10",
-        soft: "bg-accent-warm/60 text-primary hover:bg-accent-peach/60 transition-smooth shadow-soft hover:shadow-card border border-accent-warm/30",
-        elegant: "bg-gradient-accent text-primary font-serif hover:shadow-card hover:scale-[1.01] transition-smooth border border-accent-lavender/30",
+        hero: "bg-tertiary text-tertiary-foreground font-serif font-medium tracking-wide hover:opacity-90 hover:shadow-card hover:scale-[1.02] transition-smooth border border-border",
+        premium: "bg-tertiary text-tertiary-foreground hover:opacity-90 shadow-card hover:shadow-hero font-serif tracking-wide border border-border",
+        soft: "bg-tertiary/70 text-tertiary-foreground hover:bg-tertiary transition-smooth shadow-soft hover:shadow-card border border-border",
+        elegant: "bg-tertiary text-tertiary-foreground font-serif hover:shadow-card hover:scale-[1.01] transition-smooth border border-border",
       },
       size: {
         default: "h-12 px-8 py-3 text-base",
