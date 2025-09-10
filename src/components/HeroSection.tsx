@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { useShopifyProduct } from "@/hooks/useShopifyProduct";
+import { formatMoney } from "@/lib/shopify";
 // Use the same hero image on all devices via public path
 
 const HeroSection = () => {
+  const { price, isLoading } = useShopifyProduct();
+  const priceLabel = isLoading ? "…" : formatMoney(price, "24,90 €");
+
   return (
   <section id="how" className="relative min-h-[60vh] md:min-h-[75vh] bg-gradient-hero flex items-center overflow-x-hidden">
       <div className="container mx-auto max-w-6xl px-4 sm:px-8 py-12 sm:py-20">
@@ -24,7 +29,7 @@ const HeroSection = () => {
                 className="w-full max-w-[300px] sm:max-w-none sm:w-auto mx-auto sm:mx-0 ring-1 ring-accent-hot/30 hover:ring-accent-hot/50 hover:-translate-y-0.5 active:translate-y-0 rounded-xl bg-gradient-to-r from-accent-hot to-accent-electric hover:from-accent-electric hover:to-accent-hot text-white border-transparent px-4 py-5 sm:py-3"
                 asChild
               >
-                <a href="#offer" className="text-sm sm:text-base">Commencer ma Cure de 30 Jours – 24,90€</a>
+                <a href="#offer" className="text-sm sm:text-base">Commencer ma Cure de 30 Jours – {priceLabel}</a>
               </Button>
               <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
