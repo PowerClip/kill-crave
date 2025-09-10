@@ -35,6 +35,11 @@
         window.__PIXEL_ENABLED__ = true;
       }
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=%VITE_FB_PIXEL_ID%&ev=PageView&noscript=1"/></noscript>
+    <!-- No-JS Meta Pixel image tag intentionally disabled to avoid Vite build errors
+         when VITE_FB_PIXEL_ID is not set. If you need it, set VITE_FB_PIXEL_ID
+         and reintroduce the tag below with the concrete value.
+         Example:
+         <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+    -->
   </body>
 </html>
