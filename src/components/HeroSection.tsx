@@ -28,7 +28,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <H1 className="normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">
-                Arrête définitivement le sucre en 30 jours avec un spray par repas
+                Le spray qui coupe net ton envie de sucre en 60 secondes
               </H1>
               <Lead className="normal-case max-w-lg text-foreground/80">
                 1–2 sprays sur la langue. Le goût sucré disparaît temporairement et tu n'as plus envie de sucre. Tu perds du poids naturellement, sans frustration. 
