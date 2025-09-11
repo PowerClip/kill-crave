@@ -129,9 +129,9 @@ const OfferSection = () => {
           <P className="mt-3 text-muted-foreground">Un geste simple: tu pulvérises, le goût sucré s’éteint, l’envie disparaît. Ton nouveau rituel beauté-santé pour contrôler ton sucre et garder le glow.</P>
         </div>
   <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start min-w-0">
           {/* Gallery */}
-          <div>
+          <div className="min-w-0 w-full">
             <div className="relative overflow-hidden rounded-3xl border bg-card shadow-card">
               <img
                 src={productImages[activeIndex]}
@@ -156,7 +156,7 @@ const OfferSection = () => {
           </div>
 
           {/* Details */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0 w-full">
             <div className="space-y-2">
               <div className="text-xs uppercase tracking-wide text-muted-foreground">Bye Sweetie</div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -170,11 +170,11 @@ const OfferSection = () => {
             </div>
 
             <div className="space-y-3">
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <button
                   type="button"
                   onClick={() => setPurchaseMode("single")}
-                  className={`flex-1 min-w-[180px] rounded-2xl border px-4 py-3 text-left transition ${
+                  className={`w-full sm:flex-1 sm:min-w-[180px] rounded-2xl border px-4 py-3 text-left transition ${
                     purchaseMode === "single" ? "border-tertiary ring-2 ring-tertiary/40 bg-card" : "hover:border-tertiary/60"
                   }`}
                   disabled={isLoading}
@@ -188,19 +188,19 @@ const OfferSection = () => {
                 <button
                   type="button"
                   onClick={() => setPurchaseMode("bundle")}
-                  className={`group flex-1 min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition-all duration-300 ${
+                  className={`group w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition-all duration-300 ${
                     purchaseMode === "bundle"
-                      ? "border-secondary ring-2 ring-secondary/40 bg-gradient-to-br from-secondary/30 via-secondary/10 to-white shadow-md scale-[1.02]"
+                      ? "border-secondary ring-2 ring-secondary/60 bg-gradient-to-br from-secondary/60 via-secondary/25 to-white shadow-lg sm:scale-[1.02] sm:ring-offset-2 sm:ring-offset-white"
                       : "hover:border-secondary/60 bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
                   }`}
                   disabled={isLoading || (!bundleVariant && !variant)}
                 >
                   {/* Highlight badge */}
                   <div
-                    className={`absolute -top-2 right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
+                    className={`absolute -top-2 right-2 sm:right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
                       purchaseMode === "bundle"
-                        ? "bg-secondary/80 text-white ring-1 ring-white/40"
-                        : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/35"
+                        ? "bg-secondary text-white ring-1 ring-white/50 shadow-md animate-pulse"
+                        : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/40"
                     }`}
                   >
                     Meilleure offre
@@ -216,8 +216,8 @@ const OfferSection = () => {
                     <span
                       className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide transition-colors ${
                         purchaseMode === "bundle"
-                          ? "bg-secondary/90 text-white shadow-sm"
-                          : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/35"
+                          ? "bg-secondary text-white shadow-sm"
+                          : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/40"
                       }`}
                     >
                       -33% SAVE
