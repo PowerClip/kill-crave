@@ -25,9 +25,9 @@ const Index = () => {
   <IngredientsSection />
         <HowItWorksSection />
         <ScienceSection />
-        <FAQSection />
-        <FinalCTASection />
   <TrustpilotSection />
+  <FinalCTASection />
+  <FAQSection />
       </main>
       <Footer />
       <MobileStickyBar />
