@@ -4,7 +4,9 @@ type LogoProps = {
 
 const Logo = ({ className = "" }: LogoProps) => {
   return (
-    <span className={`font-logo lowercase tracking-tight leading-none ${className}`}>
+    <span
+      className={`font-logo tracking-tight leading-none text-[1.9rem] sm:text-[2.05rem] font-medium italic ${className}`}
+    >
       bye sweetie
     </span>
   );

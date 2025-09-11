@@ -61,6 +61,32 @@ const OfferSection = () => {
   const priceLabel = formatMoney(price, "24,90 €");
   const bundlePriceLabel = bundleVariant ? formatMoney(bundleVariant.price, "49,90 €") : "49,90 €";
 
+  // Derived metrics for dynamic copy
+  const DOSES_PER_BOTTLE = 90; // matches product claim
+  const USES_PER_DAY = 3; // 3 repas / moments à risque / jour
+  const DAYS_PER_BOTTLE = DOSES_PER_BOTTLE / USES_PER_DAY; // 30
+  const BOTTLES_IN_BUNDLE = 3; // Pack 3 (2+1 offert)
+
+  const singlePriceNumber = variant ? parseFloat(variant.price.amount) : undefined;
+  const bundlePriceNumber = purchaseMode === "bundle"
+    ? (bundleVariant ? parseFloat(bundleVariant.price.amount) : (singlePriceNumber ? singlePriceNumber * BOTTLES_IN_BUNDLE : undefined))
+    : undefined;
+
+  const dailySingle = singlePriceNumber ? singlePriceNumber / DAYS_PER_BOTTLE : undefined; // 30 days
+  const dailyBundle = bundlePriceNumber ? bundlePriceNumber / (DAYS_PER_BOTTLE * BOTTLES_IN_BUNDLE) : undefined; // 90 days
+
+  let savingsPct: number | undefined;
+  if (singlePriceNumber && bundlePriceNumber) {
+    const full = singlePriceNumber * BOTTLES_IN_BUNDLE;
+    savingsPct = Math.max(0, Math.round((1 - bundlePriceNumber / full) * 100));
+  }
+
+  const formatDaily = (n?: number) => {
+    if (n === undefined || Number.isNaN(n)) return "…";
+    // Force European decimal comma & 2 decimals trimmed to 2 -> e.g. 0,83€
+    return n.toFixed(2).replace(".", ",") + "€";
+  };
+
   // Track product view (deduped with localStorage for fast remounts / re-renders)
   if (variant && typeof window !== 'undefined') {
     try {
@@ -99,8 +125,8 @@ const OfferSection = () => {
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
-          <H2 className="mt-4 font-normal">{product?.title || "Le Spray Bye Sweetie - Arrête le sucre totalement en 30 Jours"}</H2>
-          <P className="mt-3 text-muted-foreground">Le spray Bye Sweetie coupe instantanément le goût sucré pour vous aider à contrôler vos envies et retrouver une énergie stable jour après jour.</P>
+          <H2 className="mt-4 font-normal">{product?.title || "Bye Sweetie — Le spray beauté qui coupe instantanément tes envies de sucre"}</H2>
+          <P className="mt-3 text-muted-foreground">Un geste simple: tu pulvérises, le goût sucré s’éteint, l’envie disparaît. Ton nouveau rituel beauté-santé pour contrôler ton sucre et garder le glow.</P>
         </div>
   <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -162,30 +188,69 @@ const OfferSection = () => {
                 <button
                   type="button"
                   onClick={() => setPurchaseMode("bundle")}
-                  className={`flex-1 min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition ${
-                    purchaseMode === "bundle" ? "border-secondary ring-2 ring-secondary/40 bg-card" : "hover:border-secondary/60"
+                  className={`group flex-1 min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition-all duration-300 ${
+                    purchaseMode === "bundle"
+                      ? "border-secondary ring-2 ring-secondary/40 bg-gradient-to-br from-secondary/30 via-secondary/10 to-white shadow-md scale-[1.02]"
+                      : "hover:border-secondary/60 bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
                   }`}
                   disabled={isLoading || (!bundleVariant && !variant)}
                 >
+                  {/* Highlight badge */}
+                  <div
+                    className={`absolute -top-2 right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
+                      purchaseMode === "bundle"
+                        ? "bg-secondary/80 text-white ring-1 ring-white/40"
+                        : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/35"
+                    }`}
+                  >
+                    Meilleure offre
+                  </div>
                   <div className="flex items-center gap-2 text-sm font-medium text-primary">
                     Pack 3 <span className="rounded-md bg-secondary/20 text-secondary-foreground px-2 py-0.5 text-[10px] tracking-wide">2+1 offert</span>
                   </div>
                   <div className="text-primary font-serif text-2xl font-light">
                     {isLoading ? <span className="animate-pulse">...</span> : bundlePriceLabel}
                   </div>
-                  <div className="text-xs text-muted-foreground">0,55€ / jour</div>
+                  <div className="mt-1 flex items-center gap-2 flex-wrap">
+                    <span className="text-xs text-muted-foreground">0,55€ / jour</span>
+                    <span
+                      className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide transition-colors ${
+                        purchaseMode === "bundle"
+                          ? "bg-secondary/90 text-white shadow-sm"
+                          : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/35"
+                      }`}
+                    >
+                      -33% SAVE
+                    </span>
+                  </div>
                 </button>
               </div>
             </div>
 
             <div className="text-sm text-muted-foreground">
-              <div>90 doses — Pour 3 repas par jour</div>
-              <div>Soit 0.9€ par jour pour supprimer ton envie de sucre</div>
+              {purchaseMode === "single" ? (
+                <>
+                  <div>{DOSES_PER_BOTTLE} doses — {DAYS_PER_BOTTLE} jours (3 utilisations/jour)</div>
+                  <div>≈ {formatDaily(dailySingle)} / jour pour supprimer ton envie de sucre</div>
+                </>
+              ) : (
+                <>
+                  <div>{DOSES_PER_BOTTLE * BOTTLES_IN_BUNDLE} doses — {DAYS_PER_BOTTLE * BOTTLES_IN_BUNDLE} jours (3 utilisations/jour)</div>
+                  <div>
+                    ≈ {formatDaily(dailyBundle)} / jour
+                    {savingsPct && savingsPct > 0 && (
+                      <span className="ml-2 inline-flex items-center rounded-full bg-secondary/20 px-2 py-[1px] text-[10px] font-medium tracking-wide text-secondary-foreground">
+                        -{savingsPct}%
+                      </span>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
 
             <ul className="space-y-2 text-sm sm:text-base">
               {[
-                "Goût sucré neutralisé en 60 secondes",
+                "Un spray coupe le goût sucré immédiatement",
                 "Moins de grignotages, plus de contrôle 🍫",
                 "Peau plus nette & ventre moins gonflé",
                 "Energie au top toute la journée, sans crash",
@@ -255,10 +320,14 @@ const OfferSection = () => {
                       à brûler davantage de calories au quotidien.
                     </li>
                     <li>
-                      <span className="font-medium text-primary">Goût menthe</span> — sensation fraîche et propre, sans arrière-goût.
+                      <span className="font-medium text-primary">Menthe poivrée</span> — sensation fraîche et propre, sans arrière-goût.
+                    </li>
+                    <li>
+                      <span className="font-medium text-primary">Glycérine végétale</span> — base douce et stabilisante pour la formule.
                     </li>
                   </ul>
                   <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
+                  <div className="mt-2">Sans alcool dans la formulation.</div>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="shipping" className="px-0">

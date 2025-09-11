@@ -1,80 +1,89 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { H2 } from "@/components/ui/typography";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
-const TestimonialsSection = () => {
+interface TestimonialsSectionProps {
+  id?: string;
+}
+
+const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   const ugc = [
     {
       src: "/images/ugc/Ugc1.png",
       alt: "UGC: femme utilisant le spray Bye Sweetie",
-      nugget: "le sucre n'avait plus de goût, donc j'ai arrêté",
+  nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé sans effort et je n'y ai même plus repensé jusqu'au soir.",
     },
     {
       src: "/images/ugc/Ugc2.png",
       alt: "UGC: résultats transformation",
-      nugget: "super facile d'arrêter le sucre, -4kg en un mois",
+  nugget: "Au neuvième jour j'étais déjà à -2,3 kg sans sensation de régime et le plus fou c'est qu'à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
     },
     {
       src: "/images/ugc/Ugc3.png",
       alt: "UGC: témoignage énergie",
-      nugget: "plus d'envies à 16h, liberté totale — j'ai arrêté totalement, en 2 semaines mon visage a dégonflé",
+  nugget: "Je testais un peu sceptique, deux pulvérisations avant un brunch d’anniversaire, j'ai goûté le gâteau et comme il ne me procurait plus le plaisir sucré attendu j'ai arrêté net, ma mère n’en revenait pas.",
     },
     {
       src: "/images/ugc/Ugc4.png",
       alt: "UGC: amélioration de la peau",
-      nugget: "peau plus nette en 3 semaines, glow",
+  nugget: "Acné inflammatoire depuis des années et après trois semaines à pulvériser avant mes envies de desserts ma peau est plus claire, je me réveille moins gonflée et pour la première fois mon miroir me motive.",
     },
     {
       src: "/images/ugc/ugc - byesweetie.png",
       alt: "UGC: expérience utilisatrice",
-      nugget: "fini les fringales, je contrôle enfin mes envies",
+  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je dors mieux sans réveil à trois heures.",
     },
     {
       src: "/images/ugc/ugc - byesweetie 2.png",
       alt: "UGC: témoignage perte de poids",
-      nugget: "plus de grignotage le soir, -6kg en 2 mois",
+  nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
     },
     {
       src: "/images/ugc/ugc - byesweetie 3.png",
       alt: "UGC: amélioration du sommeil",
-      nugget: "sommeil de qualité, plus de pics de glycémie",
+  nugget: "En quatorze jours mon ventre est moins ballonné, mon énergie est stable et j'ai refusé deux fois une petite part de gâteau sans frustration, je me sens en contrôle et c'est totalement nouveau pour moi.",
     },
     {
       src: "/images/ugc/ugc - byesweetie4.png",
       alt: "UGC: confiance retrouvée",
-      nugget: "confiance en moi retrouvée, je me sens libre",
+  nugget: "Ce qui me bluffe c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
     },
   ];
 
   return (
-    <section className="py-24 sm:py-32 bg-gradient-hero">
+    <section id={id} className="py-24 sm:py-32 bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
           <H2 className="text-5xl lg:text-6xl font-normal leading-tight">Résultats réels</H2>
         </div>
 
-        {/* Mobile: UGC carousel with portrait 3:4 and peek */}
+        {/* Mobile: UGC carousel with portrait 3:4 and peek (now using Card) */}
         <div className="md:hidden">
           <div className="relative rounded-3xl">
             <Carousel opts={{ align: "start", loop: true }} className="relative">
               <CarouselContent>
                 {ugc.map((item, i) => (
                   <CarouselItem key={i} className="basis-[88%]">
-                    <figure className="relative overflow-hidden rounded-3xl shadow-card border border-border group" aria-label={item.alt}>
-                      <div className="aspect-[3/4] w-full overflow-hidden">
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className="w-full h-full object-cover select-none"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
-                      <figcaption className="absolute bottom-3 left-3 right-3">
-                        <span className="inline-flex items-center px-3 py-2 rounded-xl text-white text-sm font-medium tracking-tight bg-white/10 backdrop-blur-md ring-1 ring-white/20 max-w-[90%] whitespace-normal break-words">
+                    <Card className="relative overflow-hidden rounded-3xl group h-full">
+                      <CardContent className="p-0">
+                        <div className="aspect-[3/4] w-full overflow-hidden">
+                          <img
+                            src={item.src}
+                            alt={item.alt}
+                            className="w-full h-full object-cover select-none"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
+                      </CardContent>
+                      <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
+                        <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-xs px-3 py-2 rounded-xl max-w-[90%] whitespace-normal break-words">
                           “{item.nugget}”
-                        </span>
-                      </figcaption>
-                    </figure>
+                        </Badge>
+                      </CardFooter>
+                    </Card>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -84,27 +93,25 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Desktop/tablet: grid */}
+        {/* Desktop/tablet: grid using Card */}
         <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
           {ugc.map((item, i) => (
-            <figure
-              key={i}
-              className="relative overflow-hidden rounded-3xl shadow-card border border-border group"
-              aria-label={item.alt}
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-full object-cover aspect-[3/4] md:aspect-square select-none"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
-              <figcaption className="absolute bottom-3 left-3 right-3">
-                <span className="inline-flex items-center px-3 py-2 rounded-xl text-white text-sm sm:text-base font-medium tracking-tight bg-white/10 backdrop-blur-md ring-1 ring-white/20 max-w-[90%] sm:max-w-full whitespace-normal break-words">
+            <Card key={i} className="relative overflow-hidden rounded-3xl group">
+              <CardContent className="p-0">
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover aspect-[3/4] md:aspect-square select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
+              </CardContent>
+              <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
+                <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-sm sm:text-base px-3 py-2 rounded-xl max-w-[90%] sm:max-w-full whitespace-normal break-words">
                   “{item.nugget}”
-                </span>
-              </figcaption>
-            </figure>
+                </Badge>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
@@ -115,12 +122,12 @@ const TestimonialsSection = () => {
         <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">2,847</div>
         <div className="text-xs sm:text-base">Françaises transformées</div>
       </div>
-      <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+      <Separator orientation="vertical" className="hidden sm:block h-16" />
       <div className="text-center group">
         <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">4.9/5</div>
         <div className="text-xs sm:text-base">Note moyenne</div>
       </div>
-      <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent"></div>
+      <Separator orientation="vertical" className="hidden sm:block h-16" />
       <div className="text-center group">
         <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">94%</div>
         <div className="text-xs sm:text-base">Recommanderaient</div>

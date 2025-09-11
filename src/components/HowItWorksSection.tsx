@@ -1,84 +1,149 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { H2, H3, P } from "@/components/ui/typography";
+import { useState, useEffect } from "react";
+import { useInView } from "@/hooks/useInView";
 
-type Slide = {
-  title: string;
-  subtitle: string;
-  text: string;
-  image: string;
+const steps = [
+  { title: "2 sprays", text: "Tu pulvérises quand l'envie arrive.", icon: "spray" },
+  { title: "Récepteurs masqués", text: "Le sucré est bloqué pendant 30 à 60 minutes.", icon: "lock" },
+  { title: "Goût plus plat", text: "Gâteau / soda perdent l'effet wahou.", icon: "flat" },
+  { title: "Envie passée", text: "Tu continues sans craquage.", icon: "check" },
+];
+
+const StepIcon = ({ name }: { name: string }) => {
+  const base = "h-3.5 w-3.5 stroke-[1.5]";
+  switch (name) {
+    case "spray":
+      return (
+        <svg className={base} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="9" y="8" width="6" height="12" rx="2" />
+          <path d="M11 8V5a2 2 0 0 1 2-2h3v3h-3" />
+          <path d="M8 8h8" />
+        </svg>
+      );
+    case "lock":
+      return (
+        <svg className={base} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="5" y="11" width="14" height="10" rx="2" />
+          <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+        </svg>
+      );
+    case "flat":
+      return (
+        <svg className={base} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 15h18" />
+          <path d="M4 9c2-.8 4-.8 6 0s4 .8 6 0 4-.8 6 0" opacity="0.4" />
+        </svg>
+      );
+    case "check":
+      return (
+        <svg className={base} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M5 13l4 4 10-10" />
+        </svg>
+      );
+    default:
+      return null;
+  }
 };
 
-const slides: Slide[] = [
-  {
-    title: "Bloc 1",
-    subtitle: "Les récepteurs du goût",
-    text: "Sur ta langue, il existe des capteurs qui détectent le sucre.",
-    image: "/images/howitworks/1.jpg",
-  },
-  {
-    title: "Bloc 2",
-    subtitle: "L’action de la plante",
-    text: "La plante Gymnema agit comme un bouclier : elle bloque temporairement ces capteurs.",
-    image: "/images/howitworks/2.jpg",
-  },
-  {
-    title: "Bloc 3",
-    subtitle: "Résultat immédiat",
-    text: "Le goût sucré disparaît. Le dessert devient fade → ton envie tombe.",
-    image: "/images/howitworks/3.jpg",
-  },
-  {
-    title: "Bloc 4",
-    subtitle: "Effet durable",
-    text: "L’effet dure environ une heure, le temps de traverser la tentation.",
-    image: "/images/howitworks/4.png",
-  },
-];
+const UsageTimeline = () => {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const [revealed, setRevealed] = useState(0);
+
+  useEffect(() => {
+    if (inView && revealed < steps.length) {
+      let i = revealed;
+      const interval = setInterval(() => {
+        i += 1;
+        setRevealed(i);
+        if (i >= steps.length) clearInterval(interval);
+      }, 300);
+      return () => clearInterval(interval);
+    }
+  }, [inView, revealed]);
+
+  const progress = steps.length > 1 ? ((revealed - 1) / (steps.length - 1)) * 100 : 0;
+  return (
+    <div ref={ref} className="relative">
+      <H3 className="text-xl font-normal mb-6">Comment tu l'utilises</H3>
+      <div className="relative">
+        <div className="absolute left-4 top-1 bottom-1 w-px bg-tertiary/15" />
+        <div
+          className="absolute left-4 top-1 w-px bg-gradient-to-b from-tertiary/70 via-tertiary/60 to-tertiary/20 transition-all duration-700 ease-out"
+          style={{ height: `${Math.max(0, Math.min(100, progress))}%` }}
+        />
+        <ul className="ml-0 pl-0 space-y-7">
+          {steps.map((s, idx) => {
+            const active = idx < revealed;
+            return (
+              <li
+                key={s.title}
+                className={`relative flex items-start gap-4 pl-10 transition-all duration-500 ${
+                  active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+                }`}
+                style={{ transitionDelay: `${idx * 110}ms` }}
+              >
+                <div className={`absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-tertiary/30 bg-white shadow-sm ring-1 ring-white/40 transition-all duration-500 ${active ? "bg-tertiary/90 text-white" : "text-tertiary/70"}`}>
+                  <StepIcon name={s.icon} />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="text-[13px] font-medium uppercase tracking-wide text-foreground/90">{s.title}</div>
+                  <div className="text-sm text-muted-foreground leading-relaxed max-w-xs">{s.text}</div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+// Static science illustration now replaces the previous carousel.
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="py-24 sm:py-28 bg-background">
-      <div className="container mx-auto px-4 sm:px-8 max-w-5xl">
-        <div className="text-center mb-8 sm:mb-10">
-          <Badge variant="secondary" className="rounded-full px-3 py-1">Comprendre</Badge>
-          <H2 className="mt-4 font-normal">Pourquoi ça marche ?</H2>
-          <P className="mt-3 text-muted-foreground">Un spray, une réaction scientifique immédiate.</P>
+    <section id="how-it-works" className="relative py-28 bg-gradient-to-b from-[#F7F3EC] via-[#EFE7DC] to-[#F8F5EF] overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.35] pointer-events-none bg-[radial-gradient(circle_at_18%_22%,rgba(160,120,70,0.10),transparent_60%),radial-gradient(circle_at_82%_78%,rgba(160,120,70,0.10),transparent_65%)]" />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <Badge className="rounded-full px-4 py-1 bg-tertiary/10 text-tertiary ring-1 ring-tertiary/25 backdrop-blur-sm tracking-wide">BEAUTY HACK</Badge>
+          <H2 className="mt-6 font-normal leading-tight">Coupe l'envie sucrée. Garde ta ligne.</H2>
+          <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-tertiary/60" />
+          <P className="mt-6 text-muted-foreground text-base">Deux sprays et le goût sucré décroche pendant quelques minutes. Tu évites le grignotage réflexe, tu limites les pics et tu te sens moins gonflée. Effet ressenti en environ 40 secondes.</P>
         </div>
 
-        <div className="relative rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            className="relative"
-            aria-label="Comment Bye Sweetie agit"
-          >
-            <CarouselContent>
-              {slides.map((s, idx) => (
-                <CarouselItem key={idx} className="basis-[88%] sm:basis-[70%] lg:basis-1/2">
-                  <div className="h-full rounded-2xl border bg-card p-4 sm:p-6 flex flex-col gap-4">
-                    <div className="aspect-square w-full overflow-hidden rounded-xl border bg-muted/30">
-                      <img src={s.image} alt={s.subtitle} className="h-full w-full object-cover" />
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{s.title}</div>
-                      <H3 className="text-xl sm:text-2xl font-normal">{s.subtitle}</H3>
-                      <P className="text-sm sm:text-base text-muted-foreground">{s.text}</P>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="-left-3 sm:-left-6" />
-            <CarouselNext className="-right-3 sm:-right-6" />
-          </Carousel>
-
-          <div className="mt-6 sm:mt-8 text-center px-1 sm:px-0">
-            <Button variant="premium" size="lg" className="w-full sm:w-auto max-w-full overflow-hidden mx-auto" asChild>
-              <a href="#checkout" className="block truncate">👉 Je lance ma Cure Bye Sweetie</a>
-            </Button>
+        {/* Static science graphic */}
+        <div className="relative rounded-3xl border border-tertiary/15 bg-white/70 backdrop-blur-xl p-6 sm:p-10 shadow-card overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div className="space-y-6">
+              <div className="relative rounded-2xl overflow-hidden">
+                <img
+                  src="/images/howitworks/howitworks - ugc.png"
+                  alt="UGC before / after – Bye Sweetie"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+                {/* Placeholder overlays for future annotation pins */}
+                <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,white_70%,transparent_100%)]" />
+              </div>
+            </div>
+            <div className="space-y-10">
+              <UsageTimeline />
+              <div className="text-xs text-muted-foreground/80 space-y-1 pt-2 border-t border-tertiary/15">
+                <div>Action locale rapide, sans pic artificiel.</div>
+                <div>* Ne remplace pas une alimentation équilibrée.</div>
+              </div>
+            </div>
           </div>
-        </div>
+  </div>
+  <div className="mt-12 text-center">
+            <Button variant="premium" size="lg" className="w-full sm:w-auto" asChild>
+              <a href="#offer">Je veux couper mes envies maintenant</a>
+            </Button>
+             <div className="mt-4 text-[11px] text-muted-foreground">Basé sur des mécanismes documentés de la Gymnema. Effet perçu variable selon les personnes.</div>
+  </div>
       </div>
     </section>
   );

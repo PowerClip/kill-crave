@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Bodoni Moda"', 'serif'], // Cyrillic Bodoni for body text
-        sans: ['"Work Sans"', 'sans-serif'], // Work Sans for headers (all caps)
-        logo: ['"Bodoni Moda"', 'serif'], // Cyrillic Bodoni for logo
+        sans: ['"Open Sans"', 'system-ui', 'sans-serif'],
+        serif: ['"Open Sans"', 'system-ui', 'sans-serif'], // unify usage
+  logo: ['"Bodoni Moda"', '"Playfair Display"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

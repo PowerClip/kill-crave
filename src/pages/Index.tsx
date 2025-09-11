@@ -7,8 +7,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import TrustpilotSection from "@/components/TrustpilotSection";
-import SolutionSection from "@/components/SolutionSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
+import ScienceSection from "@/components/ScienceSection";
+import BenefitsTimelineSection from "@/components/BenefitsTimelineSection";
+import IngredientsSection from "@/components/IngredientsSection";
 
 const Index = () => {
   return (
@@ -16,10 +18,13 @@ const Index = () => {
       <Header />
       <main className="pb-20 overflow-x-hidden">
         <HeroSection />
-  <SolutionSection />
+  {/* Replaced former "La solution" section with UGC/Testimonials */}
+  <TestimonialsSection id="solution" />
   <OfferSection />
-  <HowItWorksSection />
-        <TestimonialsSection />
+  <BenefitsTimelineSection />
+  <IngredientsSection />
+        <HowItWorksSection />
+        <ScienceSection />
         <FAQSection />
         <FinalCTASection />
   <TrustpilotSection />

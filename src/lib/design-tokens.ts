@@ -6,10 +6,10 @@
 export const designTokens = {
   // Brand Colors
   colors: {
-    background: '#FAF7E9', // Warm cream background
-    secondary: '#BCC499', // Sage green for sections
-    tertiary: '#FFE065', // Yellow for buttons and highlights
-    text: '#000000', // Black text
+    background: '#F6F4EF',
+    secondary: '#E4DED4', // soft neutral
+    tertiary: '#4A3A31', // cocoa accent
+    text: '#1F1A17',
   },
   
   // Typography
