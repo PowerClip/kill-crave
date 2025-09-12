@@ -50,6 +50,18 @@ export function track(eventName: string, opts: TrackEventOptions = {}) {
     if (window.fbq) {
       window.fbq('track', eventName, payload, { eventID: event_id });
     }
+    // Lightweight TikTok forwarding if pixel is present
+    const ttq = (window as any).ttq as undefined | { track: Function };
+    if (ttq && typeof ttq.track === 'function') {
+      // Basic mapping: reuse eventName; TikTok common: ViewContent, AddToCart, InitiateCheckout, CompletePayment
+      const ttParams: Record<string, any> = {};
+      if (payload.value != null) ttParams.value = payload.value;
+      if (payload.currency) ttParams.currency = payload.currency;
+      if (payload.contents) ttParams.contents = payload.contents;
+      if (payload.content_type) ttParams.content_type = payload.content_type;
+      ttParams.event_id = event_id;
+      ttq.track(eventName, ttParams);
+    }
   } catch (e) {
     console.debug('Pixel track failed', e);
   }
