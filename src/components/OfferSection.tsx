@@ -16,12 +16,12 @@ const OfferSection = () => {
 
   // Use Shopify images if present; fall back to local static assets for continuity
   const fallbackImages = [
-    "/images/product/1.png",
-    "/images/product/2.png",
-    "/images/product/3.png",
-    "/images/product/4.png",
-    "/images/product/5.png",
-    "/images/product/6.png",
+    "/images/product/1.webp",
+    "/images/product/2.webp",
+    "/images/product/3.webp",
+    "/images/product/4.webp",
+    "/images/product/5.webp",
+    "/images/product/6.webp",
   ];
   const productImages = (product?.images.nodes.length ? product.images.nodes.map(i => i.url) : fallbackImages).slice(0, 6);
 
@@ -125,8 +125,8 @@ const OfferSection = () => {
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
-          <H2 className="mt-4 font-normal">{product?.title || "Bye Sweetie — Le spray beauté qui coupe instantanément tes envies de sucre"}</H2>
-          <P className="mt-3 text-muted-foreground">Un geste simple: tu pulvérises, le goût sucré s’éteint, l’envie disparaît. Ton nouveau rituel beauté-santé pour contrôler ton sucre et garder le glow.</P>
+          <H2 className="mt-4 normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">{product?.title || "Bye Sweetie — Le spray qui vous rend le contrôle"}</H2>
+          <P className="mt-3 text-muted-foreground">Un geste simple: vous pulvérisez, le goût et l'envie de sucre disparaissent. Votre nouveau rituel beauté-santé faire disparaitre le sucre de votre alimentation.</P>
         </div>
   <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start min-w-0">
@@ -165,7 +165,7 @@ const OfferSection = () => {
                     <Star key={i} className="h-4 w-4 fill-amber-500" />
                   ))}
                 </div>
-                <span>4,7/5 – Adopté par des milliers de femmes</span>
+                <span>4,8/5 – Adopté par des milliers de femmes</span>
               </div>
             </div>
 
@@ -231,7 +231,6 @@ const OfferSection = () => {
               {purchaseMode === "single" ? (
                 <>
                   <div>{DOSES_PER_BOTTLE} doses — {DAYS_PER_BOTTLE} jours (3 utilisations/jour)</div>
-                  <div>≈ {formatDaily(dailySingle)} / jour pour supprimer ton envie de sucre</div>
                 </>
               ) : (
                 <>
@@ -339,6 +338,12 @@ const OfferSection = () => {
             </Accordion>
           </div>
           </div>
+        </div>
+        {/* Usage note: placed immediately under the offer card, tight spacing */}
+        <div className="pt-1 pb-2 sm:pt-2 sm:pb-3">
+          <P className="text-[11px] sm:text-xs text-muted-foreground/70 max-w-2xl">
+            Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas une prise en charge médicale. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
+          </P>
         </div>
       </div>
     </section>

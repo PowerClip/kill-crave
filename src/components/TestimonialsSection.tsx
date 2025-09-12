@@ -11,52 +11,52 @@ interface TestimonialsSectionProps {
 const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   const ugc = [
     {
-      src: "/images/ugc/Ugc1.png",
+      src: "/images/ugc/Ugc1.webp",
       alt: "UGC: femme utilisant le spray Bye Sweetie",
-  nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé sans effort et je n'y ai même plus repensé jusqu'au soir.",
+  nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé et je n'étais plus tentée pendant plusieurs heures.",
     },
     {
-      src: "/images/ugc/Ugc2.png",
+      src: "/images/ugc/Ugc2.webp",
       alt: "UGC: résultats transformation",
-  nugget: "Au neuvième jour j'étais déjà à -2,3 kg sans sensation de régime et le plus fou c'est qu'à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
+  nugget: "Au neuvième jour j'étais déjà à -2 kg sans sensation de me priver et et surtout à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
     },
     {
-      src: "/images/ugc/Ugc3.png",
+      src: "/images/ugc/Ugc3.webp",
       alt: "UGC: témoignage énergie",
-  nugget: "Je testais un peu sceptique, deux pulvérisations avant un brunch d’anniversaire, j'ai goûté le gâteau et comme il ne me procurait plus le plaisir sucré attendu j'ai arrêté net, ma mère n’en revenait pas.",
+  nugget: "J'ai testé un peu sceptique par nature, deux pulvérisations avant de goûter un dessert de mon copain. Et j'avais juste plus envie, même après un verre d'eau",
     },
     {
-      src: "/images/ugc/Ugc4.png",
+      src: "/images/ugc/Ugc4.webp",
       alt: "UGC: amélioration de la peau",
-  nugget: "Acné inflammatoire depuis des années et après trois semaines à pulvériser avant mes envies de desserts ma peau est plus claire, je me réveille moins gonflée et pour la première fois mon miroir me motive.",
+  nugget: "Acné inflammatoire depuis des années et après trois semaines à pulvériser avant mes envies de grignotages ma peau est plus claire, je me réveille moins gonflée et heureuse de regarder dans le miroir.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie.png",
+      src: "/images/ugc/ugc - byesweetie.webp",
       alt: "UGC: expérience utilisatrice",
-  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je dors mieux sans réveil à trois heures.",
+  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie 2.png",
+      src: "/images/ugc/ugc - byesweetie 2.webp",
       alt: "UGC: témoignage perte de poids",
   nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie 3.png",
+      src: "/images/ugc/ugc - byesweetie 3.webp",
       alt: "UGC: amélioration du sommeil",
-  nugget: "En quatorze jours mon ventre est moins ballonné, mon énergie est stable et j'ai refusé deux fois une petite part de gâteau sans frustration, je me sens en contrôle et c'est totalement nouveau pour moi.",
+  nugget: "En quatorze jours mon ventre est moins ballonné, mon mood est stable et j'ai refusé deux fois une petite part de gâteau juste parce que j'en avais pas envie, je me sens en contrôle et c'est totalement nouveau pour moi.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie4.png",
+      src: "/images/ugc/ugc - byesweetie4.webp",
       alt: "UGC: confiance retrouvée",
-  nugget: "Ce qui me bluffe c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
+  nugget: "Ce qui change la vie c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
     },
   ];
 
   return (
-    <section id={id} className="py-24 sm:py-32 bg-gradient-hero">
+    <section id={id} className="pt-0 pb-24 sm:py-2 bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <H2 className="text-5xl lg:text-6xl font-normal leading-tight">Résultats réels</H2>
+          <H2 className="text-5xl lg:text-6xl font-normal leading-tight normal-case">Témoignages:</H2>
         </div>
 
         {/* Mobile: UGC carousel with portrait 3:4 and peek (now using Card) */}
@@ -120,7 +120,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
     <div className="grid grid-cols-3 gap-4 sm:flex sm:justify-center sm:items-center sm:gap-12 text-muted-foreground max-w-4xl mx-auto px-4">
       <div className="text-center group">
         <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">2,847</div>
-        <div className="text-xs sm:text-base">Françaises transformées</div>
+        <div className="text-xs sm:text-base">Françaises soulagées</div>
       </div>
       <Separator orientation="vertical" className="hidden sm:block h-16" />
       <div className="text-center group">

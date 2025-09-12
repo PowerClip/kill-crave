@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import { useInView } from "@/hooks/useInView";
 
 const steps = [
-  { title: "2 sprays", text: "Tu pulvérises quand l'envie arrive.", icon: "spray" },
+  { title: "2 sprays", text: "Vous pulvérisez quand l'envie arrive.", icon: "spray" },
   { title: "Récepteurs masqués", text: "Le sucré est bloqué pendant 30 à 60 minutes.", icon: "lock" },
   { title: "Goût plus plat", text: "Gâteau / soda perdent l'effet wahou.", icon: "flat" },
-  { title: "Envie passée", text: "Tu continues sans craquage.", icon: "check" },
+  { title: "Envie passée", text: "Vous continuez sans craquage.", icon: "check" },
 ];
 
 const StepIcon = ({ name }: { name: string }) => {
@@ -66,7 +66,7 @@ const UsageTimeline = () => {
   const progress = steps.length > 1 ? ((revealed - 1) / (steps.length - 1)) * 100 : 0;
   return (
     <div ref={ref} className="relative">
-      <H3 className="text-xl font-normal mb-6">Comment tu l'utilises</H3>
+      <H3 className="text-xl font-normal mb-6">Comment vous l'utilisez</H3>
       <div className="relative">
         <div className="absolute left-4 top-1 bottom-1 w-px bg-tertiary/15" />
         <div
@@ -109,9 +109,9 @@ const HowItWorksSection = () => {
       <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <Badge className="rounded-full px-4 py-1 bg-tertiary/10 text-tertiary ring-1 ring-tertiary/25 backdrop-blur-sm tracking-wide">BEAUTY HACK</Badge>
-          <H2 className="mt-6 font-normal leading-tight">Coupe l'envie sucrée. Garde ta ligne.</H2>
+          <H2 className="mt-6 font-normal leading-tight">Coupez l'envie sucrée. Gardez la ligne.</H2>
           <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-tertiary/60" />
-          <P className="mt-6 text-muted-foreground text-base">Deux sprays et le goût sucré décroche pendant quelques minutes. Tu évites le grignotage réflexe, tu limites les pics et tu te sens moins gonflée. Effet ressenti en environ 40 secondes.</P>
+          <P className="mt-6 text-muted-foreground text-base">Deux sprays et le goût sucré décroche pendant quelques minutes. Vous évitez le grignotage réflexe, vous limitez les pics et vous vous sentez moins gonflée. Effet ressenti en environ 40 secondes.</P>
         </div>
 
         {/* Static science graphic */}
@@ -120,7 +120,7 @@ const HowItWorksSection = () => {
             <div className="space-y-6">
               <div className="relative rounded-2xl overflow-hidden">
                 <img
-                  src="/images/howitworks/howitworks - ugc.png"
+                  src="/images/howitworks/howitworks - ugc.webp"
                   alt="UGC before / after – Bye Sweetie"
                   className="w-full h-auto object-cover"
                   loading="lazy"

@@ -12,7 +12,7 @@ const IngredientsSection = () => {
           <div className="relative w-full max-w-xl mb-10 overflow-hidden rounded-3xl bg-white/70 backdrop-blur-xl border border-tertiary/15 p-4 sm:p-6 shadow-card">
             <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,white_70%,transparent_100%)]" />
             <img
-              src="/images/ingredient/gymnema.jpg"
+              src="/images/ingredient/gymnema.webp"
               alt="Feuille de Gymnema – ingrédient clé du spray"
               className="w-full h-auto object-cover rounded-2xl"
               loading="lazy"

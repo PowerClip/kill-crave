@@ -59,7 +59,7 @@ const benefits: Benefit[] = [
   {
     id: "3mois",
     timeframe: "3 MOIS",
-    title: "Un nouveau point toi, sans dépendance*",
+    title: "Un nouveau vous, sans dépendance*",
     details: [
       "Attrait pour le sucré quasiment supprimé",
       "Énergie stable perçue comme la « nouvelle norme »",
@@ -83,7 +83,7 @@ const BenefitsTimelineSection = () => {
         {/* Image */}
         <div className="relative overflow-hidden rounded-3xl max-w-3xl mx-auto">
           <img
-            src="/images/product/product - held - nobg.png"
+            src="/images/product/product - held - nobg.webp"
             alt="Spray Bye Sweetie – rituel"
             className="w-full h-auto object-cover [mask-image:radial-gradient(circle_at_center,white_60%,transparent_85%)] [--webkit-mask-image:radial-gradient(circle_at_center,white_60%,transparent_85%)]"
             loading="lazy"

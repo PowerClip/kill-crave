@@ -18,7 +18,7 @@ const scienceSteps = [
   {
     step: 'Étape 3',
     title: 'Envie qui retombe',
-    text: 'Sans pic de récompense, l’envie passe en 5–10 min. Répété chaque jour, ton seuil de sensibilité au sucre se ré-équilibre → moins de dépendance.'
+    text: 'Sans pic de récompense, l’envie passe en 5–10 min. Répété chaque jour, votre seuil de sensibilité au sucre se ré-équilibre → moins de dépendance.'
   },
   {
     step: 'Étape 4',
@@ -38,10 +38,10 @@ export default function ScienceSection() {
           <Badge className="rounded-full px-4 py-1 bg-white/15 text-white ring-1 ring-white/25 backdrop-blur">Rééducation</Badge>
             <H2 className="mt-6 font-normal leading-tight text-white uppercase tracking-tight">Le sucre n’a plus le dernier mot</H2>
             <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-white/70" />
-            <P className="mt-6 text-white/80 text-base">À chaque pulvérisation, tes récepteurs du sucré sont bloqués. Ton cerveau ne reçoit plus la récompense → l’envie disparaît. Répété sur quelques semaines, ton goût se rééduque et les envies compulsives chutent.</P>
+            <P className="mt-6 text-white/80 text-base">À chaque pulvérisation, vos récepteurs du sucré sont bloqués. Votre cerveau ne reçoit plus la récompense → l’envie disparaît. Répété sur quelques semaines, votre goût se rééduque et les envies compulsives chutent.</P>
             <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-white/25 bg-white/10 backdrop-blur-xl p-4 sm:p-6">
               <img
-                src="/images/howitworks/product splash.jpg"
+                src="/images/howitworks/product splash.webp"
                 alt="Product splash – Bye Sweetie"
                 className="w-full h-auto object-cover rounded-2xl"
                 loading="lazy"

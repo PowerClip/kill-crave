@@ -19,7 +19,7 @@ const HeroSection = () => {
           <div className="lg:col-span-6 space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-2 flex-wrap">
-                <Badge variant="secondary" className="px-3 py-1 font-medium">+2.000 vendus le mois dernier</Badge>
+                <Badge variant="secondary" className="px-3 py-1 font-medium">Plus de 2000 exemplaires vendus le mois dernier</Badge>
                 <div className="flex items-center gap-1 text-[13px] font-serif text-muted-foreground">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 text-amber-500 fill-amber-500" />
@@ -28,11 +28,25 @@ const HeroSection = () => {
                 </div>
               </div>
               <H1 className="normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">
-                Le spray qui coupe net ton envie de sucre en 60 secondes
+                Le spray qui coupe vos envies de sucre immédiatement
               </H1>
               <Lead className="normal-case max-w-lg text-foreground/80">
-                1–2 sprays sur la langue. Le goût sucré disparaît temporairement et tu n'as plus envie de sucre. Tu perds du poids naturellement, sans frustration. 
+                1–2 sprays sur la langue. Le goût sucré disparaît temporairement et vous n'en avez plus envie. Vous perdez ainsi du poids naturellement et sans frustration.
               </Lead>
+              {/* Mobile: place the visual directly under the "frustration." line */}
+              <div className="lg:hidden pt-4">
+                <div className="relative max-w-md mx-auto">
+                  <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border bg-card shadow-hero">
+                    <img
+                      src="/images/hero.webp"
+                      alt="Spray anti-envie de sucre Bye Sweetie"
+                      className="h-full w-full object-cover"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-secondary/30 via-background/30 to-tertiary/20 mix-blend-multiply" />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <ul className="space-y-3 text-[15px] text-foreground/85 max-w-md font-serif">
@@ -40,7 +54,7 @@ const HeroSection = () => {
                 'Coupe le goût et l\'envie de sucre instantanément',
                 'Moins de grignotages, silhouette plus fine',
                 'Énergie plus stable au fil de la journée',
-                'Actif végétal, cliniquement prouvé',
+                'Actif végétal documenté par la littérature scientifique',
               ].map(item => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/60 border border-secondary/70 flex items-center justify-center shrink-0 shadow-sm">
@@ -68,11 +82,11 @@ const HeroSection = () => {
           </div>
 
           {/* Image / Visual */}
-          <div className="lg:col-span-6">
+          <div className="hidden lg:block lg:col-span-6">
             <div className="relative max-w-xl mx-auto">
               <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border bg-card shadow-hero">
                 <img
-                  src="/images/hero.png"
+                  src="/images/hero.webp"
                   alt="Spray anti-envie de sucre Bye Sweetie"
                   className="h-full w-full object-cover"
                   loading="eager"
@@ -84,9 +98,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <P className="mt-10 text-[11px] sm:text-xs text-muted-foreground/70 max-w-2xl">
-          Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas une prise en charge médicale. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
-        </P>
+        {/* Usage note moved below Offer section on the page */}
       </div>
     </section>
   );
