@@ -7,7 +7,7 @@ const FinalCTASection = () => {
       <div className="container mx-auto px-4 sm:px-8">
         <div className="mx-auto max-w-3xl rounded-3xl bg-card/90 backdrop-blur border shadow-card p-8 sm:p-12 space-y-6">
           <div className="space-y-3">
-            <H2 className="leading-tight font-normal">Kit Bye Sweetie — 30 jours</H2>
+            <H2 className="leading-tight font-normal normal-case font-serif">Kit Bye Sweetie pendant 30 jours</H2>
             <P className="text-muted-foreground">
               Arrêtez entièrement le sucre en 60 secondes. Un rituel simple, des résultats concrets et durables.
             </P>

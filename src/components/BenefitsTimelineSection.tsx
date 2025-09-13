@@ -18,7 +18,7 @@ const benefits: Benefit[] = [
   {
     id: "ongoing",
     timeframe: "IMMÉDIAT",
-    title: "Le goût sucré disparaît en quelques secondes*",
+    title: "Le goût sucré disparaît en quelques secondes",
     details: [
       "Le goût sucré est temporairement stoppé (30 à 60 min)",
       "Coupe l'envie de grignotage sur le moment",
@@ -28,7 +28,7 @@ const benefits: Benefit[] = [
   {
     id: "7jours",
     timeframe: "7 JOURS",
-    title: "Moins d'envies de sucre, énergie plus régulière",
+    title: "Moins d'envies de sucre et une énergie plus stable",
     details: [
       "Envies de sucré après le déjeuner nettement réduites",
       "Moins de pics et de « crashs » d'énergie ressentis",
@@ -39,9 +39,9 @@ const benefits: Benefit[] = [
   {
     id: "2semaines",
     timeframe: "2 SEMAINES",
-    title: "Premiers changements physiques visibles, digestion plus légère*",
+    title: "Les premiers changements physiques visibles et une digestion plus légère",
     details: [
-      "Grignotages sucrés en forte baisse, parfois supprimés",
+      "Grignotages sucrés en forte baisse",
       "Ballonnements et inconfort digestif qui s'apaisent",
       "Humeur plus stable, moins d'oscillations liées au sucre",
     ],
@@ -49,7 +49,7 @@ const benefits: Benefit[] = [
   {
     id: "4semaines",
     timeframe: "4 SEMAINES",
-    title: "Peau plus nette & proches qui remarquent les changements*",
+    title: "Moins d'mperfections cutanées",
     details: [
       "Rougeurs et imperfections atténuées (retours clientes)",
       "Ventre moins gonflé au réveil, silhouette affinée",
@@ -59,11 +59,11 @@ const benefits: Benefit[] = [
   {
     id: "3mois",
     timeframe: "3 MOIS",
-    title: "Un nouveau vous, sans dépendance*",
+    title: "Plus aucune dépendance au sucre",
     details: [
       "Attrait pour le sucré quasiment supprimé",
-      "Énergie stable perçue comme la « nouvelle norme »",
       "Poids et composition corporelle plus faciles à maintenir",
+      "Énergie stable perçue comme la « nouvelle norme »",
     ],
   },
 ];
@@ -77,7 +77,7 @@ const BenefitsTimelineSection = () => {
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-8">
           <Badge className="rounded-full px-4 py-1 bg-white/15 text-white ring-1 ring-white/25 backdrop-blur">Évolution</Badge>
-          <H2 className="mt-6 font-normal leading-tight text-white">Des effets visibles, dès le premier spray</H2>
+          <H2 className="mt-6 font-normal leading-tight text-white normal-case font-serif">Des effets visibles, dès le premier spray</H2>
           <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-white/70" />
         </div>
         {/* Image */}
@@ -101,7 +101,7 @@ const BenefitsTimelineSection = () => {
               <AccordionItem key={b.id} value={b.id} className="border-white/10">
                 <AccordionTrigger className="py-4 px-5 sm:px-7 text-left group gap-3">
                   <div className="flex flex-col w-full items-start gap-2">
-                    <span className="inline-flex items-center justify-center px-2.5 py-[3px] rounded-md text-[10px] font-medium tracking-wide uppercase bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 whitespace-nowrap leading-none">
+                    <span className="inline-flex items-center justify-center px-2.5 py-[3px] rounded-md text-[10px] font-medium tracking-wide uppercase bg-black/30 text-white ring-1 ring-white/30 whitespace-nowrap leading-none">
                       {b.timeframe}
                     </span>
                     <span className="text-base sm:text-lg font-serif leading-tight text-white group-hover:text-white/90 transition-colors text-left">

@@ -11,14 +11,19 @@ interface TestimonialsSectionProps {
 const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   const ugc = [
     {
+      src: "/images/ugc/ugc - byesweetie 2.webp",
+      alt: "UGC: témoignage perte de poids",
+  nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
+    },
+    {
+      src: "/images/ugc/ugc - byesweetie.webp",
+      alt: "UGC: expérience utilisatrice",
+  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
+    },
+    {
       src: "/images/ugc/Ugc1.webp",
       alt: "UGC: femme utilisant le spray Bye Sweetie",
   nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé et je n'étais plus tentée pendant plusieurs heures.",
-    },
-    {
-      src: "/images/ugc/Ugc2.webp",
-      alt: "UGC: résultats transformation",
-  nugget: "Au neuvième jour j'étais déjà à -2 kg sans sensation de me priver et et surtout à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
     },
     {
       src: "/images/ugc/Ugc3.webp",
@@ -31,24 +36,19 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   nugget: "Acné inflammatoire depuis des années et après trois semaines à pulvériser avant mes envies de grignotages ma peau est plus claire, je me réveille moins gonflée et heureuse de regarder dans le miroir.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie.webp",
-      alt: "UGC: expérience utilisatrice",
-  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
+      src: "/images/ugc/ugc - byesweetie4.webp",
+      alt: "UGC: confiance retrouvée",
+  nugget: "Ce qui change la vie c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie 2.webp",
-      alt: "UGC: témoignage perte de poids",
-  nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
+      src: "/images/ugc/Ugc2.webp",
+      alt: "UGC: résultats transformation",
+  nugget: "En deux semaines j'étais déjà à -2 kg sans sensation de me priver et et surtout à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
     },
     {
       src: "/images/ugc/ugc - byesweetie 3.webp",
       alt: "UGC: amélioration du sommeil",
   nugget: "En quatorze jours mon ventre est moins ballonné, mon mood est stable et j'ai refusé deux fois une petite part de gâteau juste parce que j'en avais pas envie, je me sens en contrôle et c'est totalement nouveau pour moi.",
-    },
-    {
-      src: "/images/ugc/ugc - byesweetie4.webp",
-      alt: "UGC: confiance retrouvée",
-  nugget: "Ce qui change la vie c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
     },
   ];
 

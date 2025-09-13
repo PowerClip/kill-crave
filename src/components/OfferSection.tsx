@@ -121,7 +121,7 @@ const OfferSection = () => {
   }
 
   return (
-    <section id="offer" className="py-24 sm:py-28 bg-background">
+    <section id="offer" className="py-24 sm:py-28 bg-background scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>

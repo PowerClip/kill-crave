@@ -36,7 +36,7 @@ export default function ScienceSection() {
       <div className="relative mx-auto max-w-5xl px-4 sm:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <Badge className="rounded-full px-4 py-1 bg-white/15 text-white ring-1 ring-white/25 backdrop-blur">Rééducation</Badge>
-            <H2 className="mt-6 font-normal leading-tight text-white uppercase tracking-tight">Le sucre n’a plus le dernier mot</H2>
+            <H2 className="mt-6 font-normal leading-tight text-white normal-case font-serif tracking-tight">Le sucre n’a plus le dernier mot</H2>
             <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-white/70" />
             <P className="mt-6 text-white/80 text-base">À chaque pulvérisation, vos récepteurs du sucré sont bloqués. Votre cerveau ne reçoit plus la récompense → l’envie disparaît. Répété sur quelques semaines, votre goût se rééduque et les envies compulsives chutent.</P>
             <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-white/25 bg-white/10 backdrop-blur-xl p-4 sm:p-6">
@@ -59,7 +59,7 @@ export default function ScienceSection() {
                 <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-white/15 text-[11px] font-medium tracking-wide text-white ring-1 ring-white/25">
                   {i + 1}
                 </span>
-                <H3 className="text-lg sm:text-xl font-normal leading-snug text-white">{s.title}</H3>
+                <H3 className="text-lg sm:text-xl font-normal leading-snug text-white normal-case font-serif">{s.title}</H3>
               </div>
               <P className="text-sm text-white/80 leading-relaxed">{s.text}</P>
             </div>

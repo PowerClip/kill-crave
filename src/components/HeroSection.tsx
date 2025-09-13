@@ -31,7 +31,7 @@ const HeroSection = () => {
                 Le spray qui coupe vos envies de sucre immédiatement
               </H1>
               <Lead className="normal-case max-w-lg text-foreground/80">
-                1–2 sprays sur la langue. Le goût sucré disparaît temporairement et vous n'en avez plus envie. Vous perdez ainsi du poids naturellement et sans frustration.
+                1 à 2 sprays sur la langue. Le goût sucré disparaît temporairement et vous n'en avez plus envie. Vous perdez ainsi du poids naturellement et sans frustration.
               </Lead>
               {/* Mobile: place the visual directly under the "frustration." line */}
               <div className="lg:hidden pt-4">
@@ -70,7 +70,7 @@ const HeroSection = () => {
                 <a href="#offer">Commencer – {priceLabel}</a>
               </Button>
               <Button variant="outline" size="sm" className="sm:h-12 px-8 rounded-xl backdrop-blur" asChild>
-                <a href="#science">Voir comment ça marche</a>
+                <a href="#ingredients">Voir comment ça marche</a>
               </Button>
             </div>
 

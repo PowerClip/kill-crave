@@ -18,8 +18,8 @@ const IngredientsSection = () => {
               loading="lazy"
             />
           </div>
-          <H2 className="font-normal leading-tight">Gymnema — le secret anti-sucre venu d’Asie</H2>
-          <P className="mt-6 text-muted-foreground text-base">Plante ayurvédique surnommée “le destructeur de sucre.” Ses acides se lient aux récepteurs du sucré: en quelques minutes, le goût s’éteint et l’envie décroît.</P>
+          <H2 className="font-normal leading-tight normal-case font-serif">Gymnema — La plante anti-sucre venu d’Asie</H2>
+          <P className="mt-6 text-muted-foreground text-base">Plante ayurvédique reconnue comme le frein naturel au goût sucré. Son action rapide calme les envies immédiatement et permet de retrouver un meilleur équilibre au quotidien.</P>
         </div>
       </div>
     </section>

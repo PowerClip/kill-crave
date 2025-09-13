@@ -27,7 +27,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 h-14 grid grid-cols-3 items-center">
         <nav className="hidden sm:flex items-center gap-6 text-sm text-muted-foreground justify-self-start">
-          <a href="#how" className="hover:text-primary">Comment ça marche</a>
+          <a href="#ingredients" className="hover:text-primary">Comment ça marche</a>
           <a href="#offer" className="hover:text-primary">Kit 30 jours</a>
           <a href="#faq" className="hover:text-primary">FAQ</a>
         </nav>

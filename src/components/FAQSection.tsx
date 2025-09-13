@@ -55,7 +55,7 @@ const FAQSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <H2 className="mb-6 font-normal">Des questions ? Nous avons les réponses</H2>
+            <H2 className="mb-6 font-normal normal-case font-serif">Des questions ?</H2>
             <P className="text-xl text-muted-foreground">
               Tout ce que vous devez savoir sur votre programme Bye Sweetie
             </P>
