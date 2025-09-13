@@ -56,6 +56,35 @@
         window.__PIXEL_ENABLED__ = true;
       }
     </script>
+    <!-- TikTok Pixel dynamic loader (uses VITE_TIKTOK_PIXEL_ID if set, otherwise falls back to provided ID) -->
+    <script type="module">
+      const TT_PIXEL_ID = import.meta.env.VITE_TIKTOK_PIXEL_ID || 'D32A5P3C77UFTO59H9UG';
+      if (TT_PIXEL_ID) {
+        if (!window.ttq) {
+          (function(w, d, t) {
+            w.TiktokAnalyticsObject = t;
+            var ttq = w[t] = w[t] || [];
+            ttq.methods = [
+              'page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie'
+            ];
+            ttq.setAndDefer = function(obj, method) {
+              obj[method] = function() { obj.push([method].concat([].slice.call(arguments, 0))); };
+            };
+            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+            ttq.load = function(id, opts) {
+              var u = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+              ttq._i = ttq._i || {}; ttq._i[id] = []; ttq._i[id]._u = u;
+              ttq._t = ttq._t || {}; ttq._t[id] = +new Date();
+              ttq._o = ttq._o || {}; ttq._o[id] = opts || {};
+              var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = u + '?sdkid=' + id + '&lib=' + t;
+              var n = d.getElementsByTagName('script')[0]; if (n && n.parentNode) n.parentNode.insertBefore(s, n);
+            };
+          })(window, document, 'ttq');
+        }
+        window.ttq.load(TT_PIXEL_ID);
+        window.ttq.page();
+      }
+    </script>
     <!-- No-JS Meta Pixel image tag intentionally disabled to avoid Vite build errors
          when VITE_FB_PIXEL_ID is not set. If you need it, set VITE_FB_PIXEL_ID
          and reintroduce the tag below with the concrete value.
