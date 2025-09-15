@@ -18,7 +18,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
     {
       src: "/images/ugc/ugc - byesweetie.webp",
       alt: "UGC: expérience utilisatrice",
-  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c’est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
+  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c'est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
     },
     {
       src: "/images/ugc/Ugc1.webp",
@@ -80,7 +80,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
                       </CardContent>
                       <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
                         <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-xs px-3 py-2 rounded-xl max-w-[90%] whitespace-normal break-words">
-                          “{item.nugget}”
+                          "{item.nugget}"
                         </Badge>
                       </CardFooter>
                     </Card>
@@ -108,7 +108,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
               </CardContent>
               <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
                 <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-sm sm:text-base px-3 py-2 rounded-xl max-w-[90%] sm:max-w-full whitespace-normal break-words">
-                  “{item.nugget}”
+                  "{item.nugget}"
                 </Badge>
               </CardFooter>
             </Card>
