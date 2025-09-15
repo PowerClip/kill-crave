@@ -44,6 +44,7 @@ All buttons use the tertiary color (`#FFE065`) by default:
 <Button variant="default">Text</Button>
 // Uses: bg-tertiary text-tertiary-foreground
 
+
 // Secondary button  
 <Button variant="secondary">Text</Button>
 // Uses: bg-secondary text-secondary-foreground
