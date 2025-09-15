@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { trackCTA } from "@/lib/gtm";
 import Logo from "@/components/Logo";
@@ -32,13 +33,13 @@ const Header = () => {
           <a href="#offer" className="hover:text-primary" onClick={() => trackCTA('nav_offer', 'Kit 30 jours', '#offer', 'nav')}>Kit 30 jours</a>
           <a href="#faq" className="hover:text-primary" onClick={() => trackCTA('nav_faq', 'FAQ', '#faq', 'nav')}>FAQ</a>
         </nav>
-        <a
-          href="#top"
+        <Link
+          to="/"
           className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center text-primary"
           aria-label="bye sweetie"
         >
           <Logo className="text-2xl sm:text-3xl md:text-4xl" />
-        </a>
+        </Link>
         <Button asChild variant="premium" size="sm" className="hidden sm:inline-flex justify-self-end">
           <a href="#offer" onClick={() => trackCTA('nav_buy', 'Acheter', '#offer', 'nav')}>Acheter 24,90€</a>
         </Button>

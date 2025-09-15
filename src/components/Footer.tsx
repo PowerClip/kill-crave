@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="border-t bg-background">
@@ -5,17 +7,17 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Bye Sweetie. Tous droits réservés.</p>
           <nav className="flex items-center gap-3 sm:gap-4">
-            <a href="#" className="hover:text-primary">Mentions légales</a>
+            <Link to="/mentions-legales" className="hover:text-primary">Mentions légales</Link>
             <span className="text-border">•</span>
-            <a href="#" className="hover:text-primary">CGV</a>
+            <Link to="/cgv" className="hover:text-primary">CGV</Link>
             <span className="text-border">•</span>
-            <a href="#" className="hover:text-primary">Confidentialité</a>
+            <Link to="/confidentialite" className="hover:text-primary">Confidentialité</Link>
             <span className="text-border">•</span>
-            <a href="#" className="hover:text-primary">Cookies</a>
+            <Link to="/cookies" className="hover:text-primary">Cookies</Link>
             <span className="text-border">•</span>
-            <a href="#faq" className="hover:text-primary">FAQ</a>
+            <Link to="/faq" className="hover:text-primary">FAQ</Link>
             <span className="text-border">•</span>
-            <a href="#offer" className="hover:text-primary">Livraison</a>
+            <Link to="/livraison" className="hover:text-primary">Livraison</Link>
           </nav>
         </div>
       </div>

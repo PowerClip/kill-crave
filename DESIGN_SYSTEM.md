@@ -5,6 +5,7 @@ This document outlines the consistent design system implemented for the Bye Swee
 
 ## Color Palette
 
+
 ### Primary Colors
 - **Background**: `#FAF7E9` (warm cream) - Main site background
 - **Secondary**: `#BCC499` (sage green) - Section backgrounds and accents

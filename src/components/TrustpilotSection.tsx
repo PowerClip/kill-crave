@@ -1,4 +1,4 @@
-import { Star, CheckCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, CheckCircle, ChevronDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,12 +13,18 @@ const stars = (n: number) => (
   </div>
 );
 
-const INITIAL_COUNT = 6;
+const INITIAL_COUNT = 3;
+const ITEMS_PER_PAGE = 3;
 
 const TrustpilotSection = () => {
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
-  const visible = showAll ? reviews : reviews.slice(0, INITIAL_COUNT);
+  const visible = reviews.slice(0, visibleCount);
+  const hasMore = visibleCount < reviews.length;
+
+  const handleShowMore = () => {
+    setVisibleCount(prev => Math.min(prev + ITEMS_PER_PAGE, reviews.length));
+  };
 
   return (
     <section id="reviews" className="py-24 bg-background">
@@ -63,11 +69,27 @@ const TrustpilotSection = () => {
               </CardContent>
             </Card>
           ))}
-          {reviews.length > INITIAL_COUNT && (
-            <div className="pt-2 flex justify-center">
-              <Button variant="outline" size="sm" onClick={() => setShowAll((v) => !v)} className="gap-2">
-                {showAll ? (<><ChevronUp className="h-4 w-4" /> Afficher moins</>) : (<><ChevronDown className="h-4 w-4" /> Afficher plus d’avis</>)}
+          {hasMore && (
+            <div className="pt-6 flex justify-center">
+              <Button
+                variant="default"
+                size="lg"
+                onClick={handleShowMore}
+                className="gap-2 font-medium group"
+              >
+                <span>Afficher plus d'avis</span>
+                <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                <Badge variant="secondary" className="ml-2">
+                  {reviews.length - visibleCount} restants
+                </Badge>
               </Button>
+            </div>
+          )}
+          {!hasMore && visibleCount > INITIAL_COUNT && (
+            <div className="text-center mt-6">
+              <p className="text-muted-foreground">
+                Vous avez vu tous les {reviews.length} avis de nos clients
+              </p>
             </div>
           )}
         </div>
