@@ -18,8 +18,21 @@ const IngredientsSection = () => {
               loading="lazy"
             />
           </div>
-          <H2 className="font-normal leading-tight normal-case font-serif">Gymnema — La plante anti-sucre venu d’Asie</H2>
-          <P className="mt-6 text-muted-foreground text-base">Plante ayurvédique reconnue comme le frein naturel au goût sucré. Son action rapide calme les envies immédiatement et permet de retrouver un meilleur équilibre au quotidien.</P>
+          <H2 className="font-normal leading-tight normal-case font-serif">Gymnema sylvestre — la plante anti-sucre originaire d’Asie</H2>
+          <P className="mt-6 text-muted-foreground text-base">Utilisée depuis des siècles dans la tradition ayurvédique, elle agit rapidement sur les récepteurs du goût sucré.</P>
+
+          <div className="mt-10 text-left w-full">
+            <H3 className="text-xl sm:text-2xl font-normal normal-case font-serif text-primary">Une composition courte, française</H3>
+            <P className="mt-3 text-muted-foreground text-base">Développée et standardisée en France, avec des ingrédients d’origine naturelle:</P>
+            <ul className="mt-4 list-disc pl-5 space-y-2 text-foreground/90">
+              <li>Gymnema sylvestre (actif principal)</li>
+              <li>Extrait de thé vert</li>
+              <li>Zinc</li>
+              <li>Menthe poivrée</li>
+              <li>Glycérine végétale</li>
+            </ul>
+            <P className="mt-4 text-muted-foreground text-base">Sans alcool. Sans colorants. Sans édulcorants artificiels.</P>
+          </div>
         </div>
       </div>
     </section>

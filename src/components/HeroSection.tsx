@@ -29,7 +29,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <H1 className="normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">
-                Le spray qui coupe vos envies de sucre immédiatement
+                Le spray naturel qui coupe vos envies de sucre
               </H1>
               <Lead className="normal-case max-w-lg text-foreground/80">
                 1 à 2 sprays sur la langue. Le goût sucré disparaît temporairement et vous n'en avez plus envie. Vous perdez ainsi du poids naturellement et sans frustration.
@@ -52,10 +52,10 @@ const HeroSection = () => {
 
             <ul className="space-y-3 text-[15px] text-foreground/85 max-w-md font-serif">
               {[
-                'Coupe le goût et l\'envie de sucre instantanément',
-                'Moins de grignotages, silhouette plus fine',
-                'Énergie plus stable au fil de la journée',
-                'Actif végétal documenté par la littérature scientifique',
+                'Coupe immédiatement la perception du goût sucré',
+                'Coupe les envies et les grignotages',
+                'Formulé et fabriqué en France',
+                'Composition naturelle, actif d\'origine asiatique',
               ].map(item => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/60 border border-secondary/70 flex items-center justify-center shrink-0 shadow-sm">
