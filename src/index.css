@@ -145,8 +145,5 @@
   /* Anchor offset handled via Tailwind scroll-mt on the section */
 }
 
-/* Preserve SE behavior: only on very short screens */
-@media (max-height: 700px) and (max-width: 400px) {
-  /* On iPhone SE-sized viewports, land deeper into #offer */
-  #offer { scroll-margin-top: -120vh; }
-}
+/* Bottom-aligned anchor sentinel for mobile */
+#offer-bottom { scroll-margin-bottom: 72px; }

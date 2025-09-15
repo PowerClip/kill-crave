@@ -11,8 +11,8 @@ const MobileStickyBar = () => {
         </div>
         <Button asChild size="sm" variant="premium" className="min-w-[140px]">
           <a
-            href="#offer"
-            onClick={() => trackCTA('mobile_sticky_buy', 'Acheter', '#offer', 'mobile_sticky')}
+            href="#offer-bottom"
+            onClick={() => trackCTA('mobile_sticky_buy', 'Acheter', '#offer-bottom', 'mobile_sticky')}
           >
             Acheter — 24.90€
           </a>

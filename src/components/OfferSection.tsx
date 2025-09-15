@@ -301,6 +301,8 @@ const OfferSection = () => {
               <div className="text-[11px] sm:text-xs text-muted-foreground/80">
                 Expédié sous 24h • 30j satisfait ou remboursé
               </div>
+              {/* Anchor target to land at the bottom of the purchase block */}
+              <div id="offer-bottom" aria-hidden className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20" />
               {isError && <div className="text-xs text-destructive">{error?.message}</div>}
               {purchaseMode === "bundle" && !bundleVariant && (
                 <div className="text-[11px] text-muted-foreground/70">
