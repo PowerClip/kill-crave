@@ -53,7 +53,6 @@ All buttons use the tertiary color (`#FFE065`) by default:
 <Button variant="hero">Text</Button>
 <Button variant="premium">Text</Button>
 ```
-
 ### Sections
 - **Primary sections**: `py-20 sm:py-28 bg-background`
 - **Secondary sections**: `py-20 sm:py-28 bg-secondary` 
