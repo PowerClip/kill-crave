@@ -8,6 +8,7 @@ import { createCartAndGetCheckout, formatMoney, ShopifyProductVariant } from "@/
 import { H2, P } from "@/components/ui/typography";
 import { useToast } from "@/hooks/use-toast";
 import { trackViewContent, trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
+import { trackBeginCheckout, trackAddToCartGTM } from "@/lib/gtm";
 
 const OfferSection = () => {
   // Fetch product / variant from Shopify
@@ -267,7 +268,22 @@ const OfferSection = () => {
                 size="lg"
                 className="w-full sm:w-auto"
                 disabled={creatingCheckout || isError || !available}
-                onClick={handleBuy}
+                onClick={() => {
+                  try {
+                    const unitPrice = purchaseVariant ? parseFloat(purchaseVariant.price.amount) : undefined;
+                    const common = {
+                      currency: purchaseVariant?.price.currencyCode || 'EUR',
+                      value: unitPrice,
+                      item_id: purchaseVariant?.id,
+                      item_name: product?.title,
+                      quantity: purchaseQuantity,
+                      price: unitPrice,
+                    } as const;
+                    trackAddToCartGTM(common);
+                    trackBeginCheckout(common);
+                  } catch {}
+                  handleBuy();
+                }}
               >
                 {creatingCheckout
                   ? "Redirection..."

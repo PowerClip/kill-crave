@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { trackCTA } from "@/lib/gtm";
 
 const MobileStickyBar = () => {
   return (
@@ -9,7 +10,12 @@ const MobileStickyBar = () => {
           <div>Livraison gratuite • 30j satisfait ou remboursé</div>
         </div>
         <Button asChild size="sm" variant="premium" className="min-w-[140px]">
-          <a href="#offer">Acheter — 24.90€</a>
+          <a
+            href="#offer"
+            onClick={() => trackCTA('mobile_sticky_buy', 'Acheter', '#offer', 'mobile_sticky')}
+          >
+            Acheter — 24.90€
+          </a>
         </Button>
       </div>
     </div>

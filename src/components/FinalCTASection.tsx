@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { H2, P } from "@/components/ui/typography";
+import { trackCTA } from "@/lib/gtm";
 
 const FinalCTASection = () => {
   return (
@@ -20,7 +21,12 @@ const FinalCTASection = () => {
 
           <div className="pt-2">
             <Button variant="hero" size="lg" className="w-full sm:w-auto shadow-premium" asChild>
-              <a href="#offer">Acheter maintenant — 24,90€</a>
+              <a
+                href="#offer"
+                onClick={() => trackCTA('final_cta', 'Acheter maintenant', '#offer', 'final_cta')}
+              >
+                Acheter maintenant — 24,90€
+              </a>
             </Button>
           </div>
 

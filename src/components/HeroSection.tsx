@@ -4,6 +4,7 @@ import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { formatMoney } from "@/lib/shopify";
 import { H1, Lead, P } from "@/components/ui/typography";
 import { Star, Check } from "lucide-react";
+import { trackCTA } from "@/lib/gtm";
 // Use the same hero image on all devices via public path
 
 const HeroSection = () => {
@@ -67,10 +68,20 @@ const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="hero" size="sm" className="sm:h-12 px-8 rounded-xl" asChild>
-                <a href="#offer">Commencer – {priceLabel}</a>
+                <a
+                  href="#offer"
+                  onClick={() => trackCTA('hero_primary', 'Commencer', '#offer', 'hero')}
+                >
+                  Commencer – {priceLabel}
+                </a>
               </Button>
               <Button variant="outline" size="sm" className="sm:h-12 px-8 rounded-xl backdrop-blur" asChild>
-                <a href="#ingredients">Voir comment ça marche</a>
+                <a
+                  href="#ingredients"
+                  onClick={() => trackCTA('hero_secondary', 'Voir comment ça marche', '#ingredients', 'hero')}
+                >
+                  Voir comment ça marche
+                </a>
               </Button>
             </div>
 

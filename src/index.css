@@ -142,6 +142,11 @@
   /* Keep container within viewport without triggering 100vw overflow */
   .container { max-width: 100%; }
 
-  /* Invert: land ~1/3 viewport higher on mobile */
-  #offer { scroll-margin-top: -140vh; }
+  /* Anchor offset handled via Tailwind scroll-mt on the section */
+}
+
+/* Preserve SE behavior: only on very short screens */
+@media (max-height: 700px) and (max-width: 400px) {
+  /* On iPhone SE-sized viewports, land deeper into #offer */
+  #offer { scroll-margin-top: -120vh; }
 }
