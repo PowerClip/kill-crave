@@ -138,6 +138,10 @@ export function trackAddToCart(variantId: string, quantity: number, price?: numb
   });
 }
 
+export function trackEvent(eventName: string, parameters?: Record<string, any>) {
+  track(eventName, parameters);
+}
+
 declare global {
   interface Window { fbq?: (...args: any[]) => void; __PIXEL_ENABLED__?: boolean }
 }
