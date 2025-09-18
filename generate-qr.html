@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - ByeSweetie Flyers</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .url {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 2rem;
+            word-break: break-all;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        #qrcode {
+            margin: 2rem auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        .info {
+            color: #888;
+            font-size: 12px;
+            margin-top: 2rem;
+        }
+        .size-controls {
+            margin: 1rem 0;
+            color: #666;
+        }
+        .size-controls label {
+            margin-right: 10px;
+        }
+        .size-controls input {
+            width: 80px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code ByeSweetie</h1>
+        <div class="url">https://www.byesweetie.com/go/flyers</div>
+
+        <div class="size-controls">
+            <label for="size">Taille du QR Code:</label>
+            <input type="number" id="size" value="256" min="128" max="1024" step="32">
+            <button onclick="regenerateQR()">Régénérer</button>
+        </div>
+
+        <div id="qrcode"></div>
+
+        <div>
+            <button class="download-btn" onclick="downloadQR('png')">Télécharger PNG</button>
+        </div>
+
+        <div class="info">
+            Ce QR code redirige vers la page d'accueil.<br>
+            Pour changer la destination, modifiez le fichier src/config/redirects.ts
+        </div>
+    </div>
+
+    <script>
+        let qrcode = null;
+        let currentSize = 256;
+
+        function generateQR(size = 256) {
+            currentSize = size;
+            const qrcodeDiv = document.getElementById('qrcode');
+
+            // Vider le conteneur
+            qrcodeDiv.innerHTML = '';
+
+            // Créer le nouveau QR code
+            qrcode = new QRCode(qrcodeDiv, {
+                text: 'https://www.byesweetie.com/go/flyers',
+                width: size,
+                height: size,
+                colorDark: '#000000',
+                colorLight: '#FFFFFF',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        function regenerateQR() {
+            const size = parseInt(document.getElementById('size').value);
+            generateQR(size);
+        }
+
+        function downloadQR(format) {
+            if (format === 'png') {
+                // Attendre un peu pour que le canvas soit généré
+                setTimeout(() => {
+                    const canvas = document.querySelector('#qrcode canvas');
+                    if (canvas) {
+                        const link = document.createElement('a');
+                        link.download = 'byesweetie-qr-flyers.png';
+                        link.href = canvas.toDataURL();
+                        link.click();
+                    }
+                }, 100);
+            } else if (format === 'svg') {
+                // Pour le SVG, on doit régénérer car qrcodejs ne supporte pas nativement le SVG
+                alert('Le téléchargement SVG nécessite une librairie différente. Utilisez le format PNG pour le moment.');
+            }
+        }
+
+        // Attendre que le DOM soit chargé
+        window.addEventListener('DOMContentLoaded', function() {
+            generateQR();
+        });
+    </script>
+</body>
+</html>
