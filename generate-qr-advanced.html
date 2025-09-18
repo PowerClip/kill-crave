@@ -122,11 +122,26 @@
         }
 
         .color-input-group input[type="color"] {
-            width: 60px;
+            width: 40px;
             height: 35px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .color-input-group input[type="text"] {
+            width: 80px;
+            height: 35px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 0 8px;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .color-input-group input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
         }
 
         .size-input {
@@ -301,19 +316,23 @@
                     <div class="color-inputs">
                         <div class="color-input-group">
                             <label>Points:</label>
-                            <input type="color" id="dotsColor" value="#000000" onchange="updateQRCode()">
+                            <input type="color" id="dotsColor" value="#000000" onchange="syncColorInputs('dots')">
+                            <input type="text" id="dotsColorHex" value="#000000" onchange="syncColorInputs('dotsHex')" placeholder="#000000">
                         </div>
                         <div class="color-input-group">
                             <label>Fond:</label>
-                            <input type="color" id="backgroundColor" value="#FFFFFF" onchange="updateQRCode()">
+                            <input type="color" id="backgroundColor" value="#FFFFFF" onchange="syncColorInputs('bg')">
+                            <input type="text" id="backgroundColorHex" value="#FFFFFF" onchange="syncColorInputs('bgHex')" placeholder="#FFFFFF">
                         </div>
                         <div class="color-input-group">
                             <label>Coins ext.:</label>
-                            <input type="color" id="cornerSquareColor" value="#000000" onchange="updateQRCode()">
+                            <input type="color" id="cornerSquareColor" value="#000000" onchange="syncColorInputs('cornerSquare')">
+                            <input type="text" id="cornerSquareColorHex" value="#000000" onchange="syncColorInputs('cornerSquareHex')" placeholder="#000000">
                         </div>
                         <div class="color-input-group">
                             <label>Coins int.:</label>
-                            <input type="color" id="cornerDotColor" value="#000000" onchange="updateQRCode()">
+                            <input type="color" id="cornerDotColor" value="#000000" onchange="syncColorInputs('cornerDot')">
+                            <input type="text" id="cornerDotColorHex" value="#000000" onchange="syncColorInputs('cornerDotHex')" placeholder="#000000">
                         </div>
                     </div>
                 </div>
@@ -408,6 +427,43 @@
             updateQRCode();
         }
 
+        function syncColorInputs(source) {
+            if (source === 'dots') {
+                document.getElementById('dotsColorHex').value = document.getElementById('dotsColor').value;
+            } else if (source === 'dotsHex') {
+                const hexValue = document.getElementById('dotsColorHex').value;
+                if (isValidHex(hexValue)) {
+                    document.getElementById('dotsColor').value = hexValue;
+                }
+            } else if (source === 'bg') {
+                document.getElementById('backgroundColorHex').value = document.getElementById('backgroundColor').value;
+            } else if (source === 'bgHex') {
+                const hexValue = document.getElementById('backgroundColorHex').value;
+                if (isValidHex(hexValue)) {
+                    document.getElementById('backgroundColor').value = hexValue;
+                }
+            } else if (source === 'cornerSquare') {
+                document.getElementById('cornerSquareColorHex').value = document.getElementById('cornerSquareColor').value;
+            } else if (source === 'cornerSquareHex') {
+                const hexValue = document.getElementById('cornerSquareColorHex').value;
+                if (isValidHex(hexValue)) {
+                    document.getElementById('cornerSquareColor').value = hexValue;
+                }
+            } else if (source === 'cornerDot') {
+                document.getElementById('cornerDotColorHex').value = document.getElementById('cornerDotColor').value;
+            } else if (source === 'cornerDotHex') {
+                const hexValue = document.getElementById('cornerDotColorHex').value;
+                if (isValidHex(hexValue)) {
+                    document.getElementById('cornerDotColor').value = hexValue;
+                }
+            }
+            updateQRCode();
+        }
+
+        function isValidHex(hex) {
+            return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
+        }
+
         function updateQRCode() {
             const size = parseInt(document.getElementById('size').value);
             const dotsColor = document.getElementById('dotsColor').value;
@@ -449,58 +505,63 @@
             qrCode.update(config);
         }
 
+        function setColorValue(id, hexId, value) {
+            document.getElementById(id).value = value;
+            document.getElementById(hexId).value = value;
+        }
+
         function applyPreset(preset) {
             switch(preset) {
                 case 'minimal':
-                    document.getElementById('dotsColor').value = '#000000';
-                    document.getElementById('backgroundColor').value = '#FFFFFF';
-                    document.getElementById('cornerSquareColor').value = '#000000';
-                    document.getElementById('cornerDotColor').value = '#000000';
+                    setColorValue('dotsColor', 'dotsColorHex', '#000000');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#FFFFFF');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#000000');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#000000');
                     setDotStyle('square');
                     setCornerSquareStyle('square');
                     break;
 
                 case 'rounded':
-                    document.getElementById('dotsColor').value = '#4A5568';
-                    document.getElementById('backgroundColor').value = '#FFFFFF';
-                    document.getElementById('cornerSquareColor').value = '#4A5568';
-                    document.getElementById('cornerDotColor').value = '#4A5568';
+                    setColorValue('dotsColor', 'dotsColorHex', '#4A5568');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#FFFFFF');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#4A5568');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#4A5568');
                     setDotStyle('rounded');
                     setCornerSquareStyle('extra-rounded');
                     break;
 
                 case 'dots':
-                    document.getElementById('dotsColor').value = '#667EEA';
-                    document.getElementById('backgroundColor').value = '#FFFFFF';
-                    document.getElementById('cornerSquareColor').value = '#764BA2';
-                    document.getElementById('cornerDotColor').value = '#667EEA';
+                    setColorValue('dotsColor', 'dotsColorHex', '#667EEA');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#FFFFFF');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#764BA2');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#667EEA');
                     setDotStyle('dots');
                     setCornerSquareStyle('dot');
                     break;
 
                 case 'classic':
-                    document.getElementById('dotsColor').value = '#000000';
-                    document.getElementById('backgroundColor').value = '#FFFFFF';
-                    document.getElementById('cornerSquareColor').value = '#000000';
-                    document.getElementById('cornerDotColor').value = '#000000';
+                    setColorValue('dotsColor', 'dotsColorHex', '#000000');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#FFFFFF');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#000000');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#000000');
                     setDotStyle('classy');
                     setCornerSquareStyle('square');
                     break;
 
                 case 'elegant':
-                    document.getElementById('dotsColor').value = '#2D3748';
-                    document.getElementById('backgroundColor').value = '#F7FAFC';
-                    document.getElementById('cornerSquareColor').value = '#1A202C';
-                    document.getElementById('cornerDotColor').value = '#2D3748';
+                    setColorValue('dotsColor', 'dotsColorHex', '#2D3748');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#F7FAFC');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#1A202C');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#2D3748');
                     setDotStyle('classy-rounded');
                     setCornerSquareStyle('extra-rounded');
                     break;
 
                 case 'modern':
-                    document.getElementById('dotsColor').value = '#667EEA';
-                    document.getElementById('backgroundColor').value = '#FFFFFF';
-                    document.getElementById('cornerSquareColor').value = '#764BA2';
-                    document.getElementById('cornerDotColor').value = '#667EEA';
+                    setColorValue('dotsColor', 'dotsColorHex', '#667EEA');
+                    setColorValue('backgroundColor', 'backgroundColorHex', '#FFFFFF');
+                    setColorValue('cornerSquareColor', 'cornerSquareColorHex', '#764BA2');
+                    setColorValue('cornerDotColor', 'cornerDotColorHex', '#667EEA');
                     setDotStyle('extra-rounded');
                     setCornerSquareStyle('extra-rounded');
                     break;
