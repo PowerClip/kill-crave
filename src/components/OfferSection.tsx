@@ -2,17 +2,57 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
-import { createCartAndGetCheckout, formatMoney, ShopifyProductVariant } from "@/lib/shopify";
+import { createCartAndGetCheckout, formatMoney } from "@/lib/shopify";
 import { H2, P } from "@/components/ui/typography";
 import { useToast } from "@/hooks/use-toast";
-import { trackViewContent, trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
+import { trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
 import { trackBeginCheckout, trackAddToCartGTM } from "@/lib/gtm";
+
+const DOSES_PER_BOTTLE = 90; // matches product claim
+const USES_PER_DAY = 3; // 3 repas / moments à risque / jour
+const DAYS_PER_BOTTLE = DOSES_PER_BOTTLE / USES_PER_DAY; // 30
+
+function safeParsePrice(amount: string | undefined): number | undefined {
+  if (!amount) return undefined;
+  const value = parseFloat(amount);
+  return Number.isNaN(value) ? undefined : value;
+}
+
+function inferUnitCount(title: string): number | undefined {
+  const lower = title.toLowerCase();
+
+  const packMatch = lower.match(/pack\s*(\d+)/);
+  if (packMatch) return parseInt(packMatch[1] || "", 10) || undefined;
+
+  const lotMatch = lower.match(/lot\s*(\d+)/);
+  if (lotMatch) return parseInt(lotMatch[1] || "", 10) || undefined;
+
+  const xMatch = lower.match(/(\d+)\s*[x×]/);
+  if (xMatch) return parseInt(xMatch[1] || "", 10) || undefined;
+
+  const plusMatch = title.match(/(\d+)\s*\+\s*(\d+)/);
+  if (plusMatch) {
+    const values = plusMatch.slice(1).map(Number);
+    const sum = values.reduce((acc, n) => acc + (Number.isNaN(n) ? 0 : n), 0);
+    if (sum > 0) return sum;
+  }
+
+  const spraysMatch = lower.match(/(\d+)\s*(?:sprays?|flacons?|bouteilles?)/);
+  if (spraysMatch) return parseInt(spraysMatch[1] || "", 10) || undefined;
+
+  return undefined;
+}
+
+function formatDailyValue(n?: number): string {
+  if (n === undefined || Number.isNaN(n)) return "…";
+  return n.toFixed(2).replace(".", ",") + "€";
+}
 
 const OfferSection = () => {
   // Fetch product / variant from Shopify
-  const { product, variant, price, isLoading, isError, error, available } = useShopifyProduct();
+  const { product, variant: primaryVariant, variants = [], price, isLoading, isError, error, available } = useShopifyProduct();
   const { toast } = useToast();
 
   // Use Shopify images if present; fall back to local static assets for continuity
@@ -28,74 +68,115 @@ const OfferSection = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [creatingCheckout, setCreatingCheckout] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>();
 
-  // Detect bundle variant: priority order -> env var -> title match -> price heuristic
+  const variantList = variants.length ? variants : primaryVariant ? [primaryVariant] : [];
+  const baseVariant = variantList[0];
+  const basePriceNumber = baseVariant ? safeParsePrice(baseVariant.price.amount) : undefined;
+
+  useEffect(() => {
+    if (!selectedVariantId && primaryVariant?.id) {
+      setSelectedVariantId(primaryVariant.id);
+    }
+  }, [primaryVariant?.id, selectedVariantId]);
+
   const bundleVariantIdEnv = import.meta.env.VITE_SHOPIFY_BUNDLE_VARIANT_ID as string | undefined;
-  let bundleVariant: ShopifyProductVariant | undefined;
-  if (product) {
-    if (bundleVariantIdEnv) {
-      bundleVariant = product.variants.nodes.find(v => v.id === bundleVariantIdEnv);
-    }
-    if (!bundleVariant) {
-      bundleVariant = product.variants.nodes.find(v => /pack|bundle|offert|3x|3\s*spray/i.test(v.title));
-    }
-    if (!bundleVariant) {
-      // Heuristic: look for variant whose price is < 3 * single price AND > single price
-      const singlePrice = variant?.price ? parseFloat(variant.price.amount) : undefined;
-      if (singlePrice) {
-        bundleVariant = product.variants.nodes
-          .filter(v => v.id !== variant?.id)
-          .find(v => {
-            const p = parseFloat(v.price.amount);
-            return p > singlePrice && p < singlePrice * 3; // discounted bundle
-          });
+
+  const optionDetails = useMemo(() => {
+    return variantList.map((currentVariant, index) => {
+      const priceNumber = safeParsePrice(currentVariant.price.amount);
+      const parsedUnits = inferUnitCount(currentVariant.title);
+      const approxUnits = !parsedUnits && index > 0 && basePriceNumber
+        ? Math.max(1, Math.round((priceNumber || 0) / basePriceNumber))
+        : undefined;
+      // Explicit mapping requested:
+      // - 2nd pack (index 1) => 3 sprays
+      // - 3rd pack (index 2) => 5 sprays
+      const explicitUnitsByIndex = index === 1 ? 3 : index === 2 ? 5 : undefined;
+      const units = explicitUnitsByIndex ?? (index === 0 ? 1 : parsedUnits || approxUnits);
+
+      const totalDoses = units ? units * DOSES_PER_BOTTLE : undefined;
+      const totalDays = units ? units * DAYS_PER_BOTTLE : undefined;
+      // €/jour rules (custom): based on pack index
+      // - 2nd pack (index 1) => price / 90
+      // - 3rd pack (index 2) => price / 150
+      // - Others               => price divided by total days (30 days per unit)
+      let dailyCostNumber: number | undefined;
+      if (priceNumber !== undefined) {
+        if (index === 1) {
+          dailyCostNumber = priceNumber / 90;
+        } else if (index === 2) {
+          dailyCostNumber = priceNumber / 150;
+        } else if (units) {
+          dailyCostNumber = priceNumber / (DAYS_PER_BOTTLE * units);
+        } else {
+          dailyCostNumber = undefined;
+        }
       }
-    }
-  }
+      const dailyCostLabel = dailyCostNumber !== undefined ? formatDailyValue(dailyCostNumber) : undefined;
+      let savingsPct: number | undefined;
+      if (units && basePriceNumber && priceNumber !== undefined) {
+        const fullPrice = basePriceNumber * units;
+        if (fullPrice > 0) {
+          const pct = Math.round((1 - priceNumber / fullPrice) * 100);
+          if (pct > 0) savingsPct = pct;
+        }
+      }
 
-  type PurchaseMode = "single" | "bundle";
-  const [purchaseMode, setPurchaseMode] = useState<PurchaseMode>("single");
+      const baseFallback = baseVariant ? formatMoney(baseVariant.price, "24,90 €") : "24,90 €";
+      const priceFallback = index === 0 ? "24,90 €" : baseFallback;
 
-  const purchaseVariant = purchaseMode === "bundle" ? bundleVariant : variant;
-  const purchaseQuantity = purchaseMode === "bundle" && bundleVariant ? 1 : purchaseMode === "bundle" ? 3 : 1;
+      return {
+        variant: currentVariant,
+        index,
+        priceLabel: formatMoney(currentVariant.price, priceFallback),
+        priceNumber,
+        units,
+        totalDoses,
+        totalDays,
+        dailyCostNumber,
+        dailyCostLabel,
+        savingsPct,
+      };
+    });
+  }, [variantList, basePriceNumber, baseVariant]);
+
+  // Show the popularity label specifically on the 2nd pack when available
+  const recommendedVariantId = useMemo(() => {
+    return optionDetails[1]?.variant.id;
+  }, [optionDetails]);
+
+  const selectedOption = optionDetails.find(opt => opt.variant.id === selectedVariantId) || optionDetails[0];
+  const purchaseVariant = selectedOption?.variant || primaryVariant;
+  const purchaseQuantity = 1;
 
   const priceLabel = formatMoney(price, "24,90 €");
-  const bundlePriceLabel = bundleVariant ? formatMoney(bundleVariant.price, "49,90 €") : "49,90 €";
+  const selectedPriceLabel = selectedOption?.priceLabel || priceLabel;
+  const selectedUnits = selectedOption?.units || 1;
+  const selectedAvailable = selectedOption?.variant.availableForSale ?? available;
+  const selectedSavingsPct = selectedOption?.savingsPct;
+  const selectedTotalDays = selectedOption?.totalDays;
+  const selectedTotalDoses = selectedOption?.totalDoses;
+  const selectedDailyLabel = selectedOption?.dailyCostLabel;
 
-  // Derived metrics for dynamic copy
-  const DOSES_PER_BOTTLE = 90; // matches product claim
-  const USES_PER_DAY = 3; // 3 repas / moments à risque / jour
-  const DAYS_PER_BOTTLE = DOSES_PER_BOTTLE / USES_PER_DAY; // 30
-  const BOTTLES_IN_BUNDLE = 3; // Pack 3 (2+1 offert)
-
-  const singlePriceNumber = variant ? parseFloat(variant.price.amount) : undefined;
-  const bundlePriceNumber = purchaseMode === "bundle"
-    ? (bundleVariant ? parseFloat(bundleVariant.price.amount) : (singlePriceNumber ? singlePriceNumber * BOTTLES_IN_BUNDLE : undefined))
-    : undefined;
-
-  const dailySingle = singlePriceNumber ? singlePriceNumber / DAYS_PER_BOTTLE : undefined; // 30 days
-  const dailyBundle = bundlePriceNumber ? bundlePriceNumber / (DAYS_PER_BOTTLE * BOTTLES_IN_BUNDLE) : undefined; // 90 days
-
-  let savingsPct: number | undefined;
-  if (singlePriceNumber && bundlePriceNumber) {
-    const full = singlePriceNumber * BOTTLES_IN_BUNDLE;
-    savingsPct = Math.max(0, Math.round((1 - bundlePriceNumber / full) * 100));
-  }
-
-  const formatDaily = (n?: number) => {
-    if (n === undefined || Number.isNaN(n)) return "…";
-    // Force European decimal comma & 2 decimals trimmed to 2 -> e.g. 0,83€
-    return n.toFixed(2).replace(".", ",") + "€";
-  };
+  const buttonLabel = creatingCheckout
+    ? "Redirection..."
+    : isError
+      ? "Erreur produit"
+      : !selectedAvailable
+        ? "Indisponible"
+        : selectedUnits > 1
+          ? `Acheter le pack ${selectedUnits} — ${selectedPriceLabel}`
+          : `Acheter maintenant — ${selectedPriceLabel}`;
 
   // Track product view (deduped with localStorage for fast remounts / re-renders)
-  if (variant && typeof window !== 'undefined') {
+  if (primaryVariant && typeof window !== 'undefined') {
     try {
-      trackOnce('ViewContent', variant.id, {
-        contents: [{ id: variant.id, quantity: 1, item_price: parseFloat(variant.price.amount) }],
+      trackOnce('ViewContent', primaryVariant.id, {
+        contents: [{ id: primaryVariant.id, quantity: 1, item_price: parseFloat(primaryVariant.price.amount) }],
         content_type: 'product',
-        value: parseFloat(variant.price.amount),
-        currency: variant.price.currencyCode || 'EUR'
+        value: parseFloat(primaryVariant.price.amount),
+        currency: primaryVariant.price.currencyCode || 'EUR'
       });
     } catch {}
   }
@@ -107,11 +188,13 @@ const OfferSection = () => {
     }
     try {
       setCreatingCheckout(true);
-  const unitPrice = parseFloat(purchaseVariant.price.amount);
-  // Fire both AddToCart + InitiateCheckout for funnel coverage
-  trackAddToCart(purchaseVariant.id, purchaseQuantity, unitPrice);
-  trackInitiateCheckout(purchaseVariant.id, unitPrice);
-  const url = await createCartAndGetCheckout(purchaseVariant.id, purchaseQuantity);
+      const unitPrice = selectedOption?.priceNumber ?? safeParsePrice(purchaseVariant.price.amount);
+      if (unitPrice !== undefined) {
+        // Fire both AddToCart + InitiateCheckout for funnel coverage
+        trackAddToCart(purchaseVariant.id, purchaseQuantity, unitPrice);
+        trackInitiateCheckout(purchaseVariant.id, unitPrice);
+      }
+      const url = await createCartAndGetCheckout(purchaseVariant.id, purchaseQuantity);
       window.location.href = url;
     } catch (e: any) {
       console.error(e);
@@ -172,79 +255,100 @@ const OfferSection = () => {
 
             <div className="space-y-3">
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <button
-                  type="button"
-                  onClick={() => setPurchaseMode("single")}
-                  className={`w-full sm:flex-1 sm:min-w-[180px] rounded-2xl border px-4 py-3 text-left transition ${
-                    purchaseMode === "single" ? "border-tertiary ring-2 ring-tertiary/40 bg-card" : "hover:border-tertiary/60"
-                  }`}
-                  disabled={isLoading}
-                >
-                  <div className="text-sm font-medium text-primary">1 Spray</div>
-                  <div className="text-primary font-serif text-2xl font-light">
-                    {isLoading ? <span className="animate-pulse">...</span> : priceLabel}
-                  </div>
-                  <div className="text-xs text-muted-foreground">≈ 0,83€ / jour</div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setPurchaseMode("bundle")}
-                  className={`group w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left relative transition-all duration-300 ${
-                    purchaseMode === "bundle"
-                      ? "border-secondary ring-2 ring-secondary/60 bg-gradient-to-br from-secondary/60 via-secondary/25 to-white shadow-lg sm:scale-[1.02] sm:ring-offset-2 sm:ring-offset-white"
-                      : "hover:border-secondary/60 bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
-                  }`}
-                  disabled={isLoading || (!bundleVariant && !variant)}
-                >
-                  {/* Highlight badge */}
-                  <div
-                    className={`absolute -top-2 right-2 sm:right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
-                      purchaseMode === "bundle"
-                        ? "bg-secondary text-white ring-1 ring-white/50 shadow-md animate-pulse"
-                        : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/40"
-                    }`}
-                  >
-                    Meilleure offre
-                  </div>
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    Pack 3 <span className="rounded-md bg-secondary/20 text-secondary-foreground px-2 py-0.5 text-[10px] tracking-wide">2+1 offert</span>
-                  </div>
-                  <div className="text-primary font-serif text-2xl font-light">
-                    {isLoading ? <span className="animate-pulse">...</span> : bundlePriceLabel}
-                  </div>
-                  <div className="mt-1 flex items-center gap-2 flex-wrap">
-                    <span className="text-xs text-muted-foreground">0,55€ / jour</span>
-                    <span
-                      className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide transition-colors ${
-                        purchaseMode === "bundle"
-                          ? "bg-secondary text-white shadow-sm"
-                          : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/40"
+                {optionDetails.map(option => {
+                  const isSelected = selectedOption?.variant.id === option.variant.id;
+                  const isRecommended = recommendedVariantId === option.variant.id; // keep highlight on 2nd pack
+                  const unitsText = option.units ? (option.units > 1 ? `${option.units} sprays` : "1 spray") : undefined;
+                  const dosesDaysText = option.totalDoses && option.totalDays
+                    ? `${option.totalDoses} doses — ${option.totalDays} jours`
+                    : undefined;
+                  const labelText = option.index === 1
+                    ? "Offre la plus populaire"
+                    : option.index === 2
+                      ? "Meilleure offre"
+                      : undefined;
+
+                  return (
+                    <button
+                      key={option.variant.id}
+                      type="button"
+                      onClick={() => setSelectedVariantId(option.variant.id)}
+                      className={`group relative w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
+                        isSelected
+                          ? "border-tertiary ring-2 ring-tertiary/40 bg-card"
+                          : "hover:border-tertiary/60"
+                      } ${
+                        isRecommended
+                          ? "bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
+                          : ""
                       }`}
+                      disabled={isLoading}
+                      aria-pressed={isSelected}
                     >
-                      -33% SAVE
-                    </span>
-                  </div>
-                </button>
+                      {labelText && (
+                        <div
+                          className={`absolute -top-2 right-2 sm:right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
+                            isSelected
+                              ? "bg-secondary text-foreground ring-1 ring-secondary/50 shadow-md"
+                              : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/40"
+                          }`}
+                        >
+                          {labelText}
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                        <span className="truncate" title={option.variant.title}>{option.variant.title}</span>
+                        {option.savingsPct ? (
+                          <span
+                            className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide ${
+                              isSelected ? "bg-secondary text-foreground ring-1 ring-secondary/50 shadow-sm" : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/40"
+                            }`}
+                          >
+                            -{option.savingsPct}% SAVE
+                          </span>
+                        ) : null}
+                      </div>
+                      {unitsText && (
+                        <div className={`text-[11px] ${isSelected ? "text-foreground" : "text-muted-foreground"} mt-1`}>
+                          {unitsText}
+                        </div>
+                      )}
+                      {dosesDaysText && (
+                        <div className={`text-[11px] ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
+                          {dosesDaysText}
+                        </div>
+                      )}
+                      <div className="text-primary font-serif text-2xl font-light mt-1">
+                        {isLoading ? <span className="animate-pulse">...</span> : option.priceLabel}
+                      </div>
+                      <div className={`mt-1 text-xs ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
+                        {option.dailyCostLabel ? `≈ ${option.dailyCostLabel} / jour` : "Tarif spécial"}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             <div className="text-sm text-muted-foreground">
-              {purchaseMode === "single" ? (
+              {selectedTotalDoses && selectedTotalDays ? (
                 <>
-                  <div>{DOSES_PER_BOTTLE} doses — {DAYS_PER_BOTTLE} jours (3 utilisations/jour)</div>
+                  <div>{selectedTotalDoses} doses — {selectedTotalDays} jours (3 utilisations/jour)</div>
+                  {selectedDailyLabel && (
+                    <div>
+                      ≈ {selectedDailyLabel} / jour
+                      {selectedSavingsPct ? (
+                        <span className="ml-2 inline-flex items-center rounded-full bg-secondary/20 px-2 py-[1px] text-[10px] font-medium tracking-wide text-secondary-foreground">
+                          -{selectedSavingsPct}%
+                        </span>
+                      ) : null}
+                    </div>
+                  )}
                 </>
+              ) : selectedDailyLabel ? (
+                <div>≈ {selectedDailyLabel} / jour</div>
               ) : (
-                <>
-                  <div>{DOSES_PER_BOTTLE * BOTTLES_IN_BUNDLE} doses — {DAYS_PER_BOTTLE * BOTTLES_IN_BUNDLE} jours (3 utilisations/jour)</div>
-                  <div>
-                    ≈ {formatDaily(dailyBundle)} / jour
-                    {savingsPct && savingsPct > 0 && (
-                      <span className="ml-2 inline-flex items-center rounded-full bg-secondary/20 px-2 py-[1px] text-[10px] font-medium tracking-wide text-secondary-foreground">
-                        -{savingsPct}%
-                      </span>
-                    )}
-                  </div>
-                </>
+                <div>Choisissez la variante qui vous convient.</div>
               )}
             </div>
 
@@ -267,14 +371,16 @@ const OfferSection = () => {
                 variant="premium"
                 size="lg"
                 className="w-full sm:w-auto"
-                disabled={creatingCheckout || isError || !available}
+                disabled={creatingCheckout || isError || !selectedAvailable}
                 onClick={() => {
+                  if (!purchaseVariant) return;
                   try {
-                    const unitPrice = purchaseVariant ? parseFloat(purchaseVariant.price.amount) : undefined;
+                    const unitPrice = selectedOption?.priceNumber ?? safeParsePrice(purchaseVariant.price.amount);
+                    const totalValue = unitPrice != null ? unitPrice * purchaseQuantity : undefined;
                     const common = {
-                      currency: purchaseVariant?.price.currencyCode || 'EUR',
-                      value: unitPrice,
-                      item_id: purchaseVariant?.id,
+                      currency: purchaseVariant.price.currencyCode || 'EUR',
+                      value: totalValue,
+                      item_id: purchaseVariant.id,
                       item_name: product?.title,
                       quantity: purchaseQuantity,
                       price: unitPrice,
@@ -285,15 +391,7 @@ const OfferSection = () => {
                   handleBuy();
                 }}
               >
-                {creatingCheckout
-                  ? "Redirection..."
-                  : isError
-                    ? "Erreur produit"
-                    : !available
-                      ? "Indisponible"
-                      : purchaseMode === "bundle"
-                        ? `Acheter le Pack 3 — ${bundlePriceLabel}`
-                        : `Acheter maintenant — ${priceLabel}`}
+                {buttonLabel}
               </Button>
               <div className="text-xs sm:text-sm text-muted-foreground">
                 Livraison gratuite en 3 à 5 jours ouvrés en France
@@ -304,11 +402,6 @@ const OfferSection = () => {
               {/* Anchor target to land at the bottom of the purchase block */}
               <div id="offer-bottom" aria-hidden className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20" />
               {isError && <div className="text-xs text-destructive">{error?.message}</div>}
-              {purchaseMode === "bundle" && !bundleVariant && (
-                <div className="text-[11px] text-muted-foreground/70">
-                  Astuce: ajoutez une variante "Pack 3" dans Shopify ou définissez VITE_SHOPIFY_BUNDLE_VARIANT_ID pour un prix exact.
-                </div>
-              )}
             </div>
 
             <Accordion type="single" collapsible className="w-full rounded-2xl border divide-y bg-card px-4 sm:px-6">

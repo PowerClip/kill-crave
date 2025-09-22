@@ -16,11 +16,6 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
     },
     {
-      src: "/images/ugc/ugc - byesweetie.webp",
-      alt: "UGC: expérience utilisatrice",
-  nugget: "Pendant mes soirées Netflix je finissais toujours un paquet de biscuits plus de la glace et maintenant je pulvérise, je goûte, c'est fade, l'envie s'éteint, je passe la soirée tranquille et je fais plus d'insomnie.",
-    },
-    {
       src: "/images/ugc/Ugc1.webp",
       alt: "UGC: femme utilisant le spray Bye Sweetie",
   nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé et je n'étais plus tentée pendant plusieurs heures.",
@@ -44,11 +39,6 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
       src: "/images/ugc/Ugc2.webp",
       alt: "UGC: résultats transformation",
   nugget: "En deux semaines j'étais déjà à -2 kg sans sensation de me priver et et surtout à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
-    },
-    {
-      src: "/images/ugc/ugc - byesweetie 3.webp",
-      alt: "UGC: amélioration du sommeil",
-  nugget: "En quatorze jours mon ventre est moins ballonné, mon mood est stable et j'ai refusé deux fois une petite part de gâteau juste parce que j'en avais pas envie, je me sens en contrôle et c'est totalement nouveau pour moi.",
     },
   ];
 

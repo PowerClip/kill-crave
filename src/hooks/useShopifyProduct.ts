@@ -17,11 +17,13 @@ export function useShopifyProduct({ handle, enabled = true }: UseShopifyProductO
     staleTime: 1000 * 60 * 5,
   });
 
-  const primaryVariant = query.data?.variants.nodes[0];
+  const variants = query.data?.variants.nodes ?? [];
+  const primaryVariant = variants[0];
 
   return {
     ...query,
     product: query.data,
+    variants,
     variant: primaryVariant,
     price: primaryVariant?.price,
     available: Boolean(primaryVariant?.availableForSale),
