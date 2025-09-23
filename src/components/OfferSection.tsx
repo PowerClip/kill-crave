@@ -46,6 +46,37 @@ const OfferSection = () => {
     if (!totalImages) return;
     setActiveIndex(prev => (prev + 1) % totalImages);
   };
+
+  // Touch/swipe functionality for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // The minimum swipe distance required to trigger a slide change
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && totalImages > 1) {
+      handleNext();
+    }
+    if (isRightSwipe && totalImages > 1) {
+      handlePrev();
+    }
+  };
   const [creatingCheckout, setCreatingCheckout] = useState(false);
 
   // Detect bundle variant: priority order -> env var -> title match -> price heuristic
@@ -154,11 +185,22 @@ const OfferSection = () => {
         {/* Gallery */}
         <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] lg:w-1/2 lg:pr-10 lg:self-stretch">
           <div className="relative overflow-hidden rounded-3xl shadow-sm lg:sticky lg:top-24 lg:min-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden">
-            <img
-              src={activeImage}
-              alt="Spray Bye Sweetie - 30 Jours"
-              className="w-full h-auto lg:h-full object-cover"
-            />
+            <div
+              className="flex transition-transform duration-300 ease-out touch-pan-y"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              {galleryImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Spray Bye Sweetie - Image ${index + 1}`}
+                  className="w-full h-auto lg:h-full object-cover flex-shrink-0"
+                />
+              ))}
+            </div>
             {showControls && (
               <>
                 <button
