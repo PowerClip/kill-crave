@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, Star } from "lucide-react";
+import { Check, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { createCartAndGetCheckout, formatMoney } from "@/lib/shopify";
@@ -62,11 +61,62 @@ const OfferSection = () => {
     "/images/product/3.webp",
     "/images/product/4.webp",
     "/images/product/5.webp",
-    "/images/product/6.webp",
   ];
-  const productImages = (product?.images.nodes.length ? product.images.nodes.map(i => i.url) : fallbackImages).slice(0, 6);
+  const productImages = (product?.images.nodes.length ? product.images.nodes.map(i => i.url) : fallbackImages).slice(0, 5);
+  const galleryImages = productImages.length ? productImages : fallbackImages;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const totalImages = galleryImages.length;
+
+  useEffect(() => {
+    if (activeIndex >= totalImages) {
+      setActiveIndex(0);
+    }
+  }, [activeIndex, totalImages]);
+
+  const activeImage = galleryImages[activeIndex] ?? galleryImages[0] ?? fallbackImages[0];
+  const showControls = totalImages > 1;
+
+  const handlePrev = () => {
+    if (!totalImages) return;
+    setActiveIndex(prev => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const handleNext = () => {
+    if (!totalImages) return;
+    setActiveIndex(prev => (prev + 1) % totalImages);
+  };
+
+  // Touch/swipe functionality for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // The minimum swipe distance required to trigger a slide change
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && totalImages > 1) {
+      handleNext();
+    }
+    if (isRightSwipe && totalImages > 1) {
+      handlePrev();
+    }
+  };
   const [creatingCheckout, setCreatingCheckout] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>();
 
@@ -204,83 +254,118 @@ const OfferSection = () => {
     }
   }
 
+  const productTitle =
+    product?.title && product.title !== "Bye Sweetie"
+      ? product.title
+      : "Le spray naturel qui coupe vos envies de sucre";
+
   return (
-    <section id="offer" className="py-24 sm:py-28 bg-background scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-8">
-        <div className="text-center mb-8 sm:mb-10">
-          <Badge variant="secondary" className="rounded-full px-3 py-1">Le produit</Badge>
-          <H2 className="mt-4 normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">{product?.title || "Bye Sweetie — Le spray qui vous rend le contrôle"}</H2>
-          <P className="mt-3 text-muted-foreground">Un geste simple: vous pulvérisez, le goût et l'envie de sucre disparaissent. Votre nouveau rituel beauté-santé faire disparaitre le sucre de votre alimentation.</P>
-        </div>
-  <div className="rounded-3xl border bg-card/70 backdrop-blur p-4 sm:p-6 lg:p-8 shadow-card">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start min-w-0">
-          {/* Gallery */}
-          <div className="min-w-0 w-full">
-            <div className="relative overflow-hidden rounded-3xl border bg-card shadow-card">
-              <img
-                src={productImages[activeIndex]}
-                alt="Spray Bye Sweetie - 30 Jours"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <div className="mt-4 grid grid-cols-4 sm:grid-cols-6 gap-3">
-              {productImages.map((src, i) => (
-                <button
-                  key={src}
-                  aria-current={i === activeIndex}
-                  onClick={() => setActiveIndex(i)}
-                  className={`relative aspect-square overflow-hidden rounded-xl border bg-card transition-shadow ${
-                    i === activeIndex ? "ring-2 ring-tertiary" : "hover:ring-1 hover:ring-tertiary/60"
-                  }`}
-                >
-                  <img src={src} alt={`Aperçu produit ${i + 1}`} className="absolute inset-0 h-full w-full object-cover" />
-                </button>
+    <section
+      id="offer"
+      className="relative isolate bg-background scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20 lg:pt-20 lg:pb-16"
+    >
+      <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-16">
+        {/* Gallery */}
+        <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] lg:w-1/2 lg:pr-10 lg:self-stretch">
+          <div className="relative overflow-hidden rounded-3xl shadow-sm lg:sticky lg:top-24 lg:min-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-out touch-pan-y"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              {galleryImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Spray Bye Sweetie - Image ${index + 1}`}
+                  className="w-full h-auto lg:h-full object-cover flex-shrink-0"
+                />
               ))}
             </div>
-          </div>
-
-          {/* Details */}
-          <div className="space-y-6 min-w-0 w-full">
-            <div className="space-y-2">
-              <div className="text-xs uppercase tracking-wide text-muted-foreground">Bye Sweetie</div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="flex items-center text-amber-500">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-500" />
-                  ))}
+            {showControls && (
+              <>
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-black transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+                  aria-label="Image précédente"
+                >
+                  <ChevronLeft className="h-8 w-8 drop-shadow-[0_1px_6px_rgba(255,255,255,0.6)]" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-black transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+                  aria-label="Image suivante"
+                >
+                  <ChevronRight className="h-8 w-8 drop-shadow-[0_1px_6px_rgba(255,255,255,0.6)]" />
+                </button>
+                <div className="absolute bottom-4 right-4 text-xs font-medium tracking-wide text-black drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
+                  {activeIndex + 1}/{totalImages}
                 </div>
-                <span>4,8/5 – Adopté par des milliers de femmes</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Details */}
+        <div className="flex w-full flex-col lg:w-1/2">
+          <div className="px-4 pb-8 sm:px-6 lg:px-0 lg:pb-0">
+            <div className="flex h-full flex-col gap-5 lg:gap-6">
+              <div className="space-y-2">
+                <H2 className="font-serif text-3xl font-light text-primary lg:text-4xl leading-tight">{productTitle}</H2>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center text-foreground">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 text-black fill-black" />
+                      ))}
+                    </div>
+                    <a href="#reviews" className="underline underline-offset-2">
+                      109 avis
+                    </a>
+                  </div>
+                  <ul className="space-y-2 text-sm sm:text-base">
+                    {["Un spray coupe le goût sucré immédiatement", "Moins de grignotages, plus de contrôle", "Peau plus nette & ventre moins gonflé", "Énergie au top toute la journée, sans crash"].map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-primary">
+                        <Check className="h-4 w-4 mt-1 text-black" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
 
-            <div className="space-y-3">
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {optionDetails.map(option => {
-                  const isSelected = selectedOption?.variant.id === option.variant.id;
-                  const isRecommended = recommendedVariantId === option.variant.id; // keep highlight on 2nd pack
-                  const unitsText = option.units ? (option.units > 1 ? `${option.units} sprays` : "1 spray") : undefined;
-                  const dosesDaysText = option.totalDoses && option.totalDays
-                    ? `${option.totalDoses} doses — ${option.totalDays} jours`
-                    : undefined;
-                  const labelText = option.index === 1
-                    ? "Offre la plus populaire"
-                    : option.index === 2
-                      ? "Meilleure offre"
+              <div className="space-y-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  {optionDetails.map(option => {
+                    const isSelected = selectedOption?.variant.id === option.variant.id;
+                    const isRecommended = recommendedVariantId === option.variant.id; // keep highlight on 2nd pack
+                    const unitsText = option.units ? (option.units > 1 ? `${option.units} sprays` : "1 spray") : undefined;
+                    const dosesDaysText = option.totalDoses && option.totalDays
+                      ? `${option.totalDoses} doses — ${option.totalDays} jours`
                       : undefined;
+                    const labelText = option.index === 1
+                      ? "Offre la plus populaire"
+                      : option.index === 2
+                        ? "Meilleure offre"
+                        : undefined;
 
-                  return (
-                    <button
-                      key={option.variant.id}
-                      type="button"
-                      onClick={() => setSelectedVariantId(option.variant.id)}
-                      className={`group relative w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
-                        isSelected
-                          ? "border-tertiary ring-2 ring-tertiary/40 bg-card"
-                          : "hover:border-tertiary/60"
-                      } ${
-                        isRecommended
-                          ? "bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
-                          : ""
+                    return (
+                      <button
+                        key={option.variant.id}
+                        type="button"
+                        onClick={() => setSelectedVariantId(option.variant.id)}
+                        className={`group relative w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
+                          isSelected
+                            ? "border-tertiary ring-2 ring-tertiary/40 bg-card"
+                            : "hover:border-tertiary/60"
+                        } ${
+                          isRecommended
+                            ? "bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
+                            : ""
                       }`}
                       disabled={isLoading}
                       aria-pressed={isSelected}
@@ -352,20 +437,6 @@ const OfferSection = () => {
               )}
             </div>
 
-            <ul className="space-y-2 text-sm sm:text-base">
-              {[
-                "Un spray coupe le goût sucré immédiatement",
-                "Moins de grignotages, plus de contrôle 🍫",
-                "Peau plus nette & ventre moins gonflé",
-                "Energie au top toute la journée, sans crash",
-              ].map((b) => (
-                <li key={b} className="flex items-start gap-2 text-primary">
-                  <Check className="h-4 w-4 mt-1 text-emerald-600" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-
             <div className="space-y-2">
               <Button
                 variant="premium"
@@ -404,57 +475,57 @@ const OfferSection = () => {
               {isError && <div className="text-xs text-destructive">{error?.message}</div>}
             </div>
 
-            <Accordion type="single" collapsible className="w-full rounded-2xl border divide-y bg-card px-4 sm:px-6">
-              <AccordionItem value="contenu" className="px-0">
-                <AccordionTrigger className="py-4 font-serif text-primary">Ce que vous recevez</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  Spray Bye Sweetie (90 doses pour 30 jours), mini-guide d’utilisation, idées de petits-déjeuners riches en protéines.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="utilisation" className="px-0">
-                <AccordionTrigger className="py-4 font-serif text-primary">Comment l’utiliser</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  1–2 pulvérisations avant les moments à risque (café de l’après-midi, dessert). Effet 30–60 minutes.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="ingredients" className="px-0">
-                <AccordionTrigger className="py-4 font-serif text-primary">Ingrédients</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  <ul className="space-y-2 list-disc list-inside pl-1">
-                    <li>
-                      <span className="font-medium text-primary">Plante Gymnema sylvestre</span> — connue pour neutraliser temporairement
-                      les récepteurs du goût sucré sur la langue.
-                    </li>
-                    <li>
-                      <span className="font-medium text-primary">Extrait de thé vert & zinc</span> — soutien du métabolisme énergétique, aide
-                      à brûler davantage de calories au quotidien.
-                    </li>
-                    <li>
-                      <span className="font-medium text-primary">Menthe poivrée</span> — sensation fraîche et propre, sans arrière-goût.
-                    </li>
-                    <li>
-                      <span className="font-medium text-primary">Glycérine végétale</span> — base douce et stabilisante pour la formule.
-                    </li>
-                  </ul>
-                  <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
-                  <div className="mt-2">Sans alcool dans la formulation.</div>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="shipping" className="px-0">
-                <AccordionTrigger className="py-4 font-serif text-primary">Livraison & retours</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  Livraison offerte en France métropolitaine, expédition sous 24h. Retour sous 30 jours si non ouvert.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+              <Accordion type="single" collapsible className="w-full divide-y bg-transparent px-0">
+                <AccordionItem value="contenu" className="px-0">
+                  <AccordionTrigger className="py-4 font-serif text-primary">Ce que vous recevez</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground">
+                    Spray Bye Sweetie (90 doses pour 30 jours), mini-guide d’utilisation, idées de petits-déjeuners riches en protéines.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="utilisation" className="px-0">
+                  <AccordionTrigger className="py-4 font-serif text-primary">Comment l’utiliser</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground">
+                    1–2 pulvérisations avant les moments à risque (café de l’après-midi, dessert). Effet 30–60 minutes.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="ingredients" className="px-0">
+                  <AccordionTrigger className="py-4 font-serif text-primary">Ingrédients</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground">
+                    <ul className="list-inside list-disc space-y-2 pl-1">
+                      <li>
+                        <span className="font-medium text-primary">Plante Gymnema sylvestre</span> — connue pour neutraliser temporairement
+                        les récepteurs du goût sucré sur la langue.
+                      </li>
+                      <li>
+                        <span className="font-medium text-primary">Extrait de thé vert & zinc</span> — soutien du métabolisme énergétique, aide
+                        à brûler davantage de calories au quotidien.
+                      </li>
+                      <li>
+                        <span className="font-medium text-primary">Menthe poivrée</span> — sensation fraîche et propre, sans arrière-goût.
+                      </li>
+                      <li>
+                        <span className="font-medium text-primary">Glycérine végétale</span> — base douce et stabilisante pour la formule.
+                      </li>
+                    </ul>
+                    <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
+                    <div className="mt-2">Sans alcool dans la formulation.</div>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="shipping" className="px-0">
+                  <AccordionTrigger className="py-4 font-serif text-primary">Livraison & retours</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground">
+                    Livraison offerte en France métropolitaine, expédition sous 24h. Retour sous 30 jours si non ouvert.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              <div className="pt-4">
+                <P className="text-[11px] sm:text-xs text-muted-foreground/70">
+                  Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas une prise en charge médicale. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
+                </P>
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
-        {/* Usage note: placed immediately under the offer card, tight spacing */}
-        <div className="pt-1 pb-2 sm:pt-2 sm:pb-3">
-          <P className="text-[11px] sm:text-xs text-muted-foreground/70 max-w-2xl">
-            Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas une prise en charge médicale. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
-          </P>
         </div>
       </div>
     </section>

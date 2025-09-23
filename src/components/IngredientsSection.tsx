@@ -22,7 +22,7 @@ const IngredientsSection = () => {
           <P className="mt-6 text-muted-foreground text-base">Utilisée depuis des siècles dans la tradition ayurvédique, elle agit rapidement sur les récepteurs du goût sucré.</P>
 
           <div className="mt-10 text-left w-full">
-            <H3 className="text-xl sm:text-2xl font-normal normal-case font-serif text-primary">Une composition courte, française</H3>
+            <H3 className="text-xl sm:text-2xl font-normal normal-case font-serif text-primary">Une composition simple et française</H3>
             <P className="mt-3 text-muted-foreground text-base">Développée et standardisée en France, avec des ingrédients d’origine naturelle:</P>
             <ul className="mt-4 list-disc pl-5 space-y-2 text-foreground/90">
               <li>Gymnema sylvestre (actif principal)</li>

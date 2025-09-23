@@ -46,7 +46,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
     <section id={id} className="pt-0 pb-24 sm:py-2 bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <H2 className="text-5xl lg:text-6xl font-normal leading-tight normal-case">Témoignages :</H2>
+          <H2 className="text-3xl sm:text-4xl font-normal leading-tight normal-case">Elles parlent de nous :</H2>
         </div>
 
         {/* Mobile: UGC carousel with portrait 3:4 and peek (now using Card) */}
