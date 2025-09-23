@@ -26,8 +26,6 @@ const IngredientsSection = () => {
             <P className="mt-3 text-muted-foreground text-base">Développée et standardisée en France, avec des ingrédients d’origine naturelle:</P>
             <ul className="mt-4 list-disc pl-5 space-y-2 text-foreground/90">
               <li>Gymnema sylvestre (actif principal)</li>
-              <li>Extrait de thé vert</li>
-              <li>Zinc</li>
               <li>Menthe poivrée</li>
               <li>Glycérine végétale</li>
             </ul>

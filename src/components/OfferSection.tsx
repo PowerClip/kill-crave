@@ -497,10 +497,6 @@ const OfferSection = () => {
                         les récepteurs du goût sucré sur la langue.
                       </li>
                       <li>
-                        <span className="font-medium text-primary">Extrait de thé vert & zinc</span> — soutien du métabolisme énergétique, aide
-                        à brûler davantage de calories au quotidien.
-                      </li>
-                      <li>
                         <span className="font-medium text-primary">Menthe poivrée</span> — sensation fraîche et propre, sans arrière-goût.
                       </li>
                       <li>
