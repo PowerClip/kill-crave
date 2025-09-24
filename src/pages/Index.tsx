@@ -1,4 +1,3 @@
-import HeroSection from "@/components/HeroSection";
 import OfferSection from "@/components/OfferSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
@@ -68,17 +67,16 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden" id="top">
       <Header />
       <main className="pb-20 overflow-x-hidden">
-        <HeroSection />
-  {/* Replaced former "La solution" section with UGC/Testimonials */}
-  <TestimonialsSection id="solution" />
-  <OfferSection />
-  <BenefitsTimelineSection />
-  <IngredientsSection />
+        {/* <HeroSection /> – conservé au cas où, mais hors rendu pour mettre l'offre en avant */}
+        <OfferSection />
+        <TestimonialsSection id="solution" />
+        <IngredientsSection />
+        <BenefitsTimelineSection />
         <HowItWorksSection />
         <ScienceSection />
-  <TrustpilotSection />
-  <FinalCTASection />
-  <FAQSection />
+        <TrustpilotSection />
+        <FinalCTASection />
+        <FAQSection />
       </main>
       <Footer />
       <MobileStickyBar />
