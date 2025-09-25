@@ -15,8 +15,8 @@ const CGV = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Article 1 - Objet</h2>
                 <p className="text-muted-foreground">
-                  Les présentes conditions générales de vente (CGV) régissent les ventes de produits sur le site www.byesweetie.fr.
-                  Bye Sweetie commercialise des compléments alimentaires destinés à réduire les envies de sucre.
+                  Les présentes conditions générales de vente (CGV) régissent les ventes de produits sur le site www.killcrave.com.
+                  Kill Crave commercialise des compléments alimentaires destinés à réduire les envies de sucre.
                 </p>
               </div>
 
@@ -27,7 +27,7 @@ const CGV = () => {
                     Les prix de nos produits sont indiqués en euros toutes taxes comprises (TTC) incluant la TVA applicable au jour de la commande.
                   </p>
                   <p>
-                    Bye Sweetie se réserve le droit de modifier ses prix à tout moment, mais le produit sera facturé sur la base du tarif en vigueur au moment de la validation de la commande.
+                    Kill Crave se réserve le droit de modifier ses prix à tout moment, mais le produit sera facturé sur la base du tarif en vigueur au moment de la validation de la commande.
                   </p>
                   <p>
                     Les frais de livraison sont offerts pour toute commande en France métropolitaine.
@@ -39,13 +39,13 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 3 - Commande</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Vous pouvez passer commande directement sur notre site internet www.byesweetie.fr.
+                    Vous pouvez passer commande directement sur notre site internet www.killcrave.com.
                   </p>
                   <p>
                     La validation de votre commande implique l'acceptation intégrale des présentes CGV.
                   </p>
                   <p>
-                    Bye Sweetie se réserve le droit d'annuler ou de refuser toute commande d'un client avec lequel il existerait un litige relatif au paiement d'une commande antérieure.
+                    Kill Crave se réserve le droit d'annuler ou de refuser toute commande d'un client avec lequel il existerait un litige relatif au paiement d'une commande antérieure.
                   </p>
                 </div>
               </div>
@@ -60,7 +60,7 @@ const CGV = () => {
                     Le paiement est exigible immédiatement à la commande. Les données de paiement sont échangées en mode crypté grâce au protocole SSL.
                   </p>
                   <p>
-                    Bye Sweetie a choisi Stripe comme prestataire de paiement. Les données bancaires ne sont pas conservées sur nos serveurs.
+                    Kill Crave a choisi Stripe comme prestataire de paiement. Les données bancaires ne sont pas conservées sur nos serveurs.
                   </p>
                 </div>
               </div>
@@ -75,7 +75,7 @@ const CGV = () => {
                     La livraison est effectuée par La Poste Colissimo. Un numéro de suivi vous sera communiqué par email dès l'expédition de votre commande.
                   </p>
                   <p>
-                    En cas de retard de livraison, nous vous invitons à nous contacter à contact@byesweetie.fr.
+                    En cas de retard de livraison, nous vous invitons à nous contacter à support@killcrave.com.
                   </p>
                 </div>
               </div>
@@ -84,13 +84,13 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 6 - Garantie Satisfait ou Remboursé</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Bye Sweetie offre une garantie "Satisfait ou Remboursé" de 30 jours à compter de la date de réception de votre commande.
+                    Kill Crave offre une garantie "Satisfait ou Remboursé" de 30 jours à compter de la date de réception de votre commande.
                   </p>
                   <p>
                     Si vous n'êtes pas entièrement satisfait de nos produits, nous vous remboursons intégralement, sans condition.
                   </p>
                   <p>
-                    Pour bénéficier de cette garantie, contactez notre service client à contact@byesweetie.fr en indiquant votre numéro de commande.
+                    Pour bénéficier de cette garantie, contactez notre service client à support@killcrave.com en indiquant votre numéro de commande.
                   </p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 8 - Responsabilité</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Les produits proposés sont conformes à la législation française en vigueur. Bye Sweetie ne saurait être tenu pour responsable de l'inexécution du contrat en cas de force majeure, de perturbation ou grève des services postaux et moyens de transport.
+                    Les produits proposés sont conformes à la législation française en vigueur. Kill Crave ne saurait être tenu pour responsable de l'inexécution du contrat en cas de force majeure, de perturbation ou grève des services postaux et moyens de transport.
                   </p>
                   <p>
                     Les compléments alimentaires ne se substituent pas à une alimentation variée et équilibrée et à un mode de vie sain. Ne pas dépasser la dose journalière recommandée.
@@ -126,7 +126,7 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 9 - Service Client</h2>
                 <div className="space-y-2 text-muted-foreground">
                   <p>Pour toute question ou réclamation, notre service client est à votre disposition :</p>
-                  <p><strong>Email :</strong> contact@byesweetie.fr</p>
+                  <p><strong>Email :</strong> support@killcrave.com</p>
                   <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
                   <p><strong>Horaires :</strong> Du lundi au vendredi de 9h à 18h</p>
                 </div>

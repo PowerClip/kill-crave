@@ -224,7 +224,7 @@ export const trustpilotReviews: Review[] = [
   { n: 5, title: "Grignotage réglé", text: "Finis les biscuits à 16h.", author: "Agnès", city: "Lyon", date: "Oct. 2024" },
   { n: 5, title: "Peau + glow", text: "Teint plus lumineux en limitant le sucre.", author: "Justine", city: "Paris", date: "Oct. 2024" },
   { n: 4, title: "Aide vraie", text: "Je ne culpabilise plus, je choisis.", author: "Fanny", city: "Bordeaux", date: "Sept. 2024" },
-  { n: 5, title: "Bye Sweetie adopté", text: "Toujours dans mon sac pour les urgences sucre.", author: "Gaëlle", city: "Nantes", date: "Sept. 2024" },
+  { n: 5, title: "Kill Crave adopté", text: "Toujours dans mon sac pour les urgences sucre.", author: "Gaëlle", city: "Nantes", date: "Sept. 2024" },
   { n: 5, title: "Sommeil apaisé", text: "Moins de snacks la nuit = nuits complètes.", author: "Aurore", city: "Marseille", date: "Sept. 2024" },
   { n: 4, title: "Focus au travail", text: "Moins d’allers-retours cuisine.", author: "Camille", city: "Toulouse", date: "Sept. 2024" },
   { n: 5, title: "Résultats concrets", text: "Je mange plus équilibré sans forcer.", author: "Ana", city: "Nice", date: "Août 2024" },

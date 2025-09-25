@@ -12,32 +12,32 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   const ugc = [
     {
       src: "/images/ugc/ugc - byesweetie 2.webp",
-      alt: "UGC: témoignage perte de poids",
+      alt: "UGC Kill Crave: témoignage perte de poids",
   nugget: "J'ai réalisé que je grignotais surtout par automatisme et le spray casse la boucle parce que le cerveau n'obtient plus sa petite récompense sucrée donc il arrête de réclamer et au final je suis à -4,7 kg en six semaines sans compter les calories.",
     },
     {
       src: "/images/ugc/Ugc1.webp",
-      alt: "UGC: femme utilisant le spray Bye Sweetie",
+      alt: "UGC Kill Crave: femme utilisant le spray",
   nugget: "Je l'ai utilisé après le déjeuner et mon carré de chocolat habituel avait littéralement le goût de carton, je l'ai reposé et je n'étais plus tentée pendant plusieurs heures.",
     },
     {
       src: "/images/ugc/Ugc3.webp",
-      alt: "UGC: témoignage énergie",
+      alt: "UGC Kill Crave: témoignage énergie",
   nugget: "J'ai testé un peu sceptique par nature, deux pulvérisations avant de goûter un dessert de mon copain. Et j'avais juste plus envie, même après un verre d'eau",
     },
     {
       src: "/images/ugc/Ugc4.webp",
-      alt: "UGC: amélioration de la peau",
+      alt: "UGC Kill Crave: amélioration de la peau",
   nugget: "Acné inflammatoire depuis des années et après trois semaines à pulvériser avant mes envies de grignotages ma peau est plus claire, je me réveille moins gonflée et heureuse de regarder dans le miroir.",
     },
     {
       src: "/images/ugc/ugc - byesweetie4.webp",
-      alt: "UGC: confiance retrouvée",
+      alt: "UGC Kill Crave: confiance retrouvée",
   nugget: "Ce qui change la vie c'est que je peux maintenant laisser une tablette de chocolat ouverte sur la table et elle reste là alors qu'avant c'était impossible, le goût neutre coupe l'histoire dans ma tête et j'ai une vraie sensation de liberté.",
     },
     {
       src: "/images/ugc/Ugc2.webp",
-      alt: "UGC: résultats transformation",
+      alt: "UGC Kill Crave: résultats transformation",
   nugget: "En deux semaines j'étais déjà à -2 kg sans sensation de me priver et et surtout à 16h je ne crash plus alors qu'avant je vidais toujours le tiroir à biscuits du bureau.",
     },
   ];
@@ -46,7 +46,7 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
     <section id={id} className="pt-0 pb-24 sm:py-2 bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-8">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <H2 className="text-3xl sm:text-4xl font-normal leading-tight normal-case">Elles parlent de nous :</H2>
+          <H2 className="text-3xl sm:text-4xl font-normal leading-tight">Elles ont blackout leurs cravings</H2>
         </div>
 
         {/* Mobile: UGC carousel with portrait 3:4 and peek (now using Card) */}
@@ -109,18 +109,18 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
   <div className="text-center mt-16 sm:mt-24">
     <div className="grid grid-cols-3 gap-4 sm:flex sm:justify-center sm:items-center sm:gap-12 text-muted-foreground max-w-4xl mx-auto px-4">
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">2,847</div>
-        <div className="text-xs sm:text-base">Françaises soulagées</div>
+        <div className="font-heading text-3xl sm:text-4xl text-secondary mb-1 sm:mb-2 tracking-[0.2em] group-hover:text-primary transition-smooth">2 847</div>
+        <div className="text-xs sm:text-base uppercase tracking-[0.16em]">Killers de cravings</div>
       </div>
       <Separator orientation="vertical" className="hidden sm:block h-16" />
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">4.9/5</div>
-        <div className="text-xs sm:text-base">Note moyenne</div>
+        <div className="font-heading text-3xl sm:text-4xl text-secondary mb-1 sm:mb-2 tracking-[0.2em] group-hover:text-primary transition-smooth">4.9/5</div>
+        <div className="text-xs sm:text-base uppercase tracking-[0.16em]">Note moyenne</div>
       </div>
       <Separator orientation="vertical" className="hidden sm:block h-16" />
       <div className="text-center group">
-        <div className="font-serif text-3xl sm:text-4xl font-light text-primary mb-1 sm:mb-2 group-hover:text-tertiary transition-smooth">94%</div>
-        <div className="text-xs sm:text-base">Recommanderaient</div>
+        <div className="font-heading text-3xl sm:text-4xl text-secondary mb-1 sm:mb-2 tracking-[0.2em] group-hover:text-primary transition-smooth">96%</div>
+        <div className="text-xs sm:text-base uppercase tracking-[0.16em]">Recommandent Kill Crave</div>
       </div>
     </div>
   </div>

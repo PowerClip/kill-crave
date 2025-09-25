@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Designer - ByeSweetie</title>
+    <title>QR Code Designer - Kill Crave</title>
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <style>
         * {
@@ -269,13 +269,13 @@
     <div class="container">
         <div class="header">
             <h1>🎨 QR Code Designer</h1>
-            <p>Créez des QR codes personnalisés pour vos flyers ByeSweetie</p>
+            <p>Créez des QR codes personnalisés pour vos flyers Kill Crave</p>
         </div>
 
         <div class="main-content">
             <div class="controls">
                 <div class="url-display">
-                    <strong>URL:</strong> https://www.byesweetie.com/go/flyers
+                    <strong>URL:</strong> https://www.killcrave.com/go/flyers
                 </div>
 
                 <div class="control-group">
@@ -379,7 +379,7 @@
                 width: 300,
                 height: 300,
                 type: "canvas",
-                data: "https://www.byesweetie.com/go/flyers",
+                data: "https://www.killcrave.com/go/flyers",
                 dotsOptions: {
                     color: "#000000",
                     type: "square"
@@ -475,7 +475,7 @@
                 width: size,
                 height: size,
                 type: "canvas",
-                data: "https://www.byesweetie.com/go/flyers",
+                data: "https://www.killcrave.com/go/flyers",
                 dotsOptions: {
                     color: dotsColor,
                     type: currentConfig.dotStyle
@@ -592,11 +592,11 @@
 
         function downloadQR(format) {
             if (format === 'svg') {
-                qrCode.download({ name: "byesweetie-qr-flyers", extension: "svg" });
+                qrCode.download({ name: "killcrave-qr-flyers", extension: "svg" });
             } else if (format === 'png') {
-                qrCode.download({ name: "byesweetie-qr-flyers", extension: "png" });
+                qrCode.download({ name: "killcrave-qr-flyers", extension: "png" });
             } else if (format === 'jpeg') {
-                qrCode.download({ name: "byesweetie-qr-flyers", extension: "jpeg" });
+                qrCode.download({ name: "killcrave-qr-flyers", extension: "jpeg" });
             }
         }
 

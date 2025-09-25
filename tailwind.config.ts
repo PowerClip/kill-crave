@@ -14,9 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Open Sans"', 'system-ui', 'sans-serif'],
-        serif: ['"Open Sans"', 'system-ui', 'sans-serif'], // unify usage
-  logo: ['"Bodoni Moda"', '"Playfair Display"', 'serif'],
+        sans: ['"Bebas Neue"', 'sans-serif'],
+        heading: ['"Archivo Black"', '"Bebas Neue"', 'sans-serif'],
+        serif: ['"Archivo Black"', '"Bebas Neue"', 'sans-serif'],
+        logo: ['"Edo"', '"Archivo Black"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -25,15 +26,15 @@ export default {
         background: "hsl(var(--background))", // #FAF7E9
         foreground: "hsl(var(--foreground))", // Black
         primary: {
-          DEFAULT: "hsl(var(--primary))", // Black
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))", // #BCC499
+          DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
         tertiary: {
-          DEFAULT: "hsl(var(--tertiary))", // #FFE065
+          DEFAULT: "hsl(var(--tertiary))",
           foreground: "hsl(var(--tertiary-foreground))",
         },
         destructive: {

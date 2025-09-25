@@ -1,42 +1,43 @@
 /**
- * Bye Sweetie Design System
+ * Kill Crave Design System
  * Consistent styling tokens for the brand
  */
 
 export const designTokens = {
   // Brand Colors
   colors: {
-    background: '#F6F4EF',
-    secondary: '#E4DED4', // soft neutral
-    tertiary: '#4A3A31', // cocoa accent
-    text: '#1F1A17',
+    background: '#F4E8DC',
+    primary: '#F13F38',
+    secondary: '#0D0D0D',
+    accent: '#1F1F1F',
+    text: '#141416',
   },
   
   // Typography
   typography: {
-    // Logo: Cyrillic Bodoni, lowercase
-    logo: 'font-logo lowercase tracking-tight leading-none',
-    
-    // Headers: Work Sans, All Caps
-    heading: 'font-sans font-semibold tracking-tight uppercase text-foreground',
-    h1: 'font-sans text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight uppercase',
-    h2: 'font-sans text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight uppercase',
-    h3: 'font-sans text-2xl sm:text-3xl font-medium tracking-tight uppercase',
-    h4: 'font-sans text-xl sm:text-2xl font-medium tracking-tight uppercase',
-    
-    // Body: Cyrillic Bodoni
-    body: 'font-serif leading-relaxed text-foreground',
-    lead: 'font-serif text-lg sm:text-xl leading-relaxed font-medium',
-    small: 'font-serif text-xs text-muted-foreground',
+    // Logo: Permanent Marker, uppercase
+    logo: 'font-logo uppercase tracking-[0.18em] text-primary drop-shadow-[0_4px_0_rgba(0,0,0,0.45)]',
+
+    // Headers: Bebas Neue, uppercase
+    heading: 'font-heading tracking-[0.16em] uppercase text-foreground',
+    h1: 'font-heading text-4xl sm:text-5xl lg:text-6xl tracking-[0.18em] uppercase',
+    h2: 'font-heading text-3xl sm:text-4xl lg:text-5xl tracking-[0.16em] uppercase',
+    h3: 'font-heading text-2xl sm:text-3xl tracking-[0.14em] uppercase',
+    h4: 'font-heading text-xl sm:text-2xl tracking-[0.14em] uppercase',
+
+    // Body: Inter
+    body: 'font-sans leading-relaxed text-foreground',
+    lead: 'font-sans text-lg sm:text-xl leading-relaxed font-medium text-foreground/90',
+    small: 'font-sans text-xs text-muted-foreground',
   },
   
   // Components
   components: {
     // Buttons use tertiary color (#FFE065)
     button: {
-      primary: 'bg-tertiary text-tertiary-foreground hover:opacity-90 shadow-soft hover:shadow-card border border-border',
-      secondary: 'bg-secondary text-secondary-foreground hover:opacity-90 border border-border',
-      outline: 'border border-border bg-background/50 backdrop-blur-sm hover:bg-tertiary/30',
+      primary: 'bg-secondary text-white hover:bg-secondary/90 shadow-soft border border-secondary/80',
+      secondary: 'bg-primary text-white hover:bg-primary/90 shadow-card border border-primary/70',
+      outline: 'border border-secondary/40 bg-transparent text-secondary hover:bg-secondary/10',
     },
     
     // Cards

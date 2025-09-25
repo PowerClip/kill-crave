@@ -16,7 +16,7 @@ const ProofSection = () => {
                   <div className="w-20 h-20 bg-tertiary rounded-full flex items-center justify-center text-3xl mb-3 shadow-soft">
                     🍫
                   </div>
-                  <P className="text-sm text-muted-foreground font-medium">Avant la bande</P>
+                  <P className="text-sm text-muted-foreground font-medium">Avant Kill Crave</P>
                   <P className="font-serif text-lg text-primary">Paradis sucré</P>
                 </div>
                 
@@ -26,14 +26,14 @@ const ProofSection = () => {
                   <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center text-3xl mb-3 shadow-soft">
                     📄
                   </div>
-                  <P className="text-sm text-muted-foreground font-medium">Après la bande</P>
+                  <P className="text-sm text-muted-foreground font-medium">Après Kill Crave</P>
                   <P className="font-serif text-lg text-primary">Goût de carton</P>
                 </div>
               </div>
               
               <img 
                 src={tasteDemo} 
-                alt="Démonstration Bye Sweetie avec chocolat"
+                alt="Démonstration Kill Crave avec chocolat"
                 className="w-full h-64 object-cover rounded-2xl shadow-soft"
               />
             </div>
@@ -43,11 +43,11 @@ const ProofSection = () => {
           <div className="space-y-12 lg:pl-8">
             <div className="space-y-8">
               <H2 className="text-5xl lg:text-6xl font-normal leading-tight">
-                Sagesse Ancienne,
-                <span className="block font-medium italic text-tertiary drop-shadow-lg">Chic Français Moderne</span>
+                Blocage instantané,
+                <span className="block font-medium italic text-tertiary drop-shadow-lg">Attitude Blackout</span>
               </H2>
               <P className="text-2xl text-muted-foreground leading-relaxed">
-                Les actifs botaniques se lient aux récepteurs sucrés de votre langue → le sucré devient plat pendant ~30-60 min. Gardez-le dans votre sac. Une bande avant le plateau de pâtisseries, une avant le café de 15h.
+                Les acides gymnémiques Kill Crave se lient aux récepteurs du sucré → le dessert devient fade pendant 30 à 60 min. Gardez-le dans votre sac et déclenchez le blackout avant chaque moment à risque.
               </P>
             </div>
 

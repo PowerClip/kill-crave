@@ -8,7 +8,7 @@ interface UseShopifyProductOptions {
 
 // Centralized hook so multiple sections (Hero / Offer) share cached data.
 export function useShopifyProduct({ handle, enabled = true }: UseShopifyProductOptions = {}) {
-  const finalHandle = handle || (import.meta.env.VITE_SHOPIFY_PRODUCT_HANDLE as string) || "bye-sweetie";
+  const finalHandle = handle || (import.meta.env.VITE_SHOPIFY_PRODUCT_HANDLE as string) || "kill-crave";
 
   const query = useQuery<ShopifyProduct | null, Error>({
     queryKey: ["shopifyProduct", finalHandle],

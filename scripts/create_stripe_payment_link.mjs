@@ -14,7 +14,7 @@ async function main() {
     // Create a Product and Price if you don't already have one.
     // In production, you likely pre-create and reuse these IDs.
     const product = await stripe.products.create({
-      name: 'Bye Sweetie – Spray 30 Jours',
+      name: 'Kill Crave – Pack 30 Jours',
       description: 'Neutralise le goût sucré 30–60 min. 90 doses.',
     });
 

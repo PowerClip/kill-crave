@@ -8,7 +8,7 @@ import { useState } from "react";
 const stars = (n: number) => (
   <div className="flex items-center gap-1" aria-label={`${n} sur 5`}>
     {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} className={`h-4 w-4 ${i < n ? "fill-emerald-500 text-emerald-500" : "text-muted-foreground"}`} />
+      <Star key={i} className={`h-4 w-4 ${i < n ? "fill-primary text-primary" : "text-muted-foreground"}`} />
     ))}
   </div>
 );
@@ -43,7 +43,7 @@ const TrustpilotSection = () => {
               <div key={s} className="col-span-5 flex items-center gap-3">
                 <div className="w-10 text-sm text-primary font-medium">{s}★</div>
                 <div className="h-2 bg-muted rounded-full w-full">
-                  <div className={`h-2 rounded-full ${s>3?"bg-emerald-500":"bg-muted-foreground/30"}`} style={{width: `${[60,28,8,3,1][5-s]}%`}} />
+                  <div className={`h-2 rounded-full ${s>3?"bg-primary":"bg-muted-foreground/30"}`} style={{width: `${[60,28,8,3,1][5-s]}%`}} />
                 </div>
               </div>
             ))}
@@ -56,7 +56,7 @@ const TrustpilotSection = () => {
               <CardContent className="p-6 space-y-3">
                 <div className="flex items-center justify-between">
                   {stars(r.n)}
-                  <Badge variant="secondary" className="gap-1 text-emerald-700 bg-emerald-50 border-emerald-200">
+                  <Badge variant="secondary" className="gap-1 text-secondary uppercase tracking-[0.14em] bg-primary/20 border-primary/40">
                     <CheckCircle className="h-3.5 w-3.5" /> Vérifié
                   </Badge>
                 </div>

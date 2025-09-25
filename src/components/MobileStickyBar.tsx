@@ -3,18 +3,18 @@ import { trackCTA } from "@/lib/gtm";
 
 const MobileStickyBar = () => {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 border-t bg-background/95 backdrop-blur px-4 py-3 sm:hidden">
+    <div className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-black/60 backdrop-blur px-4 py-3 sm:hidden text-white">
       <div className="flex items-center justify-between gap-3">
-        <div className="text-xs text-muted-foreground">
-          <div className="font-medium text-primary">Spray 30 jours</div>
-          <div>Livraison gratuite • 30j satisfait ou remboursé</div>
+        <div className="text-xs text-white/70 uppercase tracking-[0.12em]">
+          <div className="font-medium text-white">Kill Crave 30 jours</div>
+          <div className="tracking-normal text-[11px] text-white/60">Livraison gratuite • Garantie 30 jours</div>
         </div>
-        <Button asChild size="sm" variant="premium" className="min-w-[140px]">
+        <Button asChild size="sm" variant="hero" className="min-w-[140px]">
           <a
             href="#offer-bottom"
-            onClick={() => trackCTA('mobile_sticky_buy', 'Acheter', '#offer-bottom', 'mobile_sticky')}
+            onClick={() => trackCTA('mobile_sticky_buy', 'Commander', '#offer-bottom', 'mobile_sticky')}
           >
-            Acheter — 24.90€
+            Commander — 24,90€
           </a>
         </Button>
       </div>

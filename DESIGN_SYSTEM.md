@@ -1,7 +1,7 @@
-# Bye Sweetie Design System
+# Kill Crave Design System
 
 ## Overview
-This document outlines the consistent design system implemented for the Bye Sweetie website. All components follow these guidelines to ensure brand consistency and modern styling.
+This document outlines the consistent design system implemented for the Kill Crave website. All components follow these guidelines to ensure brand consistency and modern styling.
 
 ## Color Palette
 
@@ -148,4 +148,4 @@ All section components updated to use new color scheme:
 - `FAQSection.tsx` - Secondary background
 - `FinalCTASection.tsx` - Secondary background
 
-This design system ensures consistency, maintains brand identity, and provides a modern, clean aesthetic that represents the Bye Sweetie brand effectively.
+This design system ensures consistency, maintains brand identity, and provides a modern, clean aesthetic that represents the Kill Crave brand effectively.

@@ -28,19 +28,19 @@ const HeroSection = () => {
                   <span className="ml-1">4,8/5</span>
                 </div>
               </div>
-              <H1 className="normal-case leading-[1.05] tracking-tight font-serif font-normal text-primary">
+              <H1 className="leading-[1.05] tracking-tight font-serif font-normal text-primary">
                 Le spray naturel qui coupe vos envies de sucre
               </H1>
-              <Lead className="normal-case max-w-lg text-foreground/80">
+              <Lead className="max-w-lg text-foreground/80">
                 1 à 2 sprays sur la langue. Le goût sucré disparaît temporairement et vous n'en avez plus envie. Vous perdez ainsi du poids naturellement et sans frustration.
               </Lead>
               {/* Mobile: place the visual directly under the "frustration." line */}
               <div className="lg:hidden pt-4">
                 <div className="relative max-w-md mx-auto">
                   <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border bg-card shadow-hero">
-                    <img
-                      src="/images/hero.webp"
-                      alt="Spray anti-envie de sucre Bye Sweetie"
+                  <img
+                  src="/images/hero.webp"
+                  alt="Spray anti-envie de sucre Kill Crave"
                       className="h-full w-full object-cover"
                       loading="eager"
                     />
@@ -98,7 +98,7 @@ const HeroSection = () => {
               <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border bg-card shadow-hero">
                 <img
                   src="/images/hero.webp"
-                  alt="Spray anti-envie de sucre Bye Sweetie"
+                  alt="Spray anti-envie de sucre Kill Crave"
                   className="h-full w-full object-cover"
                   loading="eager"
                 />

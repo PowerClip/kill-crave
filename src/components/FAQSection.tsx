@@ -46,18 +46,18 @@ const FAQSection = () => {
     {
       question: "Retours & garantie",
       answer:
-        "30 jours pour changer d’avis (produit non ouvert). Écrivez‑nous à bonjour@byesweetie.com — réponse sous 2h."
+        "30 jours pour changer d’avis (produit non ouvert). Écrivez‑nous à support@killcrave.com — réponse sous 2h."
     }
   ];
 
   return (
-    <section id="faq" className="py-20 bg-card">
+    <section id="faq" className="py-20 bg-gradient-to-b from-background to-card">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <H2 className="mb-6 font-normal normal-case font-serif">Des questions ?</H2>
+            <H2 className="mb-6 font-normal font-serif">Des questions ?</H2>
             <P className="text-xl text-muted-foreground">
-              Tout ce que vous devez savoir sur votre programme Bye Sweetie
+              Tout ce que vous devez savoir sur votre spray Kill Crave Blackout Sugar
             </P>
           </div>
 
@@ -75,12 +75,12 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-secondary rounded-xl">
+          <div className="text-center mt-12 p-6 bg-secondary text-secondary-foreground rounded-xl">
             <p className="text-primary mb-2">
               Vous avez encore des questions ?
             </p>
-            <p className="text-muted-foreground">
-              Envoyez-nous un email à <span className="font-medium text-primary">bonjour@byesweetie.com</span> — nous répondons sous 2 heures ✨
+            <p className="text-secondary-foreground/80">
+              Envoyez-nous un email à <span className="font-medium text-primary-foreground">support@killcrave.com</span> — réponse sous 2&nbsp;heures ✨
             </p>
           </div>
         </div>

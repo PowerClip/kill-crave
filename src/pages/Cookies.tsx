@@ -136,7 +136,7 @@ const Cookies = () => {
                 <h2 className="text-xl font-semibold mb-4">Contact</h2>
                 <p className="text-muted-foreground">
                   Pour toute question concernant notre politique de cookies, vous pouvez nous contacter à :
-                  <a href="mailto:contact@byesweetie.fr" className="text-primary hover:underline ml-1">contact@byesweetie.fr</a>
+                  <a href="mailto:support@killcrave.com" className="text-primary hover:underline ml-1">support@killcrave.com</a>
                 </p>
               </div>
             </CardContent>

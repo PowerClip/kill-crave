@@ -15,12 +15,12 @@ const MentionsLegales = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Éditeur du site</h2>
                 <div className="space-y-2 text-muted-foreground">
-                  <p><strong>Raison sociale :</strong> Bye Sweetie SAS</p>
+                  <p><strong>Raison sociale :</strong> Kill Crave SAS</p>
                   <p><strong>Capital social :</strong> 10 000 €</p>
                   <p><strong>Siège social :</strong> 123 rue de la Paix, 75002 Paris, France</p>
                   <p><strong>RCS :</strong> Paris B 123 456 789</p>
                   <p><strong>TVA intracommunautaire :</strong> FR 12 345678901</p>
-                  <p><strong>Email :</strong> contact@byesweetie.fr</p>
+                  <p><strong>Email :</strong> support@killcrave.com</p>
                   <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
                 </div>
               </div>
@@ -28,7 +28,7 @@ const MentionsLegales = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Directeur de la publication</h2>
                 <p className="text-muted-foreground">
-                  Le directeur de la publication est Monsieur/Madame [Nom du directeur], en qualité de représentant légal de la société Bye Sweetie SAS.
+                  Le directeur de la publication est Monsieur/Madame [Nom du directeur], en qualité de représentant légal de la société Kill Crave SAS.
                 </p>
               </div>
 
@@ -60,7 +60,7 @@ const MentionsLegales = () => {
                 <h2 className="text-xl font-semibold mb-4">Responsabilité</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Les informations fournies sur ce site le sont à titre indicatif. Bye Sweetie SAS ne saurait garantir l'exactitude, la complétude, l'actualité des informations diffusées sur son site.
+                    Les informations fournies sur ce site le sont à titre indicatif. Kill Crave SAS ne saurait garantir l'exactitude, la complétude, l'actualité des informations diffusées sur son site.
                   </p>
                   <p>
                     En conséquence, l'utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive.

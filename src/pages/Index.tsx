@@ -64,7 +64,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden" id="top">
+    <div className="min-h-screen overflow-x-hidden site-bg" id="top">
       <Header />
       <main className="pb-20 overflow-x-hidden">
         {/* <HeroSection /> – conservé au cas où, mais hors rendu pour mettre l'offre en avant */}

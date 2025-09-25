@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-tertiary text-tertiary-foreground hover:opacity-90 shadow-soft hover:shadow-card border border-border",
+        default: "bg-secondary text-secondary-foreground hover:bg-secondary/90 border border-secondary/80 shadow-soft",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-background/50 backdrop-blur-sm hover:bg-tertiary/30 hover:text-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:opacity-90 border border-border",
-        ghost: "hover:bg-tertiary/20 hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline font-serif",
-        hero: "bg-tertiary text-tertiary-foreground font-serif font-medium tracking-wide hover:opacity-90 hover:shadow-card hover:scale-[1.02] transition-smooth border border-border",
-        premium: "bg-tertiary text-tertiary-foreground hover:opacity-90 shadow-card hover:shadow-hero font-serif tracking-wide border border-border",
-        soft: "bg-tertiary/70 text-tertiary-foreground hover:bg-tertiary transition-smooth shadow-soft hover:shadow-card border border-border",
-        elegant: "bg-tertiary text-tertiary-foreground font-serif hover:shadow-card hover:scale-[1.01] transition-smooth border border-border",
+        outline: "border border-secondary/30 bg-transparent text-secondary hover:bg-secondary/10",
+        secondary: "bg-primary text-primary-foreground hover:bg-primary/90 border border-primary/80 shadow-soft",
+        ghost: "hover:bg-secondary/10 hover:text-secondary",
+        link: "text-primary underline-offset-4 hover:underline font-heading",
+        hero: "bg-tertiary text-tertiary-foreground font-heading tracking-[0.2em] text-sm hover:bg-tertiary/90 hover:shadow-card hover:-translate-y-[2px] transition-smooth border border-tertiary/70",
+        premium: "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-hero font-heading tracking-[0.2em] border border-secondary",
+        soft: "bg-tertiary/85 text-tertiary-foreground hover:bg-tertiary transition-smooth shadow-soft border border-tertiary/60",
+        elegant: "bg-transparent text-secondary border border-secondary/60 hover:bg-secondary hover:text-secondary-foreground transition-smooth",
       },
       size: {
         default: "h-12 px-8 py-3 text-base",

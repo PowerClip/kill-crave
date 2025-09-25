@@ -216,8 +216,8 @@ const OfferSection = () => {
       : !selectedAvailable
         ? "Indisponible"
         : selectedUnits > 1
-          ? `Acheter le pack ${selectedUnits} — ${selectedPriceLabel}`
-          : `Acheter maintenant — ${selectedPriceLabel}`;
+          ? `Pack Kill Crave x${selectedUnits} — ${selectedPriceLabel}`
+          : `Commander — ${selectedPriceLabel}`;
 
   // Track product view (deduped with localStorage for fast remounts / re-renders)
   if (primaryVariant && typeof window !== 'undefined') {
@@ -255,14 +255,14 @@ const OfferSection = () => {
   }
 
   const productTitle =
-    product?.title && product.title !== "Bye Sweetie"
+    product?.title && product.title !== "Kill Crave"
       ? product.title
-      : "Le spray naturel qui coupe vos envies de sucre";
+      : "Kill Crave — le spray Blackout Sugar";
 
   return (
     <section
       id="offer"
-      className="relative isolate bg-background scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20 lg:pt-20 lg:pb-16"
+      className="relative isolate bg-transparent scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20 lg:pt-20 lg:pb-16"
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-16">
         {/* Gallery */}
@@ -279,7 +279,7 @@ const OfferSection = () => {
                 <img
                   key={index}
                   src={image}
-                  alt={`Spray Bye Sweetie - Image ${index + 1}`}
+                  alt={`Spray Kill Crave - Image ${index + 1}`}
                   className="w-full h-auto lg:h-full object-cover flex-shrink-0"
                 />
               ))}
@@ -313,28 +313,37 @@ const OfferSection = () => {
         {/* Details */}
         <div className="flex w-full flex-col lg:w-1/2">
           <div className="px-4 pb-8 sm:px-6 lg:px-0 lg:pb-0">
-            <div className="flex h-full flex-col gap-5 lg:gap-6">
-              <div className="space-y-2">
-                <H2 className="font-serif text-3xl font-light text-primary lg:text-4xl leading-tight">{productTitle}</H2>
+            <div className="h-full rounded-[28px] border border-white/10 bg-black/55 p-6 sm:p-8 lg:p-10 text-white backdrop-blur-md shadow-hero">
+              <div className="flex h-full flex-col gap-5 lg:gap-6">
+                <div className="space-y-2">
+                <H2 className="text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-[0.18em]">{productTitle}</H2>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="flex items-center text-foreground">
+                  <div className="flex items-center gap-2 text-sm text-white/70">
+                    <div className="flex items-center text-primary">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-black fill-black" />
+                        <Star key={i} className="h-4 w-4 text-primary fill-primary" />
                       ))}
                     </div>
-                    <a href="#reviews" className="underline underline-offset-2">
+                    <a href="#reviews" className="underline underline-offset-2 text-white/80 hover:text-white">
                       109 avis
                     </a>
                   </div>
                   <ul className="space-y-2 text-sm sm:text-base">
-                    {["Un spray coupe le goût sucré immédiatement", "Moins de grignotages, plus de contrôle", "Peau plus nette & ventre moins gonflé", "Énergie au top toute la journée, sans crash"].map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-primary">
-                        <Check className="h-4 w-4 mt-1 text-black" />
+                    {["Goût sucré neutralisé en 30 secondes", "Cravings stoppés avant qu'ils ne dérapent", "Formule Blackout Sugar fabriquée en France", "0 sucre ajouté, 0 alcool — uniquement des plantes actives"].map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-white/90">
+                        <Check className="h-4 w-4 mt-1 text-primary" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
+                  <div className="flex items-center gap-2 pt-2 text-[11px] uppercase tracking-[0.18em] text-white/60">
+                    <span>Fabriqué en France</span>
+                    <span className="flex overflow-hidden rounded-sm border border-white/30">
+                      <span className="h-2 w-2 bg-[#0055A4]" />
+                      <span className="h-2 w-2 bg-white" />
+                      <span className="h-2 w-2 bg-[#EF4135]" />
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -360,11 +369,11 @@ const OfferSection = () => {
                         onClick={() => setSelectedVariantId(option.variant.id)}
                         className={`group relative w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
                           isSelected
-                            ? "border-tertiary ring-2 ring-tertiary/40 bg-card"
-                            : "hover:border-tertiary/60"
+                            ? "border-primary/70 ring-2 ring-primary/30 bg-white/5"
+                            : "border-white/20 hover:border-primary/50 bg-white/5"
                         } ${
                           isRecommended
-                            ? "bg-gradient-to-br from-secondary/10 via-secondary/5 to-transparent"
+                            ? "bg-gradient-to-br from-white/15 via-white/5 to-transparent"
                             : ""
                       }`}
                       disabled={isLoading}
@@ -374,19 +383,19 @@ const OfferSection = () => {
                         <div
                           className={`absolute -top-2 right-2 sm:right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
                             isSelected
-                              ? "bg-secondary text-foreground ring-1 ring-secondary/50 shadow-md"
-                              : "bg-secondary/25 text-secondary-foreground ring-1 ring-secondary/40 group-hover:bg-secondary/40"
+                              ? "bg-primary text-primary-foreground ring-1 ring-white/40 shadow-md"
+                              : "bg-white/15 text-white ring-1 ring-white/20 group-hover:bg-white/25"
                           }`}
                         >
                           {labelText}
                         </div>
                       )}
-                      <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                      <div className="flex items-center gap-2 text-sm font-medium text-white">
                         <span className="truncate" title={option.variant.title}>{option.variant.title}</span>
                         {option.savingsPct ? (
                           <span
                             className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide ${
-                              isSelected ? "bg-secondary text-foreground ring-1 ring-secondary/50 shadow-sm" : "bg-secondary/25 text-secondary-foreground group-hover:bg-secondary/40"
+                              isSelected ? "bg-primary text-primary-foreground ring-1 ring-white/30 shadow-sm" : "bg-white/10 text-white group-hover:bg-white/20"
                             }`}
                           >
                             -{option.savingsPct}% SAVE
@@ -394,19 +403,19 @@ const OfferSection = () => {
                         ) : null}
                       </div>
                       {unitsText && (
-                        <div className={`text-[11px] ${isSelected ? "text-foreground" : "text-muted-foreground"} mt-1`}>
+                        <div className={`text-[11px] ${isSelected ? "text-white" : "text-white/70"} mt-1`}>
                           {unitsText}
                         </div>
                       )}
                       {dosesDaysText && (
-                        <div className={`text-[11px] ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
+                        <div className={`text-[11px] ${isSelected ? "text-white" : "text-white/70"}`}>
                           {dosesDaysText}
                         </div>
                       )}
                       <div className="text-primary font-serif text-2xl font-light mt-1">
                         {isLoading ? <span className="animate-pulse">...</span> : option.priceLabel}
                       </div>
-                      <div className={`mt-1 text-xs ${isSelected ? "text-foreground" : "text-muted-foreground"}`}>
+                      <div className={`mt-1 text-xs ${isSelected ? "text-white" : "text-white/70"}`}>
                         {option.dailyCostLabel ? `≈ ${option.dailyCostLabel} / jour` : "Tarif spécial"}
                       </div>
                     </button>
@@ -415,7 +424,7 @@ const OfferSection = () => {
               </div>
             </div>
 
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-white/80">
               {selectedTotalDoses && selectedTotalDays ? (
                 <>
                   <div>{selectedTotalDoses} doses — {selectedTotalDays} jours (3 utilisations/jour)</div>
@@ -423,7 +432,7 @@ const OfferSection = () => {
                     <div>
                       ≈ {selectedDailyLabel} / jour
                       {selectedSavingsPct ? (
-                        <span className="ml-2 inline-flex items-center rounded-full bg-secondary/20 px-2 py-[1px] text-[10px] font-medium tracking-wide text-secondary-foreground">
+                        <span className="ml-2 inline-flex items-center rounded-full bg-white/10 px-2 py-[1px] text-[10px] font-medium tracking-wide text-white">
                           -{selectedSavingsPct}%
                         </span>
                       ) : null}
@@ -439,7 +448,7 @@ const OfferSection = () => {
 
             <div className="space-y-2">
               <Button
-                variant="premium"
+                variant="hero"
                 size="lg"
                 className="w-full sm:w-auto"
                 disabled={creatingCheckout || isError || !selectedAvailable}
@@ -464,10 +473,10 @@ const OfferSection = () => {
               >
                 {buttonLabel}
               </Button>
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-white/80">
                 Livraison gratuite en 3 à 5 jours ouvrés en France
               </div>
-              <div className="text-[11px] sm:text-xs text-muted-foreground/80">
+              <div className="text-[11px] sm:text-xs text-white/60">
                 Expédié sous 24h • 30j satisfait ou remboursé
               </div>
               {/* Anchor target to land at the bottom of the purchase block */}
@@ -477,49 +486,49 @@ const OfferSection = () => {
 
               <Accordion type="single" collapsible className="w-full divide-y bg-transparent px-0">
                 <AccordionItem value="contenu" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-primary">Ce que vous recevez</AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground">
-                    Spray Bye Sweetie (90 doses pour 30 jours), mini-guide d’utilisation, idées de petits-déjeuners riches en protéines.
+                  <AccordionTrigger className="py-4 font-serif text-white">Ce que vous recevez</AccordionTrigger>
+                  <AccordionContent className="text-sm text-white/70">
+                    Spray Kill Crave Blackout Sugar (90 doses pour 30 jours), protocole "Cravings blackout" imprimé, idées de collations protéinées pour maintenir le sevrage.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="utilisation" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-primary">Comment l’utiliser</AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground">
-                    1–2 pulvérisations avant les moments à risque (café de l’après-midi, dessert). Effet 30–60 minutes.
+                  <AccordionTrigger className="py-4 font-serif text-white">Comment l’utiliser</AccordionTrigger>
+                  <AccordionContent className="text-sm text-white/70">
+                    1 à 2 pulvérisations sur la langue avant un dessert, un café sucré ou une fringale annoncée. Attendez 10 secondes, avalez votre salive, le sucre n’a plus de goût pendant 30 à 60 minutes.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="ingredients" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-primary">Ingrédients</AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground">
+                  <AccordionTrigger className="py-4 font-serif text-white">Ingrédients</AccordionTrigger>
+                  <AccordionContent className="text-sm text-white/70">
                     <ul className="list-inside list-disc space-y-2 pl-1">
                       <li>
-                        <span className="font-medium text-primary">Plante Gymnema sylvestre</span> — connue pour neutraliser temporairement
-                        les récepteurs du goût sucré sur la langue.
+                        <span className="font-medium text-white">Gymnema sylvestre titrée</span> — neutralise temporairement les récepteurs du goût sucré.
                       </li>
                       <li>
-                        <span className="font-medium text-primary">Menthe poivrée</span> — sensation fraîche et propre, sans arrière-goût.
+                        <span className="font-medium text-white">Menthe poivrée cryo</span> — sensation fraîche et propre, sans arrière-goût amer.
                       </li>
                       <li>
-                        <span className="font-medium text-primary">Glycérine végétale</span> — base douce et stabilisante pour la formule.
+                        <span className="font-medium text-white">Glycérine végétale bio</span> — base douce et stabilisante pour la formule.
                       </li>
                     </ul>
-                    <div className="mt-3">Sans colorants ni édulcorants artificiels.</div>
-                    <div className="mt-2">Sans alcool dans la formulation.</div>
+                    <div className="mt-3">Sans sucre ajouté, sans colorants, sans alcool.</div>
+                    <div className="mt-2">Fabriqué et conditionné en laboratoire certifié en France.</div>
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="shipping" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-primary">Livraison & retours</AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground">
-                    Livraison offerte en France métropolitaine, expédition sous 24h. Retour sous 30 jours si non ouvert.
+                  <AccordionTrigger className="py-4 font-serif text-white">Livraison & retours</AccordionTrigger>
+                  <AccordionContent className="text-sm text-white/70">
+                    Livraison offerte en France métropolitaine, expédition sous 24h ouvrées. Retour accepté sous 30 jours (flacon non ouvert).
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
 
               <div className="pt-4">
-                <P className="text-[11px] sm:text-xs text-muted-foreground/70">
-                  Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas une prise en charge médicale. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
+                <P className="text-[11px] sm:text-xs text-white/60">
+                  Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas un traitement médical. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
                 </P>
               </div>
+            </div>
             </div>
           </div>
         </div>

@@ -146,7 +146,7 @@ const Livraison = () => {
                     <p className="font-medium mb-2">Colis non reçu</p>
                     <p className="text-sm text-muted-foreground">
                       Si vous n'avez pas reçu votre colis dans les délais annoncés, vérifiez d'abord le suivi en ligne.
-                      Contactez-nous ensuite à contact@byesweetie.fr avec votre numéro de commande.
+                      Contactez-nous ensuite à support@killcrave.com avec votre numéro de commande.
                     </p>
                   </div>
                   <div>
@@ -186,7 +186,7 @@ const Livraison = () => {
                 <h2 className="text-xl font-semibold mb-4">Besoin d'aide ?</h2>
                 <div className="space-y-2 text-muted-foreground">
                   <p>Notre service client est disponible pour répondre à toutes vos questions concernant la livraison :</p>
-                  <p><strong>Email :</strong> <a href="mailto:contact@byesweetie.fr" className="text-primary hover:underline">contact@byesweetie.fr</a></p>
+                  <p><strong>Email :</strong> <a href="mailto:support@killcrave.com" className="text-primary hover:underline">support@killcrave.com</a></p>
                   <p><strong>Réponse garantie :</strong> sous 2 heures (jours ouvrés, 9h-18h)</p>
                 </div>
               </div>

@@ -9,7 +9,7 @@ const FAQ = () => {
       title: "Utilisation du produit",
       faqs: [
         {
-          question: "Comment fonctionne le spray Bye Sweetie ?",
+          question: "Comment fonctionne le spray Kill Crave ?",
           answer: "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. En 30–60 minutes, le sucré devient fade et l'envie retombe — sans 'forcer'. C'est une méthode 100% naturelle et sans effets secondaires."
         },
         {
@@ -47,7 +47,7 @@ const FAQ = () => {
         },
         {
           question: "Est-ce que cela remplace une alimentation équilibrée ?",
-          answer: "Non, Bye Sweetie est un complément qui vous aide à réduire le sucre. Il est important de maintenir une alimentation variée et équilibrée pour votre santé."
+          answer: "Non, Kill Crave est un complément qui vous aide à réduire le sucre. Il est important de maintenir une alimentation variée et équilibrée pour votre santé."
         }
       ]
     },
@@ -106,7 +106,7 @@ const FAQ = () => {
         },
         {
           question: "Comment demander un remboursement ?",
-          answer: "Envoyez-nous un email à contact@byesweetie.fr avec votre numéro de commande. Nous traiterons votre demande sous 48h."
+          answer: "Envoyez-nous un email à support@killcrave.com avec votre numéro de commande. Nous traiterons votre demande sous 48h."
         },
         {
           question: "Dois-je renvoyer le produit pour être remboursé ?",
@@ -123,7 +123,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "Comment vous contacter ?",
-          answer: "Par email à contact@byesweetie.fr ou bonjour@byesweetie.com. Nous répondons sous 2 heures en semaine (9h-18h)."
+          answer: "Par email à support@killcrave.com. Nous répondons sous 2 heures en semaine (9h-18h)."
         },
         {
           question: "Avez-vous un service client téléphonique ?",
@@ -145,7 +145,7 @@ const FAQ = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-primary mb-8">Foire Aux Questions</h1>
 
           <p className="text-lg text-muted-foreground mb-10">
-            Retrouvez toutes les réponses à vos questions sur Bye Sweetie, notre spray anti-envies de sucre.
+            Retrouvez toutes les réponses à vos questions sur Kill Crave, notre spray anti-envies de sucre.
           </p>
 
           {categories.map((category, categoryIndex) => (
@@ -173,8 +173,8 @@ const FAQ = () => {
                 Notre équipe est là pour vous aider. N'hésitez pas à nous contacter !
               </p>
               <p className="text-lg">
-                <a href="mailto:contact@byesweetie.fr" className="text-primary hover:underline font-medium">
-                  contact@byesweetie.fr
+                <a href="mailto:support@killcrave.com" className="text-primary hover:underline font-medium">
+                  support@killcrave.com
                 </a>
               </p>
               <p className="text-sm text-muted-foreground mt-2">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code - ByeSweetie Flyers</title>
+    <title>QR Code - Kill Crave Flyers</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body {
@@ -83,8 +83,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>QR Code ByeSweetie</h1>
-        <div class="url">https://www.byesweetie.com/go/flyers</div>
+        <h1>QR Code Kill Crave</h1>
+        <div class="url">https://www.killcrave.com/go/flyers</div>
 
         <div class="size-controls">
             <label for="size">Taille du QR Code:</label>
@@ -117,7 +117,7 @@
 
             // Créer le nouveau QR code
             qrcode = new QRCode(qrcodeDiv, {
-                text: 'https://www.byesweetie.com/go/flyers',
+                text: 'https://www.killcrave.com/go/flyers',
                 width: size,
                 height: size,
                 colorDark: '#000000',
@@ -138,7 +138,7 @@
                     const canvas = document.querySelector('#qrcode canvas');
                     if (canvas) {
                         const link = document.createElement('a');
-                        link.download = 'byesweetie-qr-flyers.png';
+                        link.download = 'killcrave-qr-flyers.png';
                         link.href = canvas.toDataURL();
                         link.click();
                     }
