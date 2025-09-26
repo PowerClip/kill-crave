@@ -21,12 +21,13 @@ const FinalCTASection = () => {
           </div>
 
           <div className="pt-2">
-            <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
+            <Button variant="hero" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-4 sm:px-6" asChild>
               <a
                 href="#offer"
                 onClick={() => trackCTA('final_cta', 'Commander Kill Crave', '#offer', 'final_cta')}
               >
-                Commander Kill Crave — 24,90€
+                <span className="block sm:hidden">Commander — 24,90€</span>
+                <span className="hidden sm:block">Commander Kill Crave — 24,90€</span>
               </a>
             </Button>
           </div>

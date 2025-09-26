@@ -139,8 +139,11 @@ const HowItWorksSection = () => {
           </div>
   </div>
   <div className="mt-12 text-center">
-            <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
-              <a href="#offer">Je déclenche le blackout</a>
+            <Button variant="hero" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-4 sm:px-6" asChild>
+              <a href="#offer">
+                <span className="block sm:hidden">Blackout Sugar</span>
+                <span className="hidden sm:block">Je déclenche le blackout</span>
+              </a>
             </Button>
              <div className="mt-4 text-sm text-white/70">Basé sur la littérature Gymnema. Effet perçu variable selon les personnes.</div>
   </div>

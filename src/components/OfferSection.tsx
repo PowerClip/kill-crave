@@ -224,8 +224,18 @@ const OfferSection = () => {
       : !selectedAvailable
         ? "Indisponible"
         : selectedUnits > 1
-          ? `Pack Kill Crave x${selectedUnits} — ${selectedPriceLabel}`
+          ? `Pack x${selectedUnits} — ${selectedPriceLabel}`
           : `Commander — ${selectedPriceLabel}`;
+
+  const buttonLabelMobile = creatingCheckout
+    ? "Redirection..."
+    : isError
+      ? "Erreur"
+      : !selectedAvailable
+        ? "Indisponible"
+        : selectedUnits > 1
+          ? `Pack x${selectedUnits}`
+          : "Commander";
 
   // Track product view (deduped with localStorage for fast remounts / re-renders)
   if (primaryVariant && typeof window !== 'undefined') {
@@ -453,7 +463,7 @@ const OfferSection = () => {
               <Button
                 variant="hero"
                 size="lg"
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto text-sm sm:text-base px-4 sm:px-6"
                 disabled={creatingCheckout || isError || !selectedAvailable}
                 onClick={() => {
                   if (!purchaseVariant) return;
@@ -474,7 +484,8 @@ const OfferSection = () => {
                   handleBuy();
                 }}
               >
-                {buttonLabel}
+                <span className="block sm:hidden">{buttonLabelMobile}</span>
+                <span className="hidden sm:block">{buttonLabel}</span>
               </Button>
               <div className="text-sm text-white/75">
                 Livraison gratuite en 3 à 5 jours ouvrés en France

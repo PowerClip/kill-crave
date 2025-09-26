@@ -58,9 +58,9 @@ const Header = () => {
         >
           <Logo className="h-24 sm:h-16" />
         </Link>
-        <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex justify-self-end">
+        <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex justify-self-end text-xs sm:text-sm px-3 sm:px-4">
           <a href="#offer" onClick={() => trackCTA('nav_buy', 'Commander', '#offer', 'nav')}>
-            Commander — 24,90€
+            Commander
           </a>
         </Button>
       </div>

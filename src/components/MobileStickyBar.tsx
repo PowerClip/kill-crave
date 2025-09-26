@@ -9,12 +9,12 @@ const MobileStickyBar = () => {
           <div className="font-medium text-white">Kill Crave 30 jours</div>
         <div className="tracking-normal text-sm text-white/70">Livraison gratuite • Garantie 30 jours</div>
         </div>
-        <Button asChild size="sm" variant="hero" className="min-w-[140px]">
+        <Button asChild size="sm" variant="hero" className="min-w-[120px] text-xs px-3">
           <a
             href="#offer-bottom"
             onClick={() => trackCTA('mobile_sticky_buy', 'Commander', '#offer-bottom', 'mobile_sticky')}
           >
-            Commander — 24,90€
+            Commander
           </a>
         </Button>
       </div>
