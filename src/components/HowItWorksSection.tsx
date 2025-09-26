@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { H2, H3, P } from "@/components/ui/typography";
 import { useState, useEffect } from "react";
 import { useInView } from "@/hooks/useInView";
+import SectionGradient from "@/components/SectionGradient";
 
 const steps = [
   { title: "2 sprays", text: "Vous pulvérisez quand l'envie arrive.", icon: "spray" },
@@ -66,7 +67,7 @@ const UsageTimeline = () => {
   const progress = steps.length > 1 ? ((revealed - 1) / (steps.length - 1)) * 100 : 0;
   return (
     <div ref={ref} className="relative">
-      <H3 className="text-xl font-normal mb-6 font-serif">Comment vous l'utilisez</H3>
+      <H3 className="text-xl font-normal mb-6 font-serif text-white">Comment vous l'utilisez</H3>
       <div className="relative">
         <div className="absolute left-4 top-1 bottom-1 w-px bg-tertiary/15" />
         <div
@@ -104,25 +105,24 @@ const UsageTimeline = () => {
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="relative py-28 bg-gradient-to-b from-[#0D0D0D] via-[#241011] to-[#0D0D0D] overflow-hidden text-secondary-foreground">
-      <div className="absolute inset-0 opacity-[0.45] pointer-events-none bg-[radial-gradient(circle_at_18%_22%,rgba(241,63,56,0.45),transparent_60%),radial-gradient(circle_at_82%_78%,rgba(255,255,255,0.12),transparent_68%)]" />
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+    <SectionGradient id="how-it-works" className="py-28 text-white">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <Badge className="rounded-full px-4 py-1 bg-primary/30 text-secondary-foreground ring-1 ring-primary/50 backdrop-blur-sm tracking-[0.24em]">Kill Switch</Badge>
-          <H2 className="mt-6 font-normal leading-tight font-serif">Blackout Sugar en 3 gestes chrono</H2>
+          <Badge className="rounded-full px-4 py-1 bg-white/10 text-white ring-1 ring-white/25 backdrop-blur-sm tracking-[0.24em]">Kill Switch</Badge>
+          <H2 className="mt-6 font-normal leading-tight font-serif text-white">Blackout Sugar en 3 gestes chrono</H2>
           <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-tertiary/60" />
           <P className="mt-6 text-white/80 text-base">Deux sprays sur la langue et le goût sucré décroche. Plus de récompense pour le cerveau, l’envie tombe et vous gardez vos objectifs sous contrôle.</P>
         </div>
 
         {/* Static science graphic */}
-        <div className="relative rounded-3xl border border-primary/40 bg-secondary/40 backdrop-blur-xl p-6 sm:p-10 shadow-hero overflow-hidden">
+        <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl p-6 sm:p-10 shadow-hero overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div className="space-y-6">
               <div className="relative rounded-2xl overflow-hidden">
                 <img
-                  src="/images/howitworks/howitworks - ugc.webp"
-                  alt="UGC before / after – Kill Crave"
-                  className="w-full h-auto object-cover brightness-105"
+                  src="/images/howitworks/how-it-works.png"
+                  alt="Comment Kill Crave agit"
+                  className="w-full h-auto object-cover"
                   loading="lazy"
                 />
                 {/* Placeholder overlays for future annotation pins */}
@@ -131,7 +131,7 @@ const HowItWorksSection = () => {
             </div>
             <div className="space-y-10">
               <UsageTimeline />
-              <div className="text-xs text-white/70 space-y-1 pt-2 border-t border-white/20">
+              <div className="text-sm text-white/70 space-y-1 pt-2 border-t border-white/20">
                 <div>Action locale, sans sucre ajouté, sans excitant.</div>
                 <div>* Ne remplace pas une alimentation équilibrée.</div>
               </div>
@@ -142,10 +142,10 @@ const HowItWorksSection = () => {
             <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
               <a href="#offer">Je déclenche le blackout</a>
             </Button>
-             <div className="mt-4 text-[11px] text-white/70">Basé sur la littérature Gymnema. Effet perçu variable selon les personnes.</div>
+             <div className="mt-4 text-sm text-white/70">Basé sur la littérature Gymnema. Effet perçu variable selon les personnes.</div>
   </div>
       </div>
-    </section>
+    </SectionGradient>
   );
 };
 

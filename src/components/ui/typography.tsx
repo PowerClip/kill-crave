@@ -58,7 +58,7 @@ Lead.displayName = "Lead";
 
 export const Small = React.forwardRef<HTMLSpanElement, ElementProps<HTMLSpanElement>>(
   ({ className, ...props }, ref) => (
-    <small ref={ref as any} className={cn("font-sans text-xs text-muted-foreground", className)} {...props} />
+    <small ref={ref as any} className={cn("font-sans text-sm text-muted-foreground", className)} {...props} />
   ),
 );
 Small.displayName = "Small";

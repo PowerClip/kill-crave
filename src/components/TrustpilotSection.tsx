@@ -62,7 +62,7 @@ const TrustpilotSection = () => {
                 </div>
                 <div className="font-serif text-lg text-primary">{r.title}</div>
                 <p className="text-sm text-muted-foreground leading-relaxed">“{r.text}”</p>
-                <div className="flex items-center justify-between text-xs text-muted-foreground pt-2">
+                <div className="flex items-center justify-between text-sm text-muted-foreground pt-2">
                   <span>{r.author} • {r.city}</span>
                   <span>{r.date}</span>
                 </div>

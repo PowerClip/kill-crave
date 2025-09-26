@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import { H2, P } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
+import SectionGradient from "@/components/SectionGradient";
 
 // Time-based benefits timeline section (inspired by provided reference)
 // Uses shadcn accordion & badges. One item open at a time.
@@ -71,19 +72,18 @@ const benefits: Benefit[] = [
 const BenefitsTimelineSection = () => {
   const defaultValue = benefits.find(b => b.defaultOpen)?.id;
   return (
-    <section id="benefits" className="relative py-28 text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.2] mix-blend-screen bg-[radial-gradient(circle_at_25%_20%,rgba(241,63,56,0.45),transparent_62%),radial-gradient(circle_at_75%_80%,rgba(241,63,56,0.35),transparent_68%)]" />
-      <div className="relative mx-auto max-w-5xl px-4 sm:px-8 flex flex-col gap-0">
+    <SectionGradient id="benefits" className="py-28 text-white">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-8 flex flex-col gap-0">
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-8">
           <Badge className="rounded-full px-4 py-1 bg-white/10 text-white ring-1 ring-white/30 backdrop-blur">Timeline Blackout</Badge>
-          <H2 className="mt-6 font-normal leading-tight text-white font-serif">Kill Crave transforme vos cravings semaine après semaine</H2>
+          <H2 className="mt-6 font-normal leading-tight text-white font-serif">Kill Crave réduit vos cravings semaine après semaine</H2>
           <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-primary/70" />
         </div>
         {/* Image */}
         <div className="relative overflow-hidden rounded-3xl max-w-3xl mx-auto border border-primary/30">
           <img
-            src="/images/product/product - held - nobg.webp"
+            src="/images/product/handheld_product.png"
             alt="Spray Kill Crave – rituel"
             className="w-full h-auto object-cover [mask-image:radial-gradient(circle_at_center,white_60%,transparent_85%)] [--webkit-mask-image:radial-gradient(circle_at_center,white_60%,transparent_85%)]"
             loading="lazy"
@@ -101,7 +101,7 @@ const BenefitsTimelineSection = () => {
               <AccordionItem key={b.id} value={b.id} className="border-white/10">
                 <AccordionTrigger className="py-4 px-5 sm:px-7 text-left group gap-3">
                   <div className="flex flex-col w-full items-start gap-2">
-                    <span className="inline-flex items-center justify-center px-2.5 py-[3px] rounded-md text-[10px] font-medium tracking-wide uppercase bg-primary text-primary-foreground whitespace-nowrap leading-none">
+                    <span className="inline-flex items-center justify-center px-3 py-[3px] rounded-md text-[12px] font-medium tracking-wide uppercase bg-primary text-primary-foreground whitespace-nowrap leading-none">
                       {b.timeframe}
                     </span>
                     <span className="text-base sm:text-lg font-serif leading-tight text-white group-hover:text-primary/80 transition-colors text-left">
@@ -119,10 +119,10 @@ const BenefitsTimelineSection = () => {
               </AccordionItem>
             ))}
           </Accordion>
-          <div className="mt-5 text-[11px] text-white/60 max-w-sm">*Retours clients + littérature sur la Gymnema. Résultats individuels variables.</div>
+          <div className="mt-5 text-sm text-white/70 max-w-sm">*Retours clients + littérature sur la Gymnema. Résultats individuels variables.</div>
         </div>
       </div>
-    </section>
+    </SectionGradient>
   );
 };
 

@@ -1,5 +1,4 @@
 import OfferSection from "@/components/OfferSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Header from "@/components/Header";
@@ -69,12 +68,10 @@ const Index = () => {
       <main className="pb-20 overflow-x-hidden">
         {/* <HeroSection /> – conservé au cas où, mais hors rendu pour mettre l'offre en avant */}
         <OfferSection />
-        <TestimonialsSection id="solution" />
         <IngredientsSection />
         <BenefitsTimelineSection />
         <HowItWorksSection />
         <ScienceSection />
-        <TrustpilotSection />
         <FinalCTASection />
         <FAQSection />
       </main>

@@ -10,7 +10,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "Comment fonctionne le spray Kill Crave ?",
-          answer: "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. En 30–60 minutes, le sucré devient fade et l'envie retombe — sans 'forcer'. C'est une méthode 100% naturelle et sans effets secondaires."
+          answer: "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. Pendant 30–60 minutes, le sucré devient fade et l'envie retombe — sans 'forcer'. C'est une méthode 100% naturelle et sans effets secondaires."
         },
         {
           question: "Comment l'utiliser au quotidien ?",

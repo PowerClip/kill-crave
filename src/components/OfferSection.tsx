@@ -74,6 +74,15 @@ const OfferSection = () => {
     }
   }, [activeIndex, totalImages]);
 
+  // auto-advance gallery every 5 seconds
+  useEffect(() => {
+    if (totalImages <= 1) return;
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % totalImages);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [totalImages]);
+
   const activeImage = galleryImages[activeIndex] ?? galleryImages[0] ?? fallbackImages[0];
   const showControls = totalImages > 1;
 
@@ -302,7 +311,7 @@ const OfferSection = () => {
                 >
                   <ChevronRight className="h-8 w-8 drop-shadow-[0_1px_6px_rgba(255,255,255,0.6)]" />
                 </button>
-                <div className="absolute bottom-4 right-4 text-xs font-medium tracking-wide text-black drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
+                <div className="absolute bottom-4 right-4 text-sm font-medium tracking-wide text-black drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
                   {activeIndex + 1}/{totalImages}
                 </div>
               </>
@@ -313,12 +322,12 @@ const OfferSection = () => {
         {/* Details */}
         <div className="flex w-full flex-col lg:w-1/2">
           <div className="px-4 pb-8 sm:px-6 lg:px-0 lg:pb-0">
-            <div className="h-full rounded-[28px] border border-white/10 bg-black/55 p-6 sm:p-8 lg:p-10 text-white backdrop-blur-md shadow-hero">
+            <div className="h-full p-6 sm:p-8 lg:p-10 text-white">
               <div className="flex h-full flex-col gap-5 lg:gap-6">
                 <div className="space-y-2">
                 <H2 className="text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-[0.18em]">{productTitle}</H2>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm text-white/70">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-white/70">
                     <div className="flex items-center text-primary">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="h-4 w-4 text-primary fill-primary" />
@@ -336,7 +345,7 @@ const OfferSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-2 pt-2 text-[11px] uppercase tracking-[0.18em] text-white/60">
+                  <div className="flex items-center gap-2 pt-2 text-sm uppercase tracking-[0.18em] text-white/65">
                     <span>Fabriqué en France</span>
                     <span className="flex overflow-hidden rounded-sm border border-white/30">
                       <span className="h-2 w-2 bg-[#0055A4]" />
@@ -361,13 +370,14 @@ const OfferSection = () => {
                       : option.index === 2
                         ? "Meilleure offre"
                         : undefined;
+                    const paddingClasses = labelText ? "px-4 py-4" : "px-4 py-4";
 
                     return (
                       <button
                         key={option.variant.id}
                         type="button"
                         onClick={() => setSelectedVariantId(option.variant.id)}
-                        className={`group relative w-full sm:flex-1 sm:min-w-[200px] rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
+                        className={`group relative w-full sm:flex-1 sm:min-w-[220px] rounded-2xl border ${paddingClasses} text-left transition-all duration-300 ${
                           isSelected
                             ? "border-primary/70 ring-2 ring-primary/30 bg-white/5"
                             : "border-white/20 hover:border-primary/50 bg-white/5"
@@ -381,7 +391,7 @@ const OfferSection = () => {
                     >
                       {labelText && (
                         <div
-                          className={`absolute -top-2 right-2 sm:right-3 px-2 py-[3px] rounded-full text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
+                          className={`absolute -top-2 right-2 sm:right-3 px-2.5 py-[3px] rounded-full text-[12px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
                             isSelected
                               ? "bg-primary text-primary-foreground ring-1 ring-white/40 shadow-md"
                               : "bg-white/15 text-white ring-1 ring-white/20 group-hover:bg-white/25"
@@ -392,31 +402,35 @@ const OfferSection = () => {
                       )}
                       <div className="flex items-center gap-2 text-sm font-medium text-white">
                         <span className="truncate" title={option.variant.title}>{option.variant.title}</span>
+                      </div>
+                      {unitsText && (
+                        <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"} mt-1`}>
+                          {unitsText}
+                        </div>
+                      )}
+                      {dosesDaysText && (
+                        <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"}`}>
+                          {dosesDaysText}
+                        </div>
+                      )}
+                      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                          <div className="text-primary font-serif text-2xl font-light">
+                            {isLoading ? <span className="animate-pulse">...</span> : option.priceLabel}
+                          </div>
+                          <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"}`}>
+                            {option.dailyCostLabel ? `≈ ${option.dailyCostLabel} / jour` : "Tarif spécial"}
+                          </div>
+                        </div>
                         {option.savingsPct ? (
                           <span
-                            className={`inline-flex items-center rounded-full px-2 py-[2px] text-[10px] font-semibold tracking-wide ${
+                            className={`inline-flex items-center rounded-full px-3 py-[3px] text-[12px] font-semibold tracking-wide whitespace-nowrap ${
                               isSelected ? "bg-primary text-primary-foreground ring-1 ring-white/30 shadow-sm" : "bg-white/10 text-white group-hover:bg-white/20"
                             }`}
                           >
                             -{option.savingsPct}% SAVE
                           </span>
                         ) : null}
-                      </div>
-                      {unitsText && (
-                        <div className={`text-[11px] ${isSelected ? "text-white" : "text-white/70"} mt-1`}>
-                          {unitsText}
-                        </div>
-                      )}
-                      {dosesDaysText && (
-                        <div className={`text-[11px] ${isSelected ? "text-white" : "text-white/70"}`}>
-                          {dosesDaysText}
-                        </div>
-                      )}
-                      <div className="text-primary font-serif text-2xl font-light mt-1">
-                        {isLoading ? <span className="animate-pulse">...</span> : option.priceLabel}
-                      </div>
-                      <div className={`mt-1 text-xs ${isSelected ? "text-white" : "text-white/70"}`}>
-                        {option.dailyCostLabel ? `≈ ${option.dailyCostLabel} / jour` : "Tarif spécial"}
                       </div>
                     </button>
                   );
@@ -432,7 +446,7 @@ const OfferSection = () => {
                     <div>
                       ≈ {selectedDailyLabel} / jour
                       {selectedSavingsPct ? (
-                        <span className="ml-2 inline-flex items-center rounded-full bg-white/10 px-2 py-[1px] text-[10px] font-medium tracking-wide text-white">
+                        <span className="ml-2 inline-flex items-center rounded-full bg-white/10 px-2.5 py-[2px] text-[12px] font-medium tracking-wide text-white">
                           -{selectedSavingsPct}%
                         </span>
                       ) : null}
@@ -473,15 +487,15 @@ const OfferSection = () => {
               >
                 {buttonLabel}
               </Button>
-              <div className="text-xs sm:text-sm text-white/80">
+              <div className="text-sm text-white/75">
                 Livraison gratuite en 3 à 5 jours ouvrés en France
               </div>
-              <div className="text-[11px] sm:text-xs text-white/60">
+              <div className="text-sm text-white/70">
                 Expédié sous 24h • 30j satisfait ou remboursé
               </div>
               {/* Anchor target to land at the bottom of the purchase block */}
               <div id="offer-bottom" aria-hidden className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20" />
-              {isError && <div className="text-xs text-destructive">{error?.message}</div>}
+              {isError && <div className="text-sm text-destructive">{error?.message}</div>}
             </div>
 
               <Accordion type="single" collapsible className="w-full divide-y bg-transparent px-0">
@@ -524,7 +538,7 @@ const OfferSection = () => {
               </Accordion>
 
               <div className="pt-4">
-                <P className="text-[11px] sm:text-xs text-white/60">
+                <P className="text-sm text-white/70">
                   Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas un traitement médical. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
                 </P>
               </div>

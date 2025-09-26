@@ -1,5 +1,6 @@
 import { H2, H3, P } from '@/components/ui/typography';
 import { Badge } from '@/components/ui/badge';
+import SectionGradient from "@/components/SectionGradient";
 
 // Simple science explanation inspired by "Seed" clarity + "AIME" editorial calm
 // Copy kept courte / vulgarisée pour compréhension rapide
@@ -30,17 +31,16 @@ const scienceSteps = [
 // Removed spray vs capsules comparison per new brief
 export default function ScienceSection() {
   return (
-  <section id="science" className="relative py-28 bg-gradient-to-b from-[#120909] via-[#1F0B0B] to-[#090909] text-secondary-foreground overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.25] mix-blend-screen bg-[radial-gradient(circle_at_30%_20%,rgba(241,63,56,0.45),transparent_60%),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.12),transparent_68%)]" />
-      <div className="relative mx-auto max-w-5xl px-4 sm:px-8">
+  <SectionGradient id="science" className="py-28 text-white">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <Badge className="rounded-full px-4 py-1 bg-primary/30 text-secondary-foreground ring-1 ring-primary/50 backdrop-blur">Science Blackout</Badge>
-            <H2 className="mt-6 font-normal leading-tight text-secondary-foreground font-serif tracking-tight">Pourquoi Kill Crave coupe instantanément le sucre</H2>
+          <Badge className="rounded-full px-4 py-1 bg-white/10 text-white ring-1 ring-white/25 backdrop-blur">Science Blackout</Badge>
+            <H2 className="mt-6 font-normal leading-tight text-white font-serif tracking-tight">Pourquoi Kill Crave coupe instantanément le sucre</H2>
             <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-primary/70" />
             <P className="mt-6 text-white/80 text-base">Les acides gymnémiques occupent les récepteurs T1R2/T1R3. Plus de signal « sucré » envoyé au cerveau, l’envie s’effondre. Utilisé repetitivement, le seuil de tolérance au sucre baisse et les compulsions disparaissent.</P>
-            <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-primary/40 bg-secondary/30 backdrop-blur-xl p-4 sm:p-6">
+            <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-xl p-4 sm:p-6">
               <img
-                src="/images/howitworks/product splash.webp"
+                src="/images/howitworks/splash-product.png"
                 alt="Product splash – Kill Crave"
                 className="w-full h-auto object-cover rounded-2xl brightness-110"
                 loading="lazy"
@@ -52,20 +52,20 @@ export default function ScienceSection() {
           {scienceSteps.map((s, i) => (
             <div
               key={s.step}
-              className="relative overflow-hidden rounded-3xl border border-primary/35 bg-secondary/40 backdrop-blur-xl p-6 sm:p-8 flex flex-col gap-3 shadow-card"
+              className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl p-6 sm:p-8 flex flex-col gap-3 shadow-card"
             >
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary text-[11px] font-medium tracking-wide text-primary-foreground ring-1 ring-primary/40">
+                <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary text-[13px] font-medium tracking-wide text-primary-foreground ring-1 ring-primary/40">
                   {i + 1}
                 </span>
-                <H3 className="text-lg sm:text-xl font-normal leading-snug text-secondary-foreground font-serif">{s.title}</H3>
+                <H3 className="text-lg sm:text-xl font-normal leading-snug text-white font-serif">{s.title}</H3>
               </div>
               <P className="text-sm text-white/75 leading-relaxed">{s.text}</P>
             </div>
           ))}
         </div>
-        <div className="mt-8 text-[11px] text-white/65 max-w-md">* Basé sur littérature goût & retours utilisateurs. Effets variables. Pas un dispositif médical.</div>
+        <div className="mt-8 text-sm text-white/70 max-w-md">* Basé sur littérature goût & retours utilisateurs. Effets variables. Pas un dispositif médical.</div>
       </div>
-    </section>
+    </SectionGradient>
   );
 }

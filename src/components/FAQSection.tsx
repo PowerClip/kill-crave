@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { H2, P } from "@/components/ui/typography";
+import SectionGradient from "@/components/SectionGradient";
 
 const FAQSection = () => {
   const faqs = [
@@ -51,23 +52,23 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-background to-card">
+    <SectionGradient id="faq" className="py-20 text-white">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <H2 className="mb-6 font-normal font-serif">Des questions ?</H2>
-            <P className="text-xl text-muted-foreground">
+            <H2 className="mb-6 font-normal font-serif text-white">Des questions ?</H2>
+            <P className="text-xl text-white/70">
               Tout ce que vous devez savoir sur votre spray Kill Crave Blackout Sugar
             </P>
           </div>
 
-          <Accordion type="single" collapsible className="bg-background rounded-2xl border shadow-sm divide-y">
+          <Accordion type="single" collapsible className="bg-white/5 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={faq.question} className="px-4 sm:px-6">
-                <AccordionTrigger className="font-serif text-base sm:text-lg text-primary py-5">
+                <AccordionTrigger className="font-serif text-base sm:text-lg text-white py-5">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm sm:text-base text-muted-foreground">
+                <AccordionContent className="text-sm sm:text-base text-white/75">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -75,17 +76,17 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-secondary text-secondary-foreground rounded-xl">
-            <p className="text-primary mb-2">
+          <div className="text-center mt-12 p-6 bg-white/5 text-white rounded-xl border border-white/15 backdrop-blur">
+            <p className="text-primary mb-2 uppercase tracking-[0.18em]">
               Vous avez encore des questions ?
             </p>
-            <p className="text-secondary-foreground/80">
-              Envoyez-nous un email à <span className="font-medium text-primary-foreground">support@killcrave.com</span> — réponse sous 2&nbsp;heures ✨
+            <p className="text-white/75">
+              Envoyez-nous un email à <span className="font-medium text-primary">support@killcrave.com</span> — réponse sous 2&nbsp;heures ✨
             </p>
           </div>
         </div>
       </div>
-    </section>
+    </SectionGradient>
   );
 };
 
