@@ -1,13 +1,12 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { H2, P } from "@/components/ui/typography";
-import SectionGradient from "@/components/SectionGradient";
 
 const FAQSection = () => {
   const faqs = [
     {
       question: "Comment fonctionne le spray ?",
       answer:
-        "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. En 30–60 minutes, le sucré devient fade et l’envie retombe — sans ‘forcer’."
+        "La plante Gymnema neutralise temporairement les récepteurs du goût sucré sur la langue. Pendant 30–60 minutes, le sucré devient fade et l’envie retombe — sans ‘forcer’."
     },
     {
       question: "Comment l’utiliser au quotidien ?",
@@ -52,8 +51,12 @@ const FAQSection = () => {
   ];
 
   return (
-    <SectionGradient id="faq" className="py-20 text-white">
-      <div className="container mx-auto px-6">
+    <section id="faq" className="relative py-20 overflow-hidden text-white">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(241,63,56,0.32),transparent_58%),radial-gradient(circle_at_82%_88%,rgba(241,63,56,0.3),transparent_62%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/55 to-black/75" />
+      </div>
+      <div className="relative container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <H2 className="mb-6 font-normal font-serif text-white">Des questions ?</H2>
@@ -62,7 +65,7 @@ const FAQSection = () => {
             </P>
           </div>
 
-          <Accordion type="single" collapsible className="bg-white/12 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
+          <Accordion type="single" collapsible className="bg-white/5 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={faq.question} className="px-4 sm:px-6">
                 <AccordionTrigger className="font-serif text-base sm:text-lg text-white py-5">
@@ -76,7 +79,7 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-white/12 text-white rounded-xl border border-white/15 backdrop-blur">
+          <div className="text-center mt-12 p-6 bg-white/5 text-white rounded-xl border border-white/15 backdrop-blur">
             <p className="text-primary mb-2 uppercase tracking-[0.18em]">
               Vous avez encore des questions ?
             </p>
@@ -86,7 +89,7 @@ const FAQSection = () => {
           </div>
         </div>
       </div>
-    </SectionGradient>
+    </section>
   );
 };
 
