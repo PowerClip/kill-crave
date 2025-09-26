@@ -2,30 +2,30 @@ import { useEffect, useState, ReactNode, HTMLAttributes } from "react";
 
 const gradients = [
   {
-    rgba: "rgba(241, 63, 56, 0.34)",
+    rgba: "rgba(241, 63, 56, 0.09)",
     position: "15% 10%",
     size: "1200px 900px",
   },
   {
-    rgba: "rgba(241, 63, 56, 0.26)",
+    rgba: "rgba(240, 60, 54, 0.08)",
     position: "80% 85%",
-    size: "1100px 850px",
+    size: "1200px 880px",
   },
   {
-    rgba: "rgba(241, 63, 56, 0.24)",
-    position: "30% 90%",
-    size: "1200px 900px",
+    rgba: "rgba(245, 76, 68, 0.07)",
+    position: "32% 88%",
+    size: "1300px 950px",
   },
   {
-    rgba: "rgba(241, 63, 56, 0.28)",
-    position: "70% 15%",
-    size: "1200px 900px",
+    rgba: "rgba(229, 54, 48, 0.085)",
+    position: "68% 18%",
+    size: "1250px 920px",
   },
 ];
 
 const darkLayers = [
-  "linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.78) 100%)",
-  "linear-gradient(160deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.75) 80%)",
+  "linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.16) 100%)",
+  "linear-gradient(160deg, rgba(0, 0, 0, 0.025) 0%, rgba(0, 0, 0, 0.14) 80%)",
 ];
 
 interface SectionGradientProps extends HTMLAttributes<HTMLElement> {
@@ -47,7 +47,7 @@ const SectionGradient = ({ children, className = "", ...rest }: SectionGradientP
   const { gradient, darkLayer } = gradientStyles;
 
   const backgroundImage = [
-    `${gradient ? `radial-gradient(${gradient.size} at ${gradient.position}, ${gradient.rgba}, transparent 65%)` : ""}`,
+    `${gradient ? `radial-gradient(${gradient.size} at ${gradient.position}, ${gradient.rgba}, transparent 70%)` : ""}`,
     darkLayer,
   ].filter(Boolean).join(", ");
 
@@ -59,12 +59,12 @@ const SectionGradient = ({ children, className = "", ...rest }: SectionGradientP
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.8) 90%, rgba(0,0,0,0) 100%)",
-        maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.8) 90%, rgba(0,0,0,0) 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
+        maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
       }}
       {...rest}
     >
-      <div className="absolute inset-0 backdrop-blur-[1.5px] bg-black/4 pointer-events-none" />
+      <div className="absolute inset-0 backdrop-blur-[0.3px] bg-black/5 pointer-events-none" />
       <div className="relative z-[1]">
         {children}
       </div>

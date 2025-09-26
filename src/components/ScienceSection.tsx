@@ -38,7 +38,7 @@ export default function ScienceSection() {
             <H2 className="mt-6 font-normal leading-tight text-white font-serif tracking-tight">Pourquoi Kill Crave coupe instantanément le sucre</H2>
             <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-primary/70" />
             <P className="mt-6 text-white/80 text-base">Les acides gymnémiques occupent les récepteurs T1R2/T1R3. Plus de signal « sucré » envoyé au cerveau, l’envie s’effondre. Utilisé repetitivement, le seuil de tolérance au sucre baisse et les compulsions disparaissent.</P>
-            <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-xl p-4 sm:p-6">
+            <div className="mt-10 relative mx-auto max-w-xl rounded-3xl overflow-hidden border border-white/15 bg-white/12 backdrop-blur-lg p-4 sm:p-6">
               <img
                 src="/images/howitworks/splash-product.png"
                 alt="Product splash – Kill Crave"
@@ -52,7 +52,7 @@ export default function ScienceSection() {
           {scienceSteps.map((s, i) => (
             <div
               key={s.step}
-              className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl p-6 sm:p-8 flex flex-col gap-3 shadow-card"
+              className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/12 backdrop-blur-lg p-6 sm:p-8 flex flex-col gap-3 shadow-card"
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary text-[13px] font-medium tracking-wide text-primary-foreground ring-1 ring-primary/40">

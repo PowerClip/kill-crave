@@ -62,7 +62,7 @@ const FAQSection = () => {
             </P>
           </div>
 
-          <Accordion type="single" collapsible className="bg-white/5 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
+          <Accordion type="single" collapsible className="bg-white/12 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={faq.question} className="px-4 sm:px-6">
                 <AccordionTrigger className="font-serif text-base sm:text-lg text-white py-5">
@@ -76,7 +76,7 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-white/5 text-white rounded-xl border border-white/15 backdrop-blur">
+          <div className="text-center mt-12 p-6 bg-white/12 text-white rounded-xl border border-white/15 backdrop-blur">
             <p className="text-primary mb-2 uppercase tracking-[0.18em]">
               Vous avez encore des questions ?
             </p>

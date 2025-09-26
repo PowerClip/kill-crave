@@ -9,7 +9,7 @@ const ProofSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
           {/* Visual Demo */}
           <div className="space-y-12">
-            <div className="bg-white/5 rounded-3xl p-8 sm:p-12 shadow-card border border-white/15 backdrop-blur">
+            <div className="bg-white/12 rounded-3xl p-8 sm:p-12 shadow-card border border-white/15 backdrop-blur">
               <H3 className="text-3xl sm:text-4xl font-normal mb-10 text-center tracking-wide text-white">Le Moment Magique</H3>
               
               <div className="flex items-center justify-center space-x-12 mb-10">
@@ -52,7 +52,7 @@ const ProofSection = () => {
               </P>
             </div>
 
-            <div className="bg-white/5 rounded-3xl p-8 shadow-card border border-white/15 backdrop-blur">
+            <div className="bg-white/12 rounded-3xl p-8 shadow-card border border-white/15 backdrop-blur">
               <div className="flex items-start space-x-6">
                 <div className="w-16 h-16 bg-primary/70 rounded-full flex items-center justify-center flex-shrink-0 text-2xl shadow-soft animate-pulse">
                   📊
@@ -66,7 +66,7 @@ const ProofSection = () => {
               </div>
             </div>
 
-            <div className="bg-white/5 rounded-3xl p-8 shadow-card border border-white/15 backdrop-blur">
+            <div className="bg-white/12 rounded-3xl p-8 shadow-card border border-white/15 backdrop-blur">
               <div className="flex items-start space-x-6">
                 <div className="w-16 h-16 bg-primary/70 rounded-full flex items-center justify-center flex-shrink-0 text-2xl shadow-soft animate-pulse">
                   🌿

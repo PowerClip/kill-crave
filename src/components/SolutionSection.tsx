@@ -20,7 +20,7 @@ Kill Crave neutralise les récepteurs du goût sucré. Sans signal de récompens
 
         {/* Illustration */}
         <div className="mb-10 sm:mb-14 max-w-md mx-auto">
-          <div className="relative aspect-square rounded-3xl overflow-hidden shadow-xl border border-white/15 ring-1 ring-white/10 bg-black/60">
+          <div className="relative aspect-square rounded-3xl overflow-hidden shadow-xl border border-white/15 ring-1 ring-white/10 bg-white/8">
             <img
               src="/images/solution.webp"
               alt="Illustration du spray Kill Crave en situation"
@@ -31,7 +31,7 @@ Kill Crave neutralise les récepteurs du goût sucré. Sans signal de récompens
 
         {/* Two cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          <Card className="p-6 sm:p-8 space-y-3 border border-white/10 bg-white/5 backdrop-blur transition-all hover:shadow-card hover:border-white/30 hover:-translate-y-0.5">
+          <Card className="p-6 sm:p-8 space-y-3 border border-white/10 bg-white/12 backdrop-blur-lg transition-all hover:shadow-card hover:border-white/30 hover:-translate-y-0.5">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-full bg-primary/70 flex items-center justify-center text-[1.6rem]">🌿</div>
               <H3 className="text-xl sm:text-2xl font-normal text-white">Pulvérisez — le sucre perd le goût</H3>
@@ -41,7 +41,7 @@ Kill Crave neutralise les récepteurs du goût sucré. Sans signal de récompens
             </P>
           </Card>
 
-          <Card className="p-6 sm:p-8 space-y-3 border border-white/10 bg-white/5 backdrop-blur transition-all hover:shadow-card hover:border-white/30 hover:-translate-y-0.5">
+          <Card className="p-6 sm:p-8 space-y-3 border border-white/10 bg-white/12 backdrop-blur-lg transition-all hover:shadow-card hover:border-white/30 hover:-translate-y-0.5">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-full bg-primary/70 flex items-center justify-center text-[1.6rem]">📆</div>
               <H3 className="text-xl sm:text-2xl font-normal text-white">Un protocole de 30 jours, un seuil sucré reprogrammé</H3>

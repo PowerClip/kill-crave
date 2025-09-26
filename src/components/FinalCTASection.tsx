@@ -7,7 +7,7 @@ const FinalCTASection = () => {
   return (
     <SectionGradient id="checkout" className="py-24 sm:py-32 text-center text-white">
       <div className="container mx-auto px-4 sm:px-8">
-        <div className="mx-auto max-w-3xl rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-hero p-8 sm:p-12 space-y-6">
+        <div className="mx-auto max-w-3xl rounded-3xl border border-white/15 bg-white/12 backdrop-blur-lg shadow-hero p-8 sm:p-12 space-y-6">
           <div className="space-y-3">
             <H2 className="leading-tight font-normal font-serif text-white">Kill Crave • Pack 30 Jours</H2>
             <P className="text-white/75">

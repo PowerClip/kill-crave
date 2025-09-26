@@ -53,10 +53,10 @@ const Header = () => {
         </nav>
         <Link
           to="/"
-          className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center text-primary"
+          className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center"
           aria-label="Kill Crave"
         >
-          <Logo className="text-2xl sm:text-3xl md:text-4xl" />
+          <Logo className="h-8 sm:h-10" />
         </Link>
         <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex justify-self-end">
           <a href="#offer" onClick={() => trackCTA('nav_buy', 'Commander', '#offer', 'nav')}>

@@ -115,7 +115,7 @@ const HowItWorksSection = () => {
         </div>
 
         {/* Static science graphic */}
-        <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl p-6 sm:p-10 shadow-hero overflow-hidden">
+        <div className="relative rounded-3xl border border-white/15 bg-white/12 backdrop-blur-lg p-6 sm:p-10 shadow-hero overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div className="space-y-6">
               <div className="relative rounded-2xl overflow-hidden">
