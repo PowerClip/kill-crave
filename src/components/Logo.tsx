@@ -7,7 +7,7 @@ const Logo = ({ className = "" }: LogoProps) => {
     <img
       src="/images/logo.png"
       alt="Kill Crave"
-      className={`h-8 w-auto object-contain ${className}`}
+      className={`w-auto object-contain ${className}`}
     />
   );
 };

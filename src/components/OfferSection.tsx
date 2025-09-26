@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
@@ -275,8 +274,8 @@ const OfferSection = () => {
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-16">
         {/* Gallery */}
-        <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] lg:w-1/2 lg:pr-10 lg:self-stretch">
-          <div className="relative overflow-hidden rounded-3xl shadow-sm lg:sticky lg:top-24 lg:min-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden">
+        <div className="relative w-full lg:w-1/2 lg:pr-10 lg:self-stretch">
+          <div className="relative overflow-hidden rounded-3xl shadow-sm aspect-square sm:aspect-[4/3] lg:sticky lg:top-24 lg:min-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-6rem)] lg:aspect-auto lg:overflow-hidden">
             <div
               className="flex transition-transform duration-300 ease-out touch-pan-y"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -403,16 +402,6 @@ const OfferSection = () => {
                       <div className="flex items-center gap-2 text-sm font-medium text-white">
                         <span className="truncate" title={option.variant.title}>{option.variant.title}</span>
                       </div>
-                      {unitsText && (
-                        <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"} mt-1`}>
-                          {unitsText}
-                        </div>
-                      )}
-                      {dosesDaysText && (
-                        <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"}`}>
-                          {dosesDaysText}
-                        </div>
-                      )}
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                         <div>
                           <div className="text-primary font-serif text-2xl font-light">
@@ -497,52 +486,7 @@ const OfferSection = () => {
               <div id="offer-bottom" aria-hidden className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-20" />
               {isError && <div className="text-sm text-destructive">{error?.message}</div>}
             </div>
-
-              <Accordion type="single" collapsible className="w-full divide-y bg-transparent px-0">
-                <AccordionItem value="contenu" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-white">Ce que vous recevez</AccordionTrigger>
-                  <AccordionContent className="text-sm text-white/70">
-                    Spray Kill Crave Blackout Sugar (90 doses pour 30 jours), protocole "Cravings blackout" imprimé, idées de collations protéinées pour maintenir le sevrage.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="utilisation" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-white">Comment l’utiliser</AccordionTrigger>
-                  <AccordionContent className="text-sm text-white/70">
-                    1 à 2 pulvérisations sur la langue avant un dessert, un café sucré ou une fringale annoncée. Attendez 10 secondes, avalez votre salive, le sucre n’a plus de goût pendant 30 à 60 minutes.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="ingredients" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-white">Ingrédients</AccordionTrigger>
-                  <AccordionContent className="text-sm text-white/70">
-                    <ul className="list-inside list-disc space-y-2 pl-1">
-                      <li>
-                        <span className="font-medium text-white">Gymnema sylvestre titrée</span> — neutralise temporairement les récepteurs du goût sucré.
-                      </li>
-                      <li>
-                        <span className="font-medium text-white">Menthe poivrée cryo</span> — sensation fraîche et propre, sans arrière-goût amer.
-                      </li>
-                      <li>
-                        <span className="font-medium text-white">Glycérine végétale bio</span> — base douce et stabilisante pour la formule.
-                      </li>
-                    </ul>
-                    <div className="mt-3">Sans sucre ajouté, sans colorants, sans alcool.</div>
-                    <div className="mt-2">Fabriqué et conditionné en laboratoire certifié en France.</div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="shipping" className="px-0">
-                  <AccordionTrigger className="py-4 font-serif text-white">Livraison & retours</AccordionTrigger>
-                  <AccordionContent className="text-sm text-white/70">
-                    Livraison offerte en France métropolitaine, expédition sous 24h ouvrées. Retour accepté sous 30 jours (flacon non ouvert).
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-
-              <div className="pt-4">
-                <P className="text-sm text-white/70">
-                  Utilisation: avant dessert, café sucré, grignotage potentiel. Effet 30–60 min. Ne remplace pas un traitement médical. Déconseillé aux femmes enceintes/allaitantes et personnes sous traitement sans avis professionnel.
-                </P>
               </div>
-            </div>
             </div>
           </div>
         </div>

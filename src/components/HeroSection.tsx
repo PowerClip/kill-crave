@@ -37,7 +37,7 @@ const HeroSection = () => {
               {/* Mobile: place the visual directly under the "frustration." line */}
               <div className="lg:hidden pt-4">
                 <div className="relative max-w-md mx-auto">
-                  <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-black/60 shadow-hero">
+                  <div className="aspect-square sm:aspect-[4/3] lg:aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-black/60 shadow-hero">
                   <img
                   src="/images/hero.webp"
                   alt="Spray anti-envie de sucre Kill Crave"
@@ -95,7 +95,7 @@ const HeroSection = () => {
           {/* Image / Visual */}
           <div className="hidden lg:block lg:col-span-6">
             <div className="relative max-w-xl mx-auto">
-              <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-black/60 shadow-hero">
+              <div className="aspect-square sm:aspect-[4/3] lg:aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-black/60 shadow-hero">
                 <img
                   src="/images/hero.webp"
                   alt="Spray anti-envie de sucre Kill Crave"

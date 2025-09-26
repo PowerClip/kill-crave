@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import TrustpilotSection from "@/components/TrustpilotSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
-import ScienceSection from "@/components/ScienceSection";
 import BenefitsTimelineSection from "@/components/BenefitsTimelineSection";
 import IngredientsSection from "@/components/IngredientsSection";
 import { useEffect } from "react";
@@ -69,9 +68,8 @@ const Index = () => {
         {/* <HeroSection /> – conservé au cas où, mais hors rendu pour mettre l'offre en avant */}
         <OfferSection />
         <IngredientsSection />
-        <BenefitsTimelineSection />
         <HowItWorksSection />
-        <ScienceSection />
+        <BenefitsTimelineSection />
         <FinalCTASection />
         <FAQSection />
       </main>

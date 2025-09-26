@@ -8,7 +8,7 @@ const PainSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Visual placeholder */}
           <div className="order-first lg:order-none">
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-card border bg-card">
+            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[3/4] rounded-3xl overflow-hidden shadow-card border bg-card">
               <img src="/images/problem.webp" alt="Scène de l'après-midi avec café et biscuits" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </div>
