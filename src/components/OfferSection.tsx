@@ -55,17 +55,30 @@ const OfferSection = () => {
 
   // Use Shopify images if present; fall back to local static assets for continuity
   const fallbackImages = [
-    "/images/product/1.webp",
-    "/images/product/2.webp",
-    "/images/product/3.webp",
-    "/images/product/4.webp",
-    "/images/product/5.webp",
+    "/images/product/Pic1.png",
+    "/images/product/Pic2.png",
+    "/images/product/Pic3.png",
+    "/images/product/Pic4.png",
   ];
-  const productImages = (product?.images.nodes.length ? product.images.nodes.map(i => i.url) : fallbackImages).slice(0, 5);
+  const productImages = (product?.images.nodes.length ? product.images.nodes.map(i => i.url) : fallbackImages).slice(0, 4);
   const galleryImages = productImages.length ? productImages : fallbackImages;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const totalImages = galleryImages.length;
+
+  // Handle image load errors by falling back to local images
+  const handleImageError = (failedSrc: string, index: number) => {
+    setFailedImages(prev => new Set(prev).add(failedSrc));
+  };
+
+  // Get the effective image URL with fallback logic
+  const getEffectiveImageUrl = (originalUrl: string, index: number) => {
+    if (failedImages.has(originalUrl) && index < fallbackImages.length) {
+      return fallbackImages[index];
+    }
+    return originalUrl;
+  };
 
   useEffect(() => {
     if (activeIndex >= totalImages) {
@@ -295,10 +308,11 @@ const OfferSection = () => {
             >
               {galleryImages.map((image, index) => (
                 <img
-                  key={index}
-                  src={image}
+                  key={`${image}-${index}`}
+                  src={getEffectiveImageUrl(image, index)}
                   alt={`Spray Kill Crave - Image ${index + 1}`}
                   className="w-full h-auto lg:h-full object-cover flex-shrink-0"
+                  onError={() => handleImageError(image, index)}
                 />
               ))}
             </div>

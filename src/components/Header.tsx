@@ -27,7 +27,7 @@ const Header = () => {
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 h-28 sm:h-20 grid grid-cols-3 items-center">
+      <div className="container mx-auto px-4 sm:px-6 h-32 sm:h-24 grid grid-cols-3 items-center">
         <nav className="hidden sm:flex items-center gap-6 text-sm uppercase tracking-[0.14em] text-white/70 justify-self-start">
           <a
             href="#ingredients"
@@ -56,7 +56,7 @@ const Header = () => {
           className="col-span-3 sm:col-span-1 sm:col-start-2 justify-self-center"
           aria-label="Kill Crave"
         >
-          <Logo className="h-24 sm:h-16" />
+          <Logo className="h-28 sm:h-20" />
         </Link>
         <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex justify-self-end text-xs sm:text-sm px-3 sm:px-4">
           <a href="#offer" onClick={() => trackCTA('nav_buy', 'Commander', '#offer', 'nav')}>
