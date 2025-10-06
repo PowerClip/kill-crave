@@ -51,27 +51,27 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-20 overflow-hidden text-white">
+    <section id="faq" className="relative py-20 overflow-hidden text-black">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(241,63,56,0.32),transparent_58%),radial-gradient(circle_at_82%_88%,rgba(241,63,56,0.3),transparent_62%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/55 to-black/75" />
+        <div className="absolute inset-0 bg-[#f1eae2]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/8 to-transparent" />
       </div>
       <div className="relative container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <H2 className="mb-6 font-normal font-serif text-white">Des questions ?</H2>
-            <P className="text-xl text-white/70">
+            <H2 className="mb-6 font-normal font-serif text-black">Des questions ?</H2>
+            <P className="text-xl text-black/70">
               Tout ce que vous devez savoir sur votre spray Kill Crave Blackout Sugar
             </P>
           </div>
 
-          <Accordion type="single" collapsible className="bg-white/5 rounded-2xl border border-white/15 shadow-sm divide-y divide-white/10 backdrop-blur">
+          <Accordion type="single" collapsible className="bg-white/80 rounded-2xl border border-black/10 shadow-sm divide-y divide-black/10 backdrop-blur">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={faq.question} className="px-4 sm:px-6">
-                <AccordionTrigger className="font-serif text-base sm:text-lg text-white py-5">
+                <AccordionTrigger className="font-serif text-base sm:text-lg text-black py-5">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm sm:text-base text-white/75">
+                <AccordionContent className="text-sm sm:text-base text-black/75">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -79,11 +79,11 @@ const FAQSection = () => {
           </Accordion>
 
           {/* Contact */}
-          <div className="text-center mt-12 p-6 bg-white/5 text-white rounded-xl border border-white/15 backdrop-blur">
+          <div className="text-center mt-12 p-6 bg-white/80 text-black rounded-xl border border-black/10 backdrop-blur">
             <p className="text-primary mb-2 uppercase tracking-[0.18em]">
               Vous avez encore des questions ?
             </p>
-            <p className="text-white/75">
+            <p className="text-black/75">
               Envoyez-nous un email à <span className="font-medium text-primary">support@killcrave.com</span> — réponse sous 2&nbsp;heures ✨
             </p>
           </div>

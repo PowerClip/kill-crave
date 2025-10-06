@@ -67,7 +67,7 @@ const UsageTimeline = () => {
   const progress = steps.length > 1 ? ((revealed - 1) / (steps.length - 1)) * 100 : 0;
   return (
     <div ref={ref} className="relative">
-      <H3 className="text-xl font-normal mb-6 font-serif text-white">Comment vous l'utilisez</H3>
+      <H3 className="text-xl font-normal mb-6 font-serif text-black">Comment vous l'utilisez</H3>
       <div className="relative">
         <div className="absolute left-4 top-1 bottom-1 w-px bg-tertiary/15" />
         <div
@@ -85,12 +85,12 @@ const UsageTimeline = () => {
                 }`}
                 style={{ transitionDelay: `${idx * 110}ms` }}
               >
-                <div className={`absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-tertiary/30 bg-white shadow-sm ring-1 ring-white/40 transition-all duration-500 ${active ? "bg-tertiary/90 text-white" : "text-tertiary/70"}`}>
+                <div className={`absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full border border-tertiary/30 bg-white shadow-sm ring-1 ring-black/10 transition-all duration-500 ${active ? "bg-tertiary/80 text-black" : "text-tertiary/70"}`}>
                   <StepIcon name={s.icon} />
                 </div>
                 <div className="space-y-0.5">
                   <div className="text-[13px] font-medium tracking-wide text-secondary-foreground">{s.title}</div>
-                  <div className="text-sm text-white/75 leading-relaxed max-w-xs">{s.text}</div>
+                  <div className="text-sm text-black/75 leading-relaxed max-w-xs">{s.text}</div>
                 </div>
               </li>
             );
@@ -105,17 +105,17 @@ const UsageTimeline = () => {
 
 const HowItWorksSection = () => {
   return (
-    <SectionGradient id="how-it-works" className="py-28 text-white">
+    <SectionGradient id="how-it-works" className="py-28 text-black">
       <div className="container mx-auto max-w-6xl px-4 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <Badge className="rounded-full px-4 py-1 bg-white/10 text-white ring-1 ring-white/25 backdrop-blur-sm tracking-[0.24em]">Kill Switch</Badge>
-          <H2 className="mt-6 font-normal leading-tight font-serif text-white">Blackout Sugar en 3 gestes chrono</H2>
+          <Badge className="rounded-full px-4 py-1 bg-black/5 text-black ring-1 ring-black/10 backdrop-blur-sm tracking-[0.24em]">Kill Switch</Badge>
+          <H2 className="mt-6 font-normal leading-tight font-serif text-black">Blackout Sugar en 3 gestes chrono</H2>
           <div className="mx-auto mt-5 h-[2px] w-20 rounded-full bg-tertiary/60" />
-          <P className="mt-6 text-white/80 text-base">Deux sprays sur la langue et le goût sucré décroche. Plus de récompense pour le cerveau, l’envie tombe et vous gardez vos objectifs sous contrôle.</P>
+          <P className="mt-6 text-black/80 text-base">Deux sprays sur la langue et le goût sucré décroche. Plus de récompense pour le cerveau, l’envie tombe et vous gardez vos objectifs sous contrôle.</P>
         </div>
 
         {/* Static science graphic */}
-        <div className="relative rounded-3xl border border-white/15 bg-white/12 backdrop-blur-lg p-6 sm:p-10 shadow-hero overflow-hidden">
+        <div className="relative rounded-3xl border border-black/10 bg-white/60 backdrop-blur-lg p-6 sm:p-10 shadow-hero overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div className="space-y-6">
               <div className="relative rounded-2xl overflow-hidden">
@@ -131,7 +131,7 @@ const HowItWorksSection = () => {
             </div>
             <div className="space-y-10">
               <UsageTimeline />
-              <div className="text-sm text-white/70 space-y-1 pt-2 border-t border-white/20">
+              <div className="text-sm text-black/70 space-y-1 pt-2 border-t border-black/10">
                 <div>Action locale, sans sucre ajouté, sans excitant.</div>
                 <div>* Ne remplace pas une alimentation équilibrée.</div>
               </div>
@@ -145,7 +145,7 @@ const HowItWorksSection = () => {
                 <span className="hidden sm:block">Je déclenche le blackout</span>
               </a>
             </Button>
-             <div className="mt-4 text-sm text-white/70">Basé sur la littérature Gymnema. Effet perçu variable selon les personnes.</div>
+             <div className="mt-4 text-sm text-black/70">Basé sur la littérature Gymnema. Effet perçu variable selon les personnes.</div>
   </div>
       </div>
     </SectionGradient>

@@ -345,32 +345,32 @@ const OfferSection = () => {
         {/* Details */}
         <div className="flex w-full flex-col lg:w-1/2">
           <div className="px-4 pb-8 sm:px-6 lg:px-0 lg:pb-0">
-            <div className="h-full p-6 sm:p-8 lg:p-10 text-white">
+            <div className="h-full p-6 sm:p-8 lg:p-10 text-black">
               <div className="flex h-full flex-col gap-5 lg:gap-6">
                 <div className="space-y-2">
-                <H2 className="text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-[0.18em]">{productTitle}</H2>
+                <H2 className="text-black text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-[0.18em]">{productTitle}</H2>
                 <div className="space-y-3">
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-white/70">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-black/70">
                     <div className="flex items-center text-primary">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="h-4 w-4 text-primary fill-primary" />
                       ))}
                     </div>
-                    <a href="#reviews" className="underline underline-offset-2 text-white/80 hover:text-white">
+                    <a href="#reviews" className="underline underline-offset-2 text-black/80 hover:text-black">
                       109 avis
                     </a>
                   </div>
                   <ul className="space-y-2 text-sm sm:text-base">
                     {["Goût sucré neutralisé en 30 secondes", "Cravings stoppés avant qu'ils ne dérapent", "Formule Blackout Sugar fabriquée en France", "0 sucre ajouté, 0 alcool — uniquement des plantes actives"].map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-white/90">
+                      <li key={b} className="flex items-start gap-2 text-black/90">
                         <Check className="h-4 w-4 mt-1 text-primary" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-2 pt-2 text-sm uppercase tracking-[0.18em] text-white/65">
+                  <div className="flex items-center gap-2 pt-2 text-sm uppercase tracking-[0.18em] text-black/65">
                     <span>Fabriqué en France</span>
-                    <span className="flex overflow-hidden rounded-sm border border-white/30">
+                    <span className="flex overflow-hidden rounded-sm border border-black/20">
                       <span className="h-2 w-2 bg-[#0055A4]" />
                       <span className="h-2 w-2 bg-white" />
                       <span className="h-2 w-2 bg-[#EF4135]" />
@@ -402,11 +402,11 @@ const OfferSection = () => {
                         onClick={() => setSelectedVariantId(option.variant.id)}
                         className={`group relative w-full sm:flex-1 sm:min-w-[220px] rounded-2xl border ${paddingClasses} text-left transition-all duration-300 ${
                           isSelected
-                            ? "border-primary/70 ring-2 ring-primary/30 bg-white/5"
-                            : "border-white/20 hover:border-primary/50 bg-white/5"
+                            ? "border-primary/60 ring-2 ring-primary/20 bg-[#fbe5e3]"
+                            : "border-black/10 hover:border-primary/40 bg-white/90"
                         } ${
                           isRecommended
-                            ? "bg-gradient-to-br from-white/15 via-white/5 to-transparent"
+                            ? "bg-gradient-to-br from-[rgba(251,229,227,0.5)] via-white to-transparent"
                             : ""
                       }`}
                       disabled={isLoading}
@@ -416,14 +416,14 @@ const OfferSection = () => {
                         <div
                           className={`absolute -top-2 right-2 sm:right-3 px-2.5 py-[3px] rounded-full text-[12px] font-medium tracking-wide shadow-sm backdrop-blur-sm transition-all ${
                             isSelected
-                              ? "bg-primary text-primary-foreground ring-1 ring-white/40 shadow-md"
-                              : "bg-white/15 text-white ring-1 ring-white/20 group-hover:bg-white/25"
+                              ? "bg-primary text-primary-foreground ring-1 ring-black/20 shadow-md"
+                              : "bg-black/10 text-black ring-1 ring-black/10 group-hover:bg-black/15"
                           }`}
                         >
                           {labelText}
                         </div>
                       )}
-                      <div className="flex items-center gap-2 text-sm font-medium text-white">
+                      <div className="flex items-center gap-2 text-sm font-medium text-black">
                         <span className="truncate" title={option.variant.title}>{option.variant.title}</span>
                       </div>
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
@@ -431,14 +431,14 @@ const OfferSection = () => {
                           <div className="text-primary font-serif text-2xl font-light">
                             {isLoading ? <span className="animate-pulse">...</span> : option.priceLabel}
                           </div>
-                          <div className={`text-sm ${isSelected ? "text-white" : "text-white/70"}`}>
+                          <div className={`text-sm ${isSelected ? "text-black" : "text-black/70"}`}>
                             {option.dailyCostLabel ? `≈ ${option.dailyCostLabel} / jour` : "Tarif spécial"}
                           </div>
                         </div>
                         {option.savingsPct ? (
                           <span
                             className={`inline-flex items-center rounded-full px-3 py-[3px] text-[12px] font-semibold tracking-wide whitespace-nowrap ${
-                              isSelected ? "bg-primary text-primary-foreground ring-1 ring-white/30 shadow-sm" : "bg-white/10 text-white group-hover:bg-white/20"
+                              isSelected ? "bg-primary text-primary-foreground ring-1 ring-black/20 shadow-sm" : "bg-black/5 text-black group-hover:bg-black/10"
                             }`}
                           >
                             -{option.savingsPct}% SAVE
@@ -451,7 +451,7 @@ const OfferSection = () => {
               </div>
             </div>
 
-            <div className="text-sm text-white/80">
+            <div className="text-sm text-black/80">
               {selectedTotalDoses && selectedTotalDays ? (
                 <>
                   <div>{selectedTotalDoses} doses — {selectedTotalDays} jours (3 utilisations/jour)</div>
@@ -459,7 +459,7 @@ const OfferSection = () => {
                     <div>
                       ≈ {selectedDailyLabel} / jour
                       {selectedSavingsPct ? (
-                        <span className="ml-2 inline-flex items-center rounded-full bg-white/10 px-2.5 py-[2px] text-[12px] font-medium tracking-wide text-white">
+                        <span className="ml-2 inline-flex items-center rounded-full bg-black/5 px-2.5 py-[2px] text-[12px] font-medium tracking-wide text-black">
                           -{selectedSavingsPct}%
                         </span>
                       ) : null}
@@ -501,10 +501,10 @@ const OfferSection = () => {
                 <span className="block sm:hidden">{buttonLabelMobile}</span>
                 <span className="hidden sm:block">{buttonLabel}</span>
               </Button>
-              <div className="text-sm text-white/75">
+              <div className="text-sm text-black/75">
                 Livraison gratuite en 3 à 5 jours ouvrés en France
               </div>
-              <div className="text-sm text-white/70">
+              <div className="text-sm text-black/70">
                 Expédié sous 24h • 30j satisfait ou remboursé
               </div>
               {/* Anchor target to land at the bottom of the purchase block */}

@@ -66,10 +66,10 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
                             loading="lazy"
                           />
                         </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/45 to-transparent opacity-95 pointer-events-none" />
                       </CardContent>
                       <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
-                        <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-xs px-3 py-2 rounded-xl max-w-[90%] whitespace-normal break-words">
+                        <Badge variant="secondary" className="bg-white/80 text-black backdrop-blur-md ring-1 ring-black/10 font-medium text-xs px-3 py-2 rounded-xl max-w-[90%] whitespace-normal break-words">
                           "{item.nugget}"
                         </Badge>
                       </CardFooter>
@@ -94,10 +94,10 @@ const TestimonialsSection = ({ id }: TestimonialsSectionProps) => {
                   className="w-full h-full object-cover aspect-[3/4] md:aspect-square select-none"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-90 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/45 to-transparent opacity-95 pointer-events-none" />
               </CardContent>
               <CardFooter className="absolute bottom-3 left-3 right-3 p-0">
-                <Badge variant="secondary" className="bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 font-medium text-sm sm:text-base px-3 py-2 rounded-xl max-w-[90%] sm:max-w-full whitespace-normal break-words">
+                <Badge variant="secondary" className="bg-white/80 text-black backdrop-blur-md ring-1 ring-black/10 font-medium text-sm sm:text-base px-3 py-2 rounded-xl max-w-[90%] sm:max-w-full whitespace-normal break-words">
                   "{item.nugget}"
                 </Badge>
               </CardFooter>

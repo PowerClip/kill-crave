@@ -23,12 +23,12 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full border-b border-white/10 bg-black/25 backdrop-blur supports-[backdrop-filter]:bg-black/20 transition-transform duration-300 ${
+      className={`sticky top-0 z-40 w-full border-b border-black/10 bg-[rgba(241,234,226,0.95)] backdrop-blur supports-[backdrop-filter]:bg-[rgba(241,234,226,0.9)] transition-transform duration-300 ${
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 h-32 sm:h-24 grid grid-cols-3 items-center">
-        <nav className="hidden sm:flex items-center gap-6 text-sm uppercase tracking-[0.14em] text-white/70 justify-self-start">
+        <nav className="hidden sm:flex items-center gap-6 text-sm uppercase tracking-[0.14em] text-black/70 justify-self-start">
           <a
             href="#ingredients"
             className="transition hover:text-primary"
