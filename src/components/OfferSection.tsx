@@ -285,9 +285,11 @@ const OfferSection = () => {
     }
   }
 
+  const normalizedTitle = product?.title?.replace(/blockout/gi, "Blackout");
+
   const productTitle =
-    product?.title && product.title !== "Kill Crave"
-      ? product.title
+    normalizedTitle && normalizedTitle !== "Kill Crave"
+      ? normalizedTitle
       : "Kill Crave — le spray Blackout Sugar";
 
   return (
