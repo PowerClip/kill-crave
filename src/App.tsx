@@ -13,6 +13,7 @@ import Cookies from "./pages/Cookies";
 import FAQ from "./pages/FAQ";
 import Livraison from "./pages/Livraison";
 import GoRedirect from "./pages/GoRedirect";
+import Analytics from "./pages/Analytics";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/livraison" element={<Livraison />} />
           <Route path="/go/:path" element={<GoRedirect />} />
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <GAReporter />

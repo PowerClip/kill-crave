@@ -118,6 +118,8 @@ export function trackViewContent(variantId?: string, price?: number, currency = 
     value: price,
     currency,
   });
+
+  // Also track to our analytics (already handled in /api/track endpoint)
 }
 
 export function trackInitiateCheckout(variantId: string, price?: number, currency = 'EUR') {
@@ -127,6 +129,8 @@ export function trackInitiateCheckout(variantId: string, price?: number, currenc
     value: price,
     currency,
   });
+
+  // Also track to our analytics (already handled in /api/track endpoint)
 }
 
 export function trackAddToCart(variantId: string, quantity: number, price?: number, currency = 'EUR') {
@@ -136,6 +140,8 @@ export function trackAddToCart(variantId: string, quantity: number, price?: numb
     value: price ? price * quantity : undefined,
     currency,
   });
+
+  // Also track to our analytics (already handled in /api/track endpoint)
 }
 
 export function trackEvent(eventName: string, parameters?: Record<string, any>) {
