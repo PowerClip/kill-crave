@@ -44,12 +44,13 @@ function isProduction() {
 export async function trackToKV(payload: TrackEventPayload) {
   // Skip tracking in local development
   if (!isProduction()) {
-    console.debug('[Dev] Analytics tracking skipped (local environment)');
+    console.log('[Dev] Analytics tracking skipped (local environment)', { hostname: window.location.hostname });
     return;
   }
 
   try {
-    await fetch('/api/analytics/track', {
+    console.log('[Analytics] Sending tracking data:', payload);
+    const response = await fetch('/api/analytics/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -59,8 +60,11 @@ export async function trackToKV(payload: TrackEventPayload) {
       }),
       keepalive: true,
     });
+    console.log('[Analytics] Response status:', response.status);
+    const data = await response.json();
+    console.log('[Analytics] Response data:', data);
   } catch (e) {
-    console.debug('Analytics tracking failed', e);
+    console.error('[Analytics] Tracking failed:', e);
   }
 }
 
