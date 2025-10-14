@@ -47,6 +47,24 @@ export function track(eventName: string, opts: TrackEventOptions = {}) {
     ts: Date.now(),
   };
   try {
+    // Push to Google Tag Manager dataLayer
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      const gaParams: Record<string, any> = {
+        event: eventName,
+        event_id: event_id,
+      };
+      if (opts.value != null) gaParams.value = opts.value;
+      if (opts.currency) gaParams.currency = opts.currency;
+      if (opts.contents && opts.contents.length > 0) {
+        gaParams.items = opts.contents.map(item => ({
+          item_id: item.id,
+          quantity: item.quantity || 1,
+          price: item.item_price,
+        }));
+      }
+      (window as any).dataLayer.push(gaParams);
+    }
+
     if (window.fbq) {
       window.fbq('track', eventName, payload, { eventID: event_id });
     }
@@ -142,6 +160,16 @@ export function trackAddToCart(variantId: string, quantity: number, price?: numb
   });
 
   // Also track to our analytics (already handled in /api/track endpoint)
+}
+
+export function trackPurchase(variantId: string, quantity: number, price: number, transactionId: string, currency = 'EUR') {
+  track('Purchase', {
+    contents: [{ id: variantId, quantity, item_price: price }],
+    content_type: 'product',
+    value: price * quantity,
+    currency,
+    event_id: transactionId, // Use transaction ID as event_id for deduplication
+  });
 }
 
 export function trackEvent(eventName: string, parameters?: Record<string, any>) {
