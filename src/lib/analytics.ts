@@ -137,7 +137,13 @@ export function trackViewContent(variantId?: string, price?: number, currency = 
     currency,
   });
 
-  // Also track to our analytics (already handled in /api/track endpoint)
+  // Also track to our KV analytics
+  import('@/lib/analytics-store').then(({ trackToKV }) => {
+    trackToKV({
+      event: 'ViewContent',
+      metrics: ['events:ViewContent'],
+    });
+  });
 }
 
 export function trackInitiateCheckout(variantId: string, price?: number, currency = 'EUR') {
@@ -148,7 +154,13 @@ export function trackInitiateCheckout(variantId: string, price?: number, currenc
     currency,
   });
 
-  // Also track to our analytics (already handled in /api/track endpoint)
+  // Also track to our KV analytics
+  import('@/lib/analytics-store').then(({ trackToKV }) => {
+    trackToKV({
+      event: 'InitiateCheckout',
+      metrics: ['events:InitiateCheckout'],
+    });
+  });
 }
 
 export function trackAddToCart(variantId: string, quantity: number, price?: number, currency = 'EUR') {
@@ -159,7 +171,13 @@ export function trackAddToCart(variantId: string, quantity: number, price?: numb
     currency,
   });
 
-  // Also track to our analytics (already handled in /api/track endpoint)
+  // Also track to our KV analytics
+  import('@/lib/analytics-store').then(({ trackToKV }) => {
+    trackToKV({
+      event: 'AddToCart',
+      metrics: ['events:AddToCart'],
+    });
+  });
 }
 
 export function trackPurchase(variantId: string, quantity: number, price: number, transactionId: string, currency = 'EUR') {
@@ -169,6 +187,14 @@ export function trackPurchase(variantId: string, quantity: number, price: number
     value: price * quantity,
     currency,
     event_id: transactionId, // Use transaction ID as event_id for deduplication
+  });
+
+  // Also track to our KV analytics
+  import('@/lib/analytics-store').then(({ trackToKV }) => {
+    trackToKV({
+      event: 'Purchase',
+      metrics: ['events:Purchase'],
+    });
   });
 }
 

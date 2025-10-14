@@ -9,8 +9,14 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import BenefitsTimelineSection from "@/components/BenefitsTimelineSection";
 import IngredientsSection from "@/components/IngredientsSection";
 import { useEffect } from "react";
+import { trackVisit } from "@/lib/analytics-store";
 
 const Index = () => {
+
+  // Track visit to KV analytics
+  useEffect(() => {
+    trackVisit();
+  }, []);
 
   // On mobile, make offer anchor land with the target at the bottom of the viewport
   useEffect(() => {
