@@ -68,9 +68,9 @@ Votre URL de webhook est :
 https://VOTRE_DOMAINE.vercel.app/api/webhooks/shopify
 ```
 
-**Exemple** : Si votre site est `https://kill-crave.vercel.app`, l'URL sera :
+**Exemple** : Si votre site est `https://kill-crave.com`, l'URL sera :
 ```
-https://kill-crave.vercel.app/api/webhooks/shopify
+https://kill-crave.com/api/webhooks/shopify
 ```
 
 ### 3.2 Créer le webhook
@@ -88,7 +88,7 @@ https://kill-crave.vercel.app/api/webhooks/shopify
 
    - **URL** : Collez votre URL de webhook
      ```
-     https://VOTRE_DOMAINE.vercel.app/api/webhooks/shopify
+     https://kill-crave.com/api/webhooks/shopify
      ```
 
    - **Webhook API version** : Sélectionnez la dernière version stable (ex: `2025-01`)

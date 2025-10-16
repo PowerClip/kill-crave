@@ -28,11 +28,22 @@ async function getAnalyticsStats() {
       'events:AddToCart',
       'events:InitiateCheckout',
       'events:Purchase',
-      // QR Codes
-      'qr:flyers:scans',
       // Clicks
       'clicks:cta',
     ];
+
+    // Get all campaign slugs
+    const campaignSlugs = await kv.smembers('campaigns:list');
+
+    // Add QR code metrics for each campaign
+    if (campaignSlugs && campaignSlugs.length > 0) {
+      campaignSlugs.forEach(slug => {
+        keys.push(`qr:${slug}:scans`);
+      });
+    }
+
+    // Also keep legacy flyers for backward compatibility
+    keys.push('qr:flyers:scans');
 
     const values = await Promise.all(
       keys.map(async key => {
