@@ -108,7 +108,7 @@ export default function Analytics() {
       await createCampaign(createForm);
       toast.success('Campagne créée avec succès!');
       setShowCreateDialog(false);
-      setCreateForm({ name: '', destination: 'https://www.killcrave.com', description: '' });
+      setCreateForm({ name: '', destination: 'https://www.kill-crave.com', description: '' });
       loadCampaigns(password);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : 'Erreur lors de la création');

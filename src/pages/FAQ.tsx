@@ -106,7 +106,7 @@ const FAQ = () => {
         },
         {
           question: "Comment demander un remboursement ?",
-          answer: "Envoyez-nous un email à support@killcrave.com avec votre numéro de commande. Nous traiterons votre demande sous 48h."
+          answer: "Envoyez-nous un email à support@kill-crave.com avec votre numéro de commande. Nous traiterons votre demande sous 48h."
         },
         {
           question: "Dois-je renvoyer le produit pour être remboursé ?",
@@ -123,7 +123,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "Comment vous contacter ?",
-          answer: "Par email à support@killcrave.com. Nous répondons sous 2 heures en semaine (9h-18h)."
+          answer: "Par email à support@kill-crave.com. Nous répondons sous 2 heures en semaine (9h-18h)."
         },
         {
           question: "Avez-vous un service client téléphonique ?",
@@ -173,8 +173,8 @@ const FAQ = () => {
                 Notre équipe est là pour vous aider. N'hésitez pas à nous contacter !
               </p>
               <p className="text-lg">
-                <a href="mailto:support@killcrave.com" className="text-primary hover:underline font-medium">
-                  support@killcrave.com
+                <a href="mailto:support@kill-crave.com" className="text-primary hover:underline font-medium">
+                  support@kill-crave.com
                 </a>
               </p>
               <p className="text-sm text-muted-foreground mt-2">

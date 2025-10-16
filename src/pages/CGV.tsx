@@ -15,7 +15,7 @@ const CGV = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Article 1 - Objet</h2>
                 <p className="text-muted-foreground">
-                  Les présentes conditions générales de vente (CGV) régissent les ventes de produits sur le site www.killcrave.com.
+                  Les présentes conditions générales de vente (CGV) régissent les ventes de produits sur le site www.kill-crave.com.
                   Kill Crave commercialise des compléments alimentaires destinés à réduire les envies de sucre.
                 </p>
               </div>
@@ -39,7 +39,7 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 3 - Commande</h2>
                 <div className="space-y-3 text-muted-foreground">
                   <p>
-                    Vous pouvez passer commande directement sur notre site internet www.killcrave.com.
+                    Vous pouvez passer commande directement sur notre site internet www.kill-crave.com.
                   </p>
                   <p>
                     La validation de votre commande implique l'acceptation intégrale des présentes CGV.
@@ -75,7 +75,7 @@ const CGV = () => {
                     La livraison est effectuée par La Poste Colissimo. Un numéro de suivi vous sera communiqué par email dès l'expédition de votre commande.
                   </p>
                   <p>
-                    En cas de retard de livraison, nous vous invitons à nous contacter à support@killcrave.com.
+                    En cas de retard de livraison, nous vous invitons à nous contacter à support@kill-crave.com.
                   </p>
                 </div>
               </div>
@@ -90,7 +90,7 @@ const CGV = () => {
                     Si vous n'êtes pas entièrement satisfait de nos produits, nous vous remboursons intégralement, sans condition.
                   </p>
                   <p>
-                    Pour bénéficier de cette garantie, contactez notre service client à support@killcrave.com en indiquant votre numéro de commande.
+                    Pour bénéficier de cette garantie, contactez notre service client à support@kill-crave.com en indiquant votre numéro de commande.
                   </p>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const CGV = () => {
                 <h2 className="text-xl font-semibold mb-4">Article 9 - Service Client</h2>
                 <div className="space-y-2 text-muted-foreground">
                   <p>Pour toute question ou réclamation, notre service client est à votre disposition :</p>
-                  <p><strong>Email :</strong> support@killcrave.com</p>
+                  <p><strong>Email :</strong> support@kill-crave.com</p>
                   <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
                   <p><strong>Horaires :</strong> Du lundi au vendredi de 9h à 18h</p>
                 </div>

@@ -128,7 +128,7 @@ const Confidentialite = () => {
                 <h2 className="text-xl font-semibold mb-4">9. Délégué à la protection des données</h2>
                 <div className="space-y-2 text-muted-foreground">
                   <p>Pour exercer vos droits ou pour toute question relative à la protection de vos données :</p>
-                  <p><strong>Email :</strong> dpo@killcrave.com</p>
+                  <p><strong>Email :</strong> dpo@kill-crave.com</p>
                   <p><strong>Adresse :</strong> Kill Crave - DPO, 123 rue de la Paix, 75002 Paris</p>
                 </div>
               </div>

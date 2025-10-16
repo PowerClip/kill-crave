@@ -20,7 +20,7 @@ const MentionsLegales = () => {
                   <p><strong>Siège social :</strong> 123 rue de la Paix, 75002 Paris, France</p>
                   <p><strong>RCS :</strong> Paris B 123 456 789</p>
                   <p><strong>TVA intracommunautaire :</strong> FR 12 345678901</p>
-                  <p><strong>Email :</strong> support@killcrave.com</p>
+                  <p><strong>Email :</strong> support@kill-crave.com</p>
                   <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
                 </div>
               </div>

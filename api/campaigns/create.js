@@ -44,7 +44,7 @@ export default async function handler(req, res) {
     }
 
     // Default destination to Kill Crave homepage
-    const finalDestination = destination && destination.trim() ? destination.trim() : 'https://www.killcrave.com';
+    const finalDestination = destination && destination.trim() ? destination.trim() : 'https://www.kill-crave.com';
 
     // Generate slug
     let slug = generateSlug(name);

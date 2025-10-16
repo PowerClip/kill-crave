@@ -118,10 +118,10 @@ export async function deleteCampaign(
 
 // Generate QR code URL for a campaign
 export function generateQRCodeURL(slug: string): string {
-  // Use the current hostname or default to killcrave.com
+  // Use the current hostname or default to kill-crave.com
   const hostname = typeof window !== 'undefined'
     ? window.location.hostname
-    : 'www.killcrave.com';
+    : 'www.kill-crave.com';
 
   const protocol = hostname === 'localhost' ? 'http' : 'https';
   return `${protocol}://${hostname}/go/${slug}`;

@@ -46,7 +46,7 @@ const FAQSection = () => {
     {
       question: "Retours & garantie",
       answer:
-        "30 jours pour changer d’avis (produit non ouvert). Écrivez‑nous à support@killcrave.com — réponse sous 2h."
+        "30 jours pour changer d'avis (produit non ouvert). Écrivez‑nous à support@kill-crave.com — réponse sous 2h."
     }
   ];
 
@@ -84,7 +84,7 @@ const FAQSection = () => {
               Vous avez encore des questions ?
             </p>
             <p className="text-black/75">
-              Envoyez-nous un email à <span className="font-medium text-primary">support@killcrave.com</span> — réponse sous 2&nbsp;heures ✨
+              Envoyez-nous un email à <span className="font-medium text-primary">support@kill-crave.com</span> — réponse sous 2&nbsp;heures ✨
             </p>
           </div>
         </div>
