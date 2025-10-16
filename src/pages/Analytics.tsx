@@ -27,7 +27,7 @@ export default function Analytics() {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [createForm, setCreateForm] = useState<CreateCampaignPayload>({
     name: '',
-    destination: '',
+    destination: 'https://www.killcrave.com',
     description: ''
   });
   const [isCreating, setIsCreating] = useState(false);
@@ -98,8 +98,8 @@ export default function Analytics() {
   const handleCreateCampaign = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!createForm.name.trim() || !createForm.destination.trim()) {
-      toast.error('Le nom et la destination sont requis');
+    if (!createForm.name.trim()) {
+      toast.error('Le nom de la campagne est requis');
       return;
     }
 
@@ -108,7 +108,7 @@ export default function Analytics() {
       await createCampaign(createForm);
       toast.success('Campagne créée avec succès!');
       setShowCreateDialog(false);
-      setCreateForm({ name: '', destination: '', description: '' });
+      setCreateForm({ name: '', destination: 'https://www.killcrave.com', description: '' });
       loadCampaigns(password);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : 'Erreur lors de la création');
@@ -429,17 +429,6 @@ export default function Analytics() {
                         placeholder="Ex: Flyers Noël 2024"
                         value={createForm.name}
                         onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="destination">URL de destination *</Label>
-                      <Input
-                        id="destination"
-                        type="url"
-                        placeholder="https://www.killcrave.com"
-                        value={createForm.destination}
-                        onChange={(e) => setCreateForm({ ...createForm, destination: e.target.value })}
                         required
                       />
                     </div>

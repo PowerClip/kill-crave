@@ -11,7 +11,7 @@ export interface Campaign {
 
 export interface CreateCampaignPayload {
   name: string;
-  destination: string;
+  destination?: string;
   description?: string;
 }
 

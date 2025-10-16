@@ -43,9 +43,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Name is required' });
     }
 
-    if (!destination || !destination.trim()) {
-      return res.status(400).json({ error: 'Destination is required' });
-    }
+    // Default destination to Kill Crave homepage
+    const finalDestination = destination && destination.trim() ? destination.trim() : 'https://www.killcrave.com';
 
     // Generate slug
     let slug = generateSlug(name);
@@ -63,7 +62,7 @@ export default async function handler(req, res) {
     const campaign = {
       slug,
       name: name.trim(),
-      destination: destination.trim(),
+      destination: finalDestination,
       description: description?.trim() || '',
       createdAt: new Date().toISOString(),
       scans: 0

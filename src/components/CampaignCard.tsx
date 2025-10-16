@@ -109,14 +109,6 @@ export function CampaignCard({ campaign, password, onDelete }: CampaignCardProps
           </div>
         </div>
 
-        {/* Destination */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Destination</label>
-          <div className="p-2 bg-gray-50 rounded border border-gray-200 text-sm truncate">
-            {campaign.destination}
-          </div>
-        </div>
-
         {/* QR Code Button */}
         <Dialog open={showQRCode} onOpenChange={setShowQRCode}>
           <DialogTrigger asChild>
@@ -129,7 +121,7 @@ export function CampaignCard({ campaign, password, onDelete }: CampaignCardProps
             <DialogHeader>
               <DialogTitle>QR Code - {campaign.name}</DialogTitle>
               <DialogDescription>
-                Scannez ce code pour accéder à: {campaign.destination}
+                Scannez ce code pour accéder à Kill Crave
               </DialogDescription>
             </DialogHeader>
             <div className="flex justify-center py-4">
