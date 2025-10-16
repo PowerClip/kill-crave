@@ -27,7 +27,7 @@ export default function Analytics() {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [createForm, setCreateForm] = useState<CreateCampaignPayload>({
     name: '',
-    destination: 'https://www.killcrave.com',
+    destination: 'https://www.kill-crave.com',
     description: ''
   });
   const [isCreating, setIsCreating] = useState(false);
