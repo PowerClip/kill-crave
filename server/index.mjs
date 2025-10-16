@@ -222,6 +222,93 @@ const server = http.createServer(async (req, res) => {
 		return;
 	}
 
+	// Shopify webhook endpoint (for local testing)
+	if (req.method === 'POST' && req.url === '/api/webhooks/shopify') {
+		let body = '';
+		req.on('data', chunk => { body += chunk; if (body.length > 1e6) req.destroy(); });
+		req.on('end', async () => {
+			try {
+				// Get HMAC header from Shopify
+				const hmacHeader = req.headers['x-shopify-hmac-sha256'];
+
+				if (!hmacHeader) {
+					console.error('Missing HMAC header');
+					return json(res, 401, { error: 'Missing HMAC header' });
+				}
+
+				// Verify webhook authenticity
+				const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET;
+				if (!SHOPIFY_WEBHOOK_SECRET) {
+					console.error('SHOPIFY_WEBHOOK_SECRET not configured');
+					return json(res, 500, { error: 'SHOPIFY_WEBHOOK_SECRET not configured' });
+				}
+
+				const hash = crypto.createHmac('sha256', SHOPIFY_WEBHOOK_SECRET)
+					.update(body, 'utf8')
+					.digest('base64');
+
+				if (hash !== hmacHeader) {
+					console.error('Invalid HMAC signature');
+					return json(res, 401, { error: 'Invalid signature' });
+				}
+
+				// Parse order data
+				const order = JSON.parse(body);
+
+				console.log('Shopify order received:', {
+					id: order.id,
+					name: order.name,
+					total: order.total_price,
+				});
+
+				// Extract order details
+				const transactionId = order.name || order.id?.toString();
+				const totalValue = parseFloat(order.total_price) || 0;
+				const currency = order.currency || 'EUR';
+
+				// Extract line items (products)
+				const lineItems = order.line_items || [];
+				const contents = lineItems.map(item => ({
+					id: item.variant_id?.toString() || item.product_id?.toString(),
+					quantity: item.quantity || 1,
+					item_price: parseFloat(item.price) || 0,
+				}));
+
+				// Track Purchase event to Facebook CAPI
+				const event_id = `shopify_${order.id}`;
+				await forwardToCapi('Purchase', {
+					event_id,
+					value: totalValue,
+					currency,
+					contents,
+					content_type: 'product',
+				}, req);
+
+				// Track to Vercel KV analytics
+				const country = getCountry(req);
+				const metrics = [
+					'events:Purchase',
+					`country:${country}`,
+				];
+
+				await incrementMetrics(metrics);
+
+				console.log('Purchase tracked successfully:', {
+					transactionId,
+					totalValue,
+					currency,
+					itemCount: contents.length,
+				});
+
+				json(res, 200, { success: true, tracked: metrics.length });
+			} catch (e) {
+				console.error('Webhook processing error:', e);
+				json(res, 500, { error: e.message });
+			}
+		});
+		return;
+	}
+
 	// health
 	if (req.url === '/health') return json(res, 200, { ok: true });
 	res.writeHead(404); res.end('Not found');
