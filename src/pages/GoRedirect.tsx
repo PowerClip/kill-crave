@@ -58,6 +58,11 @@ const GoRedirect = () => {
       });
 
       setTracked(true);
+
+      // Redirect to external URL after tracking
+      setTimeout(() => {
+        window.location.href = campaign.destination;
+      }, 100);
     }
   }, [campaign, tracked, path]);
 
@@ -73,7 +78,12 @@ const GoRedirect = () => {
     return <Navigate to="/" replace />;
   }
 
-  return <Navigate to={campaign.destination} replace />;
+  // Show loading while tracking and redirecting
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+  );
 };
 
 export default GoRedirect;
