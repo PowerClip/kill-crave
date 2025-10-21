@@ -203,7 +203,7 @@ const server = http.createServer(async (req, res) => {
 					const metrics = [];
 					if (eventName === 'ViewContent') metrics.push('events:view_content');
 					if (eventName === 'AddToCart') metrics.push('events:add_to_cart');
-					if (eventName === 'InitiateCheckout') metrics.push('events:initiate_checkout');
+					// InitiateCheckout now tracked only via Shopify webhook (real orders)
 					if (metrics.length > 0) {
 						const country = getCountry(req);
 						await incrementMetrics([...metrics, `country:${country}`]);
@@ -288,6 +288,7 @@ const server = http.createServer(async (req, res) => {
 				const country = getCountry(req);
 				const metrics = [
 					'events:Purchase',
+					'events:initiate_checkout',  // Track checkout stats from real orders
 					`country:${country}`,
 				];
 

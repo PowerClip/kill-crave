@@ -5,7 +5,7 @@ import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { createCartAndGetCheckout, formatMoney } from "@/lib/shopify";
 import { H2, P } from "@/components/ui/typography";
 import { useToast } from "@/hooks/use-toast";
-import { trackInitiateCheckout, trackAddToCart, trackOnce } from "@/lib/analytics";
+import { trackAddToCart, trackOnce } from "@/lib/analytics";
 import { trackBeginCheckout, trackAddToCartGTM } from "@/lib/gtm";
 
 const DOSES_PER_BOTTLE = 90; // matches product claim
@@ -271,9 +271,8 @@ const OfferSection = () => {
       setCreatingCheckout(true);
       const unitPrice = selectedOption?.priceNumber ?? safeParsePrice(purchaseVariant.price.amount);
       if (unitPrice !== undefined) {
-        // Fire both AddToCart + InitiateCheckout for funnel coverage
+        // Track AddToCart (InitiateCheckout now tracked via Shopify webhook only)
         trackAddToCart(purchaseVariant.id, purchaseQuantity, unitPrice);
-        trackInitiateCheckout(purchaseVariant.id, unitPrice);
       }
       const url = await createCartAndGetCheckout(purchaseVariant.id, purchaseQuantity);
       window.location.href = url;
