@@ -1,0 +1,34 @@
+{
+  "metrics": {
+    "visits:total": 403,
+    "visits:unique": 0,
+    "device:iphone": 252,
+    "device:android": 85,
+    "device:mac": 9,
+    "device:windows": 30,
+    "device:mobile": 337,
+    "device:desktop": 66,
+    "country:FR": 345,
+    "country:BE": 19,
+    "country:CH": 2,
+    "country:CA": 1,
+    "country:US": 63,
+    "country:other": 21,
+    "events:ViewContent": 0,
+    "events:AddToCart": 19,
+    "events:InitiateCheckout": 19,
+    "events:Purchase": 0,
+    "qr:flyers:scans": 0,
+    "clicks:cta": 0
+  },
+  "campaigns": [
+    {
+      "slug": "test2",
+      "createdAt": "2025-10-16T08:43:47.039Z",
+      "description": "",
+      "destination": "https://www.kill-crave.com",
+      "name": "test2",
+      "scans": 0
+    }
+  ]
+}

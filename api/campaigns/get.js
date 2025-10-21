@@ -1,4 +1,6 @@
-import { kv } from '@vercel/kv';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   // CORS headers
@@ -21,16 +23,25 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Slug is required' });
     }
 
-    // Get campaign data
-    const campaign = await kv.hgetall(`campaign:${slug}`);
+    // Get campaign data from Prisma
+    const campaign = await prisma.campaign.findUnique({
+      where: { slug },
+    });
 
-    if (!campaign || Object.keys(campaign).length === 0) {
+    if (!campaign) {
       return res.status(404).json({ error: 'Campaign not found' });
     }
 
-    return res.status(200).json({ campaign });
+    return res.status(200).json({
+      campaign: {
+        ...campaign,
+        createdAt: campaign.createdAt.toISOString(),
+      },
+    });
   } catch (e) {
     console.error('Get campaign error:', e);
     return res.status(500).json({ error: e.message });
+  } finally {
+    await prisma.$disconnect();
   }
 }

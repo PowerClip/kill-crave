@@ -1,5 +1,6 @@
-import { kv } from '@vercel/kv';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const ANALYTICS_PASSWORD = process.env.ANALYTICS_PASSWORD;
 
 export default async function handler(req, res) {
@@ -26,44 +27,32 @@ export default async function handler(req, res) {
       }
     }
 
-    // Get all campaign slugs
-    const slugs = await kv.smembers('campaigns:list');
-
-    if (!slugs || slugs.length === 0) {
-      return res.status(200).json({ campaigns: [] });
-    }
-
-    // Get all campaigns data
-    const campaignsData = await Promise.all(
-      slugs.map(async (slug) => {
-        const campaign = await kv.hgetall(`campaign:${slug}`);
-
-        // Get scan count from analytics
-        const scans = await kv.get(`qr:${slug}:scans`) || 0;
-
-        if (campaign && Object.keys(campaign).length > 0) {
-          return {
-            ...campaign,
-            scans: parseInt(scans)
-          };
-        }
-        return null;
-      })
-    );
-
-    // Filter out null campaigns (in case some were deleted)
-    const campaigns = campaignsData.filter(c => c !== null);
-
-    // Sort by creation date (newest first)
-    campaigns.sort((a, b) => {
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
-      return dateB - dateA;
+    // Get all campaigns from Prisma
+    const campaigns = await prisma.campaign.findMany({
+      select: {
+        slug: true,
+        name: true,
+        destination: true,
+        description: true,
+        scans: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
-    return res.status(200).json({ campaigns });
+    // Format dates to ISO strings for JSON serialization
+    const formattedCampaigns = campaigns.map(campaign => ({
+      ...campaign,
+      createdAt: campaign.createdAt.toISOString(),
+    }));
+
+    return res.status(200).json({ campaigns: formattedCampaigns });
   } catch (e) {
     console.error('List campaigns error:', e);
     return res.status(500).json({ error: e.message });
+  } finally {
+    await prisma.$disconnect();
   }
 }

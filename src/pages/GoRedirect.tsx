@@ -51,7 +51,17 @@ const GoRedirect = () => {
         path: `/go/${path}`
       });
 
-      // Track to Vercel KV
+      // Increment scan counter in Campaign table
+      fetch('/api/campaigns/increment-scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: campaign.slug }),
+        keepalive: true,
+      }).catch(() => {
+        // Non-blocking - continue even if increment fails
+      });
+
+      // Track to analytics (for daily metrics)
       trackToKV({
         event: 'qr_scan',
         metrics: [`qr:${campaign.slug}:scans`]

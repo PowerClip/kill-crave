@@ -1,61 +1,91 @@
-import { kv } from '@vercel/kv';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const ANALYTICS_PASSWORD = process.env.ANALYTICS_PASSWORD;
 
-// Get all analytics stats
-async function getAnalyticsStats() {
+// Get analytics stats for a date range
+async function getAnalyticsStats(startDate, endDate) {
   try {
-    const keys = [
-      // Visits
-      'visits:total',
-      'visits:unique',
-      // Devices
-      'device:iphone',
-      'device:android',
-      'device:mac',
-      'device:windows',
-      'device:mobile',
-      'device:desktop',
-      // Countries
-      'country:FR',
-      'country:BE',
-      'country:CH',
-      'country:CA',
-      'country:US',
-      'country:other',
-      // Events
-      'events:ViewContent',
-      'events:AddToCart',
-      'events:InitiateCheckout',
-      'events:Purchase',
-      // Clicks
-      'clicks:cta',
-    ];
-
-    // Get all campaign slugs
-    const campaignSlugs = await kv.smembers('campaigns:list');
-
-    // Add QR code metrics for each campaign
-    if (campaignSlugs && campaignSlugs.length > 0) {
-      campaignSlugs.forEach(slug => {
-        keys.push(`qr:${slug}:scans`);
-      });
+    // Default to last 30 days if not specified
+    if (!startDate || !endDate) {
+      const end = new Date();
+      const start = new Date();
+      start.setDate(start.getDate() - 30);
+      startDate = start.toISOString().split('T')[0];
+      endDate = end.toISOString().split('T')[0];
     }
 
-    // Also keep legacy flyers for backward compatibility
-    keys.push('qr:flyers:scans');
+    // Fetch all daily metrics in date range
+    const dailyMetrics = await prisma.dailyMetric.findMany({
+      where: {
+        date: {
+          gte: new Date(startDate),
+          lte: new Date(endDate),
+        },
+      },
+      select: {
+        date: true,
+        metric: true,
+        value: true,
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    });
 
-    const values = await Promise.all(
-      keys.map(async key => {
-        const val = await kv.get(key);
-        return [key, val || 0];
-      })
-    );
+    // Format daily data for charts (grouped by date)
+    const dailyByDate = {};
+    dailyMetrics.forEach(m => {
+      const dateKey = m.date.toISOString().split('T')[0];
+      if (!dailyByDate[dateKey]) {
+        dailyByDate[dateKey] = {};
+      }
+      dailyByDate[dateKey][m.metric] = m.value;
+    });
 
-    return Object.fromEntries(values);
+    // Convert to array format
+    const daily = Object.entries(dailyByDate).map(([date, metrics]) => ({
+      date,
+      ...metrics,
+    }));
+
+    // Calculate totals by summing all values for each metric
+    const totals = {};
+    dailyMetrics.forEach(m => {
+      if (!totals[m.metric]) {
+        totals[m.metric] = 0;
+      }
+      totals[m.metric] += m.value;
+    });
+
+    // Get campaigns (not date-filtered, these are totals)
+    const campaigns = await prisma.campaign.findMany({
+      select: {
+        slug: true,
+        scans: true,
+      },
+    });
+
+    // Add campaign scans to totals
+    campaigns.forEach(campaign => {
+      totals[`qr:${campaign.slug}:scans`] = campaign.scans;
+    });
+
+    return {
+      daily,
+      totals,
+      dateRange: {
+        start: startDate,
+        end: endDate,
+      },
+    };
   } catch (e) {
     console.error('Failed to fetch analytics stats:', e);
-    return {};
+    return {
+      daily: [],
+      totals: {},
+      dateRange: { start: startDate, end: endDate },
+    };
   }
 }
 
@@ -83,10 +113,21 @@ export default async function handler(req, res) {
       }
     }
 
-    const stats = await getAnalyticsStats();
+    // Get date range from query params
+    const { start_date, end_date, totals_only } = req.query;
+
+    const stats = await getAnalyticsStats(start_date, end_date);
+
+    // If only totals requested (for backward compatibility)
+    if (totals_only === 'true') {
+      return res.status(200).json(stats.totals);
+    }
+
     return res.status(200).json(stats);
   } catch (e) {
     console.error('Stats error:', e);
     return res.status(500).json({ error: e.message });
+  } finally {
+    await prisma.$disconnect();
   }
 }

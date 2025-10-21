@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Store daily aggregated metrics
+model DailyMetric {
+  id        String   @id @default(cuid())
+  date      DateTime @db.Date
+  metric    String   // ex: "visits:total", "device:iphone", "country:FR"
+  value     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([date, metric])
+  @@index([date])
+  @@index([metric])
+  @@index([date, metric])
+}
+
+// Store raw events for audit and detailed analytics
+model RawEvent {
+  id        String   @id @default(cuid())
+  eventName String   // ex: "page_view", "ViewContent", "AddToCart"
+  metric    String?  // primary metric being tracked
+  country   String?  // country code (FR, BE, CH, CA, US, other)
+  device    String?  // device type (iphone, android, mac, windows, other)
+  isMobile  Boolean  @default(false)
+  timestamp DateTime @default(now())
+  metadata  Json?    // additional event data
+
+  @@index([timestamp])
+  @@index([eventName])
+  @@index([timestamp, eventName])
+}
+
+// Store QR code campaigns
+model Campaign {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  destination String   @default("https://www.kill-crave.com")
+  description String?
+  scans       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+}

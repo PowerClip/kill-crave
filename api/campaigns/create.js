@@ -1,5 +1,6 @@
-import { kv } from '@vercel/kv';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const ANALYTICS_PASSWORD = process.env.ANALYTICS_PASSWORD;
 
 // Generate a unique slug from campaign name
@@ -50,36 +51,38 @@ export default async function handler(req, res) {
     let slug = generateSlug(name);
 
     // Check if slug already exists
-    const existingCampaign = await kv.hgetall(`campaign:${slug}`);
+    const existingCampaign = await prisma.campaign.findUnique({
+      where: { slug },
+    });
 
-    if (existingCampaign && Object.keys(existingCampaign).length > 0) {
+    if (existingCampaign) {
       // Add a timestamp suffix to make it unique
       const timestamp = Date.now().toString(36);
       slug = `${slug}-${timestamp}`;
     }
 
-    // Create campaign object
-    const campaign = {
-      slug,
-      name: name.trim(),
-      destination: finalDestination,
-      description: description?.trim() || '',
-      createdAt: new Date().toISOString(),
-      scans: 0
-    };
-
-    // Store campaign in KV
-    await kv.hset(`campaign:${slug}`, campaign);
-
-    // Add to campaigns list
-    await kv.sadd('campaigns:list', slug);
+    // Create campaign in Prisma
+    const campaign = await prisma.campaign.create({
+      data: {
+        slug,
+        name: name.trim(),
+        destination: finalDestination,
+        description: description?.trim() || '',
+        scans: 0,
+      },
+    });
 
     return res.status(201).json({
       success: true,
-      campaign
+      campaign: {
+        ...campaign,
+        createdAt: campaign.createdAt.toISOString(),
+      },
     });
   } catch (e) {
     console.error('Create campaign error:', e);
     return res.status(500).json({ error: e.message });
+  } finally {
+    await prisma.$disconnect();
   }
 }

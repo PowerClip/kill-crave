@@ -4,5 +4,11 @@
       "source": "/((?!api/).*)",
       "destination": "/"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/aggregate-daily",
+      "schedule": "0 1 * * *"
+    }
   ]
 }

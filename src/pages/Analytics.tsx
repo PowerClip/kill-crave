@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import { Smartphone, Globe, ShoppingCart, Eye, CreditCard, QrCode, Plus } from 'lucide-react';
+import { LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { Smartphone, Globe, ShoppingCart, Eye, CreditCard, QrCode, Plus, Calendar } from 'lucide-react';
 import { AnalyticsStats } from '@/lib/kv';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -13,11 +13,19 @@ import { CampaignCard } from '@/components/CampaignCard';
 import { Campaign, fetchCampaigns, createCampaign, CreateCampaignPayload } from '@/lib/campaigns';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { DateRangePicker } from '@/components/DateRangePicker';
+import { DateRange } from 'react-day-picker';
+import { format, subDays } from 'date-fns';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
 export default function Analytics() {
   const [stats, setStats] = useState<AnalyticsStats | null>(null);
+  const [dailyData, setDailyData] = useState<any[]>([]);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 29),
+    to: new Date(),
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useState('');
@@ -48,7 +56,17 @@ export default function Analytics() {
         sessionStorage.setItem('analytics_password', authPassword);
       }
 
-      const response = await fetch('/api/analytics/stats', { headers });
+      // Build query params for date range
+      let url = '/api/analytics/stats';
+      if (dateRange?.from && dateRange?.to) {
+        const params = new URLSearchParams({
+          start_date: format(dateRange.from, 'yyyy-MM-dd'),
+          end_date: format(dateRange.to, 'yyyy-MM-dd'),
+        });
+        url += `?${params.toString()}`;
+      }
+
+      const response = await fetch(url, { headers });
 
       if (response.status === 401) {
         setIsAuthenticated(false);
@@ -61,7 +79,17 @@ export default function Analytics() {
       }
 
       const data = await response.json();
-      setStats(data);
+
+      // New API returns { daily, totals, dateRange }
+      if (data.totals) {
+        setStats(data.totals);
+        setDailyData(data.daily || []);
+      } else {
+        // Backward compatibility with old API
+        setStats(data);
+        setDailyData([]);
+      }
+
       setIsAuthenticated(true);
 
       // Also fetch campaigns
@@ -86,9 +114,10 @@ export default function Analytics() {
   };
 
   useEffect(() => {
-    // Try without password first
-    fetchStats();
-  }, []);
+    // Try without password first, or with saved password
+    const savedPassword = sessionStorage.getItem('analytics_password');
+    fetchStats(savedPassword || undefined);
+  }, [dateRange]); // Refetch when date range changes
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -213,15 +242,22 @@ export default function Analytics() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Analytics Dashboard</h1>
-          <p className="text-gray-600">Statistiques en temps réel de votre site</p>
-          <Button
-            onClick={() => navigate('/')}
-            variant="outline"
-            className="mt-4"
-          >
-            Retour à l'accueil
-          </Button>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Analytics Dashboard</h1>
+              <p className="text-gray-600">Statistiques de votre site</p>
+            </div>
+            <Button
+              onClick={() => navigate('/')}
+              variant="outline"
+            >
+              Retour à l'accueil
+            </Button>
+          </div>
+          <DateRangePicker
+            dateRange={dateRange}
+            onDateRangeChange={setDateRange}
+          />
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
@@ -287,11 +323,61 @@ export default function Analytics() {
               </Card>
             </div>
 
+            {/* Visits Over Time */}
+            {dailyData.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Visites au fil du temps</CardTitle>
+                  <CardDescription>Évolution quotidienne des visites</CardDescription>
+                </CardHeader>
+                <CardContent className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={dailyData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={(value) => {
+                          const date = new Date(value);
+                          return format(date, 'dd/MM');
+                        }}
+                      />
+                      <YAxis />
+                      <Tooltip
+                        labelFormatter={(value) => format(new Date(value), 'dd/MM/yyyy')}
+                      />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="visits:total"
+                        stroke="#0088FE"
+                        name="Visites totales"
+                        strokeWidth={2}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="device:mobile"
+                        stroke="#00C49F"
+                        name="Mobile"
+                        strokeWidth={2}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="device:desktop"
+                        stroke="#FFBB28"
+                        name="Desktop"
+                        strokeWidth={2}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Conversion Funnel */}
             <Card>
               <CardHeader>
                 <CardTitle>Funnel de conversion</CardTitle>
-                <CardDescription>Parcours des visiteurs de la visite au checkout</CardDescription>
+                <CardDescription>Parcours des visiteurs de la visite au checkout (période sélectionnée)</CardDescription>
               </CardHeader>
               <CardContent className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -305,6 +391,59 @@ export default function Analytics() {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
+
+            {/* Events Over Time */}
+            {dailyData.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Événements au fil du temps</CardTitle>
+                  <CardDescription>Évolution quotidienne des conversions</CardDescription>
+                </CardHeader>
+                <CardContent className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={dailyData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={(value) => {
+                          const date = new Date(value);
+                          return format(date, 'dd/MM');
+                        }}
+                      />
+                      <YAxis />
+                      <Tooltip
+                        labelFormatter={(value) => format(new Date(value), 'dd/MM/yyyy')}
+                      />
+                      <Legend />
+                      <Area
+                        type="monotone"
+                        dataKey="events:ViewContent"
+                        stackId="1"
+                        stroke="#8884d8"
+                        fill="#8884d8"
+                        name="Vues produit"
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="events:AddToCart"
+                        stackId="1"
+                        stroke="#82ca9d"
+                        fill="#82ca9d"
+                        name="Ajouts panier"
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="events:InitiateCheckout"
+                        stackId="1"
+                        stroke="#ffc658"
+                        fill="#ffc658"
+                        name="Checkouts"
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Charts Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

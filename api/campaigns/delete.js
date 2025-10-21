@@ -1,5 +1,6 @@
-import { kv } from '@vercel/kv';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const ANALYTICS_PASSWORD = process.env.ANALYTICS_PASSWORD;
 
 export default async function handler(req, res) {
@@ -32,20 +33,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Slug is required' });
     }
 
-    // Check if campaign exists
-    const campaign = await kv.hgetall(`campaign:${slug}`);
+    // Check if campaign exists and delete it
+    const campaign = await prisma.campaign.delete({
+      where: { slug },
+    }).catch(() => null);
 
-    if (!campaign || Object.keys(campaign).length === 0) {
+    if (!campaign) {
       return res.status(404).json({ error: 'Campaign not found' });
     }
 
-    // Delete campaign data
-    await kv.del(`campaign:${slug}`);
-
-    // Remove from campaigns list
-    await kv.srem('campaigns:list', slug);
-
-    // Note: We don't delete the analytics data (qr:${slug}:scans) to preserve historical data
+    // Note: We don't delete the historical analytics data to preserve stats
 
     return res.status(200).json({
       success: true,
@@ -54,5 +51,7 @@ export default async function handler(req, res) {
   } catch (e) {
     console.error('Delete campaign error:', e);
     return res.status(500).json({ error: e.message });
+  } finally {
+    await prisma.$disconnect();
   }
 }
