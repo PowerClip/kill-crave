@@ -9,12 +9,14 @@
     "build:dev": "npx vite build --mode development",
     "lint": "eslint .",
     "preview": "npx vite preview",
-    "stripe:create-link": "node ./scripts/create_stripe_payment_link.mjs"
+    "stripe:create-link": "node ./scripts/create_stripe_payment_link.mjs",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@prisma/client": "^6.17.1",
     "@prisma/extension-accelerate": "^2.0.2",
+    "prisma": "^6.17.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -82,7 +84,6 @@
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.9",
     "postcss": "^8.5.6",
-    "prisma": "^6.17.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
