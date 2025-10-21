@@ -328,11 +328,11 @@ export default function Analytics() {
               <Card>
                 <CardHeader>
                   <CardTitle>Visites au fil du temps</CardTitle>
-                  <CardDescription>Évolution quotidienne des visites</CardDescription>
+                  <CardDescription>Évolution quotidienne par type d'appareil</CardDescription>
                 </CardHeader>
                 <CardContent className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={dailyData}>
+                    <BarChart data={dailyData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="date"
@@ -346,28 +346,31 @@ export default function Analytics() {
                         labelFormatter={(value) => format(new Date(value), 'dd/MM/yyyy')}
                       />
                       <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="visits:total"
-                        stroke="#0088FE"
-                        name="Visites totales"
-                        strokeWidth={2}
+                      <Bar
+                        dataKey="device:iphone"
+                        stackId="1"
+                        fill="#0088FE"
+                        name="iPhone"
                       />
-                      <Line
-                        type="monotone"
-                        dataKey="device:mobile"
-                        stroke="#00C49F"
-                        name="Mobile"
-                        strokeWidth={2}
+                      <Bar
+                        dataKey="device:android"
+                        stackId="1"
+                        fill="#00C49F"
+                        name="Android"
                       />
-                      <Line
-                        type="monotone"
-                        dataKey="device:desktop"
-                        stroke="#FFBB28"
-                        name="Desktop"
-                        strokeWidth={2}
+                      <Bar
+                        dataKey="device:mac"
+                        stackId="1"
+                        fill="#FFBB28"
+                        name="Mac"
                       />
-                    </LineChart>
+                      <Bar
+                        dataKey="device:windows"
+                        stackId="1"
+                        fill="#FF8042"
+                        name="Windows"
+                      />
+                    </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
@@ -381,10 +384,10 @@ export default function Analytics() {
               </CardHeader>
               <CardContent className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={funnelData} layout="vertical">
+                  <BarChart data={funnelData} layout="horizontal">
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" />
-                    <YAxis dataKey="name" type="category" width={120} />
+                    <XAxis dataKey="name" type="category" />
+                    <YAxis type="number" />
                     <Tooltip />
                     <Bar dataKey="value" fill="#0088FE" />
                   </BarChart>
