@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { Smartphone, Globe, ShoppingCart, Eye, CreditCard, QrCode, Plus, Calendar } from 'lucide-react';
 import { AnalyticsStats } from '@/lib/kv';
 import { Input } from '@/components/ui/input';
@@ -400,11 +400,11 @@ export default function Analytics() {
               <Card>
                 <CardHeader>
                   <CardTitle>Événements au fil du temps</CardTitle>
-                  <CardDescription>Évolution quotidienne des conversions</CardDescription>
+                  <CardDescription>Évolution quotidienne des conversions (échelle logarithmique)</CardDescription>
                 </CardHeader>
                 <CardContent className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={dailyData}>
+                    <BarChart data={dailyData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="date"
@@ -413,36 +413,27 @@ export default function Analytics() {
                           return format(date, 'dd/MM');
                         }}
                       />
-                      <YAxis />
+                      <YAxis scale="log" domain={[1, 'auto']} allowDataOverflow />
                       <Tooltip
                         labelFormatter={(value) => format(new Date(value), 'dd/MM/yyyy')}
                       />
                       <Legend />
-                      <Area
-                        type="monotone"
+                      <Bar
                         dataKey="events:ViewContent"
-                        stackId="1"
-                        stroke="#8884d8"
                         fill="#8884d8"
                         name="Vues produit"
                       />
-                      <Area
-                        type="monotone"
+                      <Bar
                         dataKey="events:AddToCart"
-                        stackId="1"
-                        stroke="#82ca9d"
                         fill="#82ca9d"
                         name="Ajouts panier"
                       />
-                      <Area
-                        type="monotone"
+                      <Bar
                         dataKey="events:InitiateCheckout"
-                        stackId="1"
-                        stroke="#ffc658"
                         fill="#ffc658"
                         name="Checkouts"
                       />
-                    </AreaChart>
+                    </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
